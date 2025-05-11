@@ -1,0 +1,57 @@
+@import "tailwindcss";
+@plugin "tailwindcss-debug-screens";
+
+@theme{
+  --color-navcolor: oklch(0.987 0.026 102.212);
+  --color-primary: oklch(0.648 0.2 131.684);
+  --color-secondary: oklch(0.705 0.213 47.604);
+  --color-primaryFade: oklch(0.453 0.124 130.933)
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* globals.css */
+
+/* High Contrast Mode */
+.high-contrast {
+  --background: black;
+  --foreground: white;
+  --primary: yellow;
+}
+
+.high-contrast body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+.high-contrast a {
+  color: var(--primary);
+}
+
+/* Large Text Mode */
+.large-text {
+  font-size: 125%;
+}
+
+.large-text h1 {
+  font-size: 2.5rem;
+}
+
+.large-text h2 {
+  font-size: 2rem;
+}
+
+/* Underline Links Mode */
+.underline-links Link {
+  text-decoration: underline !important;
+}
