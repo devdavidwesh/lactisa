@@ -1,12 +1,12 @@
 import React from "react";
 import { StatCards } from "./StatCards";
-import RecentTransactions from "./RecentTransactions";
+import StudentDistributionChart from "./StudentCharts";
 
 export const Grid = () => {
   return (
     <div className="flex flex-col gap-5">
       <StatCards />
-      <RecentTransactions />
+      <StudentDistributionChart />
     </div>
   );
 };
