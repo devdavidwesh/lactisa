@@ -29,7 +29,7 @@ export default function AdminUpdateForm() {
     resolver: zodResolver(UpdateFormSchema),
     defaultValues: {
       content: '',
-      isImage: false,
+      isImage: true,
     },
   });
 
@@ -76,23 +76,12 @@ export default function AdminUpdateForm() {
             <p className="mt-1 text-sm text-red-600">{errors.content.message}</p>
           )}
           {isImage && (
-            <p className="mt-1 text-xs text-gray-500">
+            <p className="mt-1 text-xs text-yellow-500">
               Please provide a publicly accessible Google Drive URL
             </p>
           )}
         </div>
 
-        <div className="flex items-center">
-          <input
-            id="isImage"
-            type="checkbox"
-            {...register('isImage')}
-            className="h-4 w-4 rounded border-gray-300 text-secondary focus:ring-secondary"
-          />
-          <label htmlFor="isImage" className="ml-2 block text-sm text-gray-900">
-            This update is an image
-          </label>
-        </div>
 
         <button
           type="submit"
@@ -103,7 +92,7 @@ export default function AdminUpdateForm() {
               : 'bg-primary hover:bg-primaryFade'
           }`}
         >
-          {isSubmitting ? 'Publishing...' : 'Publish Update'}
+          {isSubmitting ? 'Uploading...' : 'Upload Image'}
         </button>
 
         {serverResponse?.success && (

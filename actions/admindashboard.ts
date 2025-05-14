@@ -8,19 +8,35 @@ import { revalidatePath } from "next/cache";
 import { z } from "zod";
 
 
-export async function getPaginatedUsers(page: number = 1, pageSize: number = 10) {
+export async function getPaginatedUsers(
+  page: number = 1, 
+  pageSize: number = 10,
+  filters?: {
+    role?: "ADMIN" | "USER";
+    status?: "ACTIVE" | "INACTIVE";
+  }
+) {
     const user = await currentUser();
-    if (user?.role !== "ADMIN") return
+    if (user?.role !== "ADMIN") return;
 
     const skip = (page - 1) * pageSize;
 
-    const users = await db.user.findMany({
-      skip,
-      take: pageSize,
-      orderBy: { createdAt: "desc" }, 
-    });
+    const whereClause = {
+      ...(filters?.role && { role: filters.role }),
+      ...(filters?.status && { status: filters.status }),
+    };
 
-    const totalUsers = await db.user.count();
+    const [users, totalUsers] = await Promise.all([
+      db.user.findMany({
+        skip,
+        take: pageSize,
+        where: whereClause,
+        orderBy: { createdAt: "desc" }, 
+      }),
+      db.user.count({
+        where: whereClause,
+      }),
+    ]);
 
     return {
       users,

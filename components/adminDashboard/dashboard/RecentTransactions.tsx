@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { activateUser, deactivateUser, getPaginatedUsers } from "@/actions/admindashboard";
 import { MoreVertical } from "lucide-react";
 import toast from "react-hot-toast";
+import { AccountStatus, UserRole } from "@prisma/client";
 
 export type User = {
   id: string;
@@ -23,14 +24,51 @@ export type User = {
 };
 
 const RecentTransactions = () => {
-  const [users, setUsers] = useState<User[]>([]);
+    const [users, setUsers] = useState<User[]>([]);
   const [filteredUsers, setFilteredUsers] = useState<User[]>([]);
   const [search, setSearch] = useState<string>("");
   const [page, setPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(1);
   const [loading, setLoading] = useState<boolean>(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [filters, setFilters] = useState<{
+    role: "ADMIN" | "USER" | "ALL";
+    status: "ACTIVE" | "INACTIVE" | "ALL";
+  }>({
+    role: "ALL",
+    status: "ALL"
+  });
 
+  // ... (keep your existing handler functions)
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      const data = await getPaginatedUsers(
+        page, 
+        5,
+        {
+          ...(filters.role !== "ALL" && { role: filters.role }),
+          ...(filters.status !== "ALL" && { status: filters.status })
+        }
+      );
+      setUsers(data?.users || []);
+      setFilteredUsers(data?.users || []);
+      setTotalPages(data?.totalPages || 1);
+      setLoading(false);
+    };
+
+    fetchData();
+  }, [page, filters.role, filters.status]);
+
+  useEffect(() => {
+    const filtered = users.filter(
+      (user) =>
+        user.name.toLowerCase().includes(search.toLowerCase()) ||
+        user.email.toLowerCase().includes(search.toLowerCase())
+    );
+    setFilteredUsers(filtered);
+  }, [search, users]);
   const handleToggleDropdown = (userId: string) => {
     setOpenDropdown(openDropdown === userId ? null : userId);
   };
@@ -45,6 +83,16 @@ const RecentTransactions = () => {
     deactivateUser(userId);
     setOpenDropdown(null);
     toast.error("User Deactivated")
+  };
+
+  const handleRoleFilterChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const value = e.target.value as UserRole | "ALL";
+    setFilters({...filters, role: value});
+  };
+
+  const handleStatusFilterChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const value = e.target.value as AccountStatus | "ALL";
+    setFilters({...filters, status: value});
   };
 
   useEffect(() => {
@@ -72,7 +120,39 @@ const RecentTransactions = () => {
   return (
     <div className="overflow-x-auto max-w-[400px] sm:max-w-[580px] lg:max-w-full">
         <div className="p-4 rounded-lg border border-stone-300 bg-white shadow-sm m-3 min-w-[900px]">
-          <h3 className="mb-4 font-medium text-lg">Users</h3>
+          <h3 className="mb-4 font-medium text-lg">Members</h3>
+
+           {/* Filter Controls */}
+        <div className="flex flex-col sm:flex-row gap-4 mb-4">
+          <div className="flex gap-2 items-center">
+            <label htmlFor="role-filter" className="text-sm text-stone-600">Role:</label>
+            <select
+              id="role-filter"
+              value={filters.role}
+              onChange={handleRoleFilterChange}
+              className="px-3 py-2 border border-stone-300 rounded-lg focus:ring focus:ring-stone-200 outline-none text-sm"
+            >
+              <option value="ALL">All Roles</option>
+              <option value="ADMIN">Admin</option>
+              <option value="USER">User</option>
+            </select>
+          </div>
+
+          <div className="flex gap-2 items-center">
+            <label htmlFor="status-filter" className="text-sm text-stone-600">Status:</label>
+            <select
+              id="status-filter"
+              value={filters.status}
+              onChange={handleStatusFilterChange}
+              className="px-3 py-2 border border-stone-300 rounded-lg focus:ring focus:ring-stone-200 outline-none text-sm"
+            >
+              <option value="ALL">All Statuses</option>
+              <option value="ACTIVE">Active</option>
+              <option value="INACTIVE">Inactive</option>
+            </select>
+          </div>
+          </div>
+
 
           {/* Search Field */}
           <div className="mb-4">
