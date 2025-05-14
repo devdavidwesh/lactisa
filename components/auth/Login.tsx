@@ -13,6 +13,7 @@ import { LoginSchema } from "@/schemas/login";
 import { getSession, signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import { checkRateLimit, clearFailedAttempts, recordLoginAttempt } from "@/actions/rateLimit";
 
 type LoginData = z.infer<typeof LoginSchema>;
 
@@ -45,12 +46,19 @@ const LoginForm = () => {
     setError("");
     setSuccess("");
 
+    const trails = await checkRateLimit(data.email);
+    if (trails?.error) {
+      setError(trails.error)
+      return
+    }
+
     const result = await signIn("credentials", {
         redirect: false,
         ...data
     });
 
     if (result?.error === "CredentialsSignin") {
+      await recordLoginAttempt(data.email, false);
         setError("Invalid Credentials");
         return;
     } 
@@ -58,7 +66,11 @@ const LoginForm = () => {
       setError("Your Account has not been activated!");
       return;
     }
+    if (result?.error) {
+      setError(result?.error)
+    }
     else {
+        await clearFailedAttempts(data.email);        
         reset();
         const updatedSession = await getSession();
         if (updatedSession?.user?.role === "ADMIN") {

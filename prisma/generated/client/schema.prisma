@@ -24,23 +24,51 @@ enum UserRole {
   USER
 }
 
+enum SchoolType {
+  UNIVERSITY
+  COLLEGE
+  TVET
+}
+
+enum LaikipiaConstituency {
+  LAIKIPIA_WEST
+  LAIKIPIA_EAST
+  LAIKIPIA_NORTH
+}
+
+enum StudentYear {
+  FIRST
+  SECOND
+  THIRD
+  FOURTH
+  FIFTH
+  SIXTH
+}
+
 model User {
-  id            String         @id @default(cuid())
-  name          String
-  email         String         @unique
-  phone         String         @unique
-  school        String
-  course        String
-  password      String // Renamed to indicate it's hashed
-  emailVerified DateTime?
-  status        AccountStatus  @default(INACTIVE)
-  role          UserRole       @default(USER)
-  announcement  Announcement[]
-  messages      Message[]
-  activatedBy   String?
-  deactivatedBy String?
-  createdAt     DateTime       @default(now())
-  updatedAt     DateTime       @updatedAt
+  id                    String                 @id @default(cuid())
+  name                  String
+  email                 String                 @unique
+  phone                 String                 @unique
+  schoolType            SchoolType             @default(UNIVERSITY)
+  constituency          LaikipiaConstituency   @default(LAIKIPIA_EAST)
+  registrationNumber    String
+  year                  StudentYear            @default(FIRST)
+  school                String
+  course                String
+  password              String // Renamed to indicate it's hashed
+  emailVerified         DateTime?
+  status                AccountStatus          @default(INACTIVE)
+  role                  UserRole               @default(USER)
+  announcement          Announcement[]
+  messages              Message[]
+  updates               Update[]
+  isTwoFactorEnabled    Boolean                @default(false)
+  twoFactorConfirmation TwoFactorConfirmation?
+  activatedBy           String?
+  deactivatedBy         String?
+  createdAt             DateTime               @default(now())
+  updatedAt             DateTime               @updatedAt
 }
 
 model Announcement {
@@ -65,4 +93,53 @@ model Message {
   userId    String?
   user      User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
+}
+
+model Update {
+  id          String   @id @default(cuid())
+  content     String
+  isImage     Boolean  @default(false)
+  creatorName String
+  creator     User     @relation(fields: [creatorId], references: [id])
+  creatorId   String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([createdAt])
+}
+
+model VerificationToken {
+  id      String   @id @default(cuid())
+  email   String
+  token   String   @unique
+  expires DateTime
+
+  @@unique([email, token])
+}
+
+model TwoFactorToken {
+  id      String   @id @default(cuid())
+  email   String
+  token   String   @unique
+  expires DateTime
+
+  @@unique([email, token])
+}
+
+model TwoFactorConfirmation {
+  id     String @id @default(cuid())
+  userId String
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId])
+}
+
+model LoginAttempt {
+  id           String    @id @default(cuid())
+  ipAddress    String
+  email        String
+  success      Boolean
+  createdAt    DateTime  @default(now())
+  blockedUntil DateTime?
 }

@@ -28,6 +28,31 @@ export type Announcement = $Result.DefaultSelection<Prisma.$AnnouncementPayload>
  * 
  */
 export type Message = $Result.DefaultSelection<Prisma.$MessagePayload>
+/**
+ * Model Update
+ * 
+ */
+export type Update = $Result.DefaultSelection<Prisma.$UpdatePayload>
+/**
+ * Model VerificationToken
+ * 
+ */
+export type VerificationToken = $Result.DefaultSelection<Prisma.$VerificationTokenPayload>
+/**
+ * Model TwoFactorToken
+ * 
+ */
+export type TwoFactorToken = $Result.DefaultSelection<Prisma.$TwoFactorTokenPayload>
+/**
+ * Model TwoFactorConfirmation
+ * 
+ */
+export type TwoFactorConfirmation = $Result.DefaultSelection<Prisma.$TwoFactorConfirmationPayload>
+/**
+ * Model LoginAttempt
+ * 
+ */
+export type LoginAttempt = $Result.DefaultSelection<Prisma.$LoginAttemptPayload>
 
 /**
  * Enums
@@ -48,6 +73,36 @@ export const UserRole: {
 
 export type UserRole = (typeof UserRole)[keyof typeof UserRole]
 
+
+export const SchoolType: {
+  UNIVERSITY: 'UNIVERSITY',
+  COLLEGE: 'COLLEGE',
+  TVET: 'TVET'
+};
+
+export type SchoolType = (typeof SchoolType)[keyof typeof SchoolType]
+
+
+export const LaikipiaConstituency: {
+  LAIKIPIA_WEST: 'LAIKIPIA_WEST',
+  LAIKIPIA_EAST: 'LAIKIPIA_EAST',
+  LAIKIPIA_NORTH: 'LAIKIPIA_NORTH'
+};
+
+export type LaikipiaConstituency = (typeof LaikipiaConstituency)[keyof typeof LaikipiaConstituency]
+
+
+export const StudentYear: {
+  FIRST: 'FIRST',
+  SECOND: 'SECOND',
+  THIRD: 'THIRD',
+  FOURTH: 'FOURTH',
+  FIFTH: 'FIFTH',
+  SIXTH: 'SIXTH'
+};
+
+export type StudentYear = (typeof StudentYear)[keyof typeof StudentYear]
+
 }
 
 export type AccountStatus = $Enums.AccountStatus
@@ -57,6 +112,18 @@ export const AccountStatus: typeof $Enums.AccountStatus
 export type UserRole = $Enums.UserRole
 
 export const UserRole: typeof $Enums.UserRole
+
+export type SchoolType = $Enums.SchoolType
+
+export const SchoolType: typeof $Enums.SchoolType
+
+export type LaikipiaConstituency = $Enums.LaikipiaConstituency
+
+export const LaikipiaConstituency: typeof $Enums.LaikipiaConstituency
+
+export type StudentYear = $Enums.StudentYear
+
+export const StudentYear: typeof $Enums.StudentYear
 
 /**
  * ##  Prisma Client ʲˢ
@@ -212,6 +279,56 @@ export class PrismaClient<
     * ```
     */
   get message(): Prisma.MessageDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.update`: Exposes CRUD operations for the **Update** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Updates
+    * const updates = await prisma.update.findMany()
+    * ```
+    */
+  get update(): Prisma.UpdateDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.verificationToken`: Exposes CRUD operations for the **VerificationToken** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more VerificationTokens
+    * const verificationTokens = await prisma.verificationToken.findMany()
+    * ```
+    */
+  get verificationToken(): Prisma.VerificationTokenDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.twoFactorToken`: Exposes CRUD operations for the **TwoFactorToken** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more TwoFactorTokens
+    * const twoFactorTokens = await prisma.twoFactorToken.findMany()
+    * ```
+    */
+  get twoFactorToken(): Prisma.TwoFactorTokenDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.twoFactorConfirmation`: Exposes CRUD operations for the **TwoFactorConfirmation** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more TwoFactorConfirmations
+    * const twoFactorConfirmations = await prisma.twoFactorConfirmation.findMany()
+    * ```
+    */
+  get twoFactorConfirmation(): Prisma.TwoFactorConfirmationDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.loginAttempt`: Exposes CRUD operations for the **LoginAttempt** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more LoginAttempts
+    * const loginAttempts = await prisma.loginAttempt.findMany()
+    * ```
+    */
+  get loginAttempt(): Prisma.LoginAttemptDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -270,8 +387,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 6.5.0
-   * Query Engine version: 173f8d54f8d52e692c7e27e72a88314ec7aeff60
+   * Prisma Client JS version: 6.7.0
+   * Query Engine version: 3cff47a7f5d65c3ea74883f1d736e41d68ce91ed
    */
   export type PrismaVersion = {
     client: string
@@ -654,7 +771,12 @@ export namespace Prisma {
   export const ModelName: {
     User: 'User',
     Announcement: 'Announcement',
-    Message: 'Message'
+    Message: 'Message',
+    Update: 'Update',
+    VerificationToken: 'VerificationToken',
+    TwoFactorToken: 'TwoFactorToken',
+    TwoFactorConfirmation: 'TwoFactorConfirmation',
+    LoginAttempt: 'LoginAttempt'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -673,7 +795,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "announcement" | "message"
+      modelProps: "user" | "announcement" | "message" | "update" | "verificationToken" | "twoFactorToken" | "twoFactorConfirmation" | "loginAttempt"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -899,6 +1021,376 @@ export namespace Prisma {
           }
         }
       }
+      Update: {
+        payload: Prisma.$UpdatePayload<ExtArgs>
+        fields: Prisma.UpdateFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.UpdateFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UpdatePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.UpdateFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UpdatePayload>
+          }
+          findFirst: {
+            args: Prisma.UpdateFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UpdatePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.UpdateFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UpdatePayload>
+          }
+          findMany: {
+            args: Prisma.UpdateFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UpdatePayload>[]
+          }
+          create: {
+            args: Prisma.UpdateCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UpdatePayload>
+          }
+          createMany: {
+            args: Prisma.UpdateCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.UpdateCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UpdatePayload>[]
+          }
+          delete: {
+            args: Prisma.UpdateDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UpdatePayload>
+          }
+          update: {
+            args: Prisma.UpdateUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UpdatePayload>
+          }
+          deleteMany: {
+            args: Prisma.UpdateDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.UpdateUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.UpdateUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UpdatePayload>[]
+          }
+          upsert: {
+            args: Prisma.UpdateUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UpdatePayload>
+          }
+          aggregate: {
+            args: Prisma.UpdateAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateUpdate>
+          }
+          groupBy: {
+            args: Prisma.UpdateGroupByArgs<ExtArgs>
+            result: $Utils.Optional<UpdateGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.UpdateCountArgs<ExtArgs>
+            result: $Utils.Optional<UpdateCountAggregateOutputType> | number
+          }
+        }
+      }
+      VerificationToken: {
+        payload: Prisma.$VerificationTokenPayload<ExtArgs>
+        fields: Prisma.VerificationTokenFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.VerificationTokenFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VerificationTokenPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.VerificationTokenFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VerificationTokenPayload>
+          }
+          findFirst: {
+            args: Prisma.VerificationTokenFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VerificationTokenPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.VerificationTokenFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VerificationTokenPayload>
+          }
+          findMany: {
+            args: Prisma.VerificationTokenFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VerificationTokenPayload>[]
+          }
+          create: {
+            args: Prisma.VerificationTokenCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VerificationTokenPayload>
+          }
+          createMany: {
+            args: Prisma.VerificationTokenCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.VerificationTokenCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VerificationTokenPayload>[]
+          }
+          delete: {
+            args: Prisma.VerificationTokenDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VerificationTokenPayload>
+          }
+          update: {
+            args: Prisma.VerificationTokenUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VerificationTokenPayload>
+          }
+          deleteMany: {
+            args: Prisma.VerificationTokenDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.VerificationTokenUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.VerificationTokenUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VerificationTokenPayload>[]
+          }
+          upsert: {
+            args: Prisma.VerificationTokenUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VerificationTokenPayload>
+          }
+          aggregate: {
+            args: Prisma.VerificationTokenAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateVerificationToken>
+          }
+          groupBy: {
+            args: Prisma.VerificationTokenGroupByArgs<ExtArgs>
+            result: $Utils.Optional<VerificationTokenGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.VerificationTokenCountArgs<ExtArgs>
+            result: $Utils.Optional<VerificationTokenCountAggregateOutputType> | number
+          }
+        }
+      }
+      TwoFactorToken: {
+        payload: Prisma.$TwoFactorTokenPayload<ExtArgs>
+        fields: Prisma.TwoFactorTokenFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.TwoFactorTokenFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TwoFactorTokenPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.TwoFactorTokenFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TwoFactorTokenPayload>
+          }
+          findFirst: {
+            args: Prisma.TwoFactorTokenFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TwoFactorTokenPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.TwoFactorTokenFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TwoFactorTokenPayload>
+          }
+          findMany: {
+            args: Prisma.TwoFactorTokenFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TwoFactorTokenPayload>[]
+          }
+          create: {
+            args: Prisma.TwoFactorTokenCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TwoFactorTokenPayload>
+          }
+          createMany: {
+            args: Prisma.TwoFactorTokenCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.TwoFactorTokenCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TwoFactorTokenPayload>[]
+          }
+          delete: {
+            args: Prisma.TwoFactorTokenDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TwoFactorTokenPayload>
+          }
+          update: {
+            args: Prisma.TwoFactorTokenUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TwoFactorTokenPayload>
+          }
+          deleteMany: {
+            args: Prisma.TwoFactorTokenDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.TwoFactorTokenUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.TwoFactorTokenUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TwoFactorTokenPayload>[]
+          }
+          upsert: {
+            args: Prisma.TwoFactorTokenUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TwoFactorTokenPayload>
+          }
+          aggregate: {
+            args: Prisma.TwoFactorTokenAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateTwoFactorToken>
+          }
+          groupBy: {
+            args: Prisma.TwoFactorTokenGroupByArgs<ExtArgs>
+            result: $Utils.Optional<TwoFactorTokenGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.TwoFactorTokenCountArgs<ExtArgs>
+            result: $Utils.Optional<TwoFactorTokenCountAggregateOutputType> | number
+          }
+        }
+      }
+      TwoFactorConfirmation: {
+        payload: Prisma.$TwoFactorConfirmationPayload<ExtArgs>
+        fields: Prisma.TwoFactorConfirmationFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.TwoFactorConfirmationFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TwoFactorConfirmationPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.TwoFactorConfirmationFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TwoFactorConfirmationPayload>
+          }
+          findFirst: {
+            args: Prisma.TwoFactorConfirmationFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TwoFactorConfirmationPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.TwoFactorConfirmationFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TwoFactorConfirmationPayload>
+          }
+          findMany: {
+            args: Prisma.TwoFactorConfirmationFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TwoFactorConfirmationPayload>[]
+          }
+          create: {
+            args: Prisma.TwoFactorConfirmationCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TwoFactorConfirmationPayload>
+          }
+          createMany: {
+            args: Prisma.TwoFactorConfirmationCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.TwoFactorConfirmationCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TwoFactorConfirmationPayload>[]
+          }
+          delete: {
+            args: Prisma.TwoFactorConfirmationDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TwoFactorConfirmationPayload>
+          }
+          update: {
+            args: Prisma.TwoFactorConfirmationUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TwoFactorConfirmationPayload>
+          }
+          deleteMany: {
+            args: Prisma.TwoFactorConfirmationDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.TwoFactorConfirmationUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.TwoFactorConfirmationUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TwoFactorConfirmationPayload>[]
+          }
+          upsert: {
+            args: Prisma.TwoFactorConfirmationUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TwoFactorConfirmationPayload>
+          }
+          aggregate: {
+            args: Prisma.TwoFactorConfirmationAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateTwoFactorConfirmation>
+          }
+          groupBy: {
+            args: Prisma.TwoFactorConfirmationGroupByArgs<ExtArgs>
+            result: $Utils.Optional<TwoFactorConfirmationGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.TwoFactorConfirmationCountArgs<ExtArgs>
+            result: $Utils.Optional<TwoFactorConfirmationCountAggregateOutputType> | number
+          }
+        }
+      }
+      LoginAttempt: {
+        payload: Prisma.$LoginAttemptPayload<ExtArgs>
+        fields: Prisma.LoginAttemptFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.LoginAttemptFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LoginAttemptPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.LoginAttemptFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LoginAttemptPayload>
+          }
+          findFirst: {
+            args: Prisma.LoginAttemptFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LoginAttemptPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.LoginAttemptFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LoginAttemptPayload>
+          }
+          findMany: {
+            args: Prisma.LoginAttemptFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LoginAttemptPayload>[]
+          }
+          create: {
+            args: Prisma.LoginAttemptCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LoginAttemptPayload>
+          }
+          createMany: {
+            args: Prisma.LoginAttemptCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.LoginAttemptCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LoginAttemptPayload>[]
+          }
+          delete: {
+            args: Prisma.LoginAttemptDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LoginAttemptPayload>
+          }
+          update: {
+            args: Prisma.LoginAttemptUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LoginAttemptPayload>
+          }
+          deleteMany: {
+            args: Prisma.LoginAttemptDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.LoginAttemptUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.LoginAttemptUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LoginAttemptPayload>[]
+          }
+          upsert: {
+            args: Prisma.LoginAttemptUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LoginAttemptPayload>
+          }
+          aggregate: {
+            args: Prisma.LoginAttemptAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateLoginAttempt>
+          }
+          groupBy: {
+            args: Prisma.LoginAttemptGroupByArgs<ExtArgs>
+            result: $Utils.Optional<LoginAttemptGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.LoginAttemptCountArgs<ExtArgs>
+            result: $Utils.Optional<LoginAttemptCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -986,6 +1478,11 @@ export namespace Prisma {
     user?: UserOmit
     announcement?: AnnouncementOmit
     message?: MessageOmit
+    update?: UpdateOmit
+    verificationToken?: VerificationTokenOmit
+    twoFactorToken?: TwoFactorTokenOmit
+    twoFactorConfirmation?: TwoFactorConfirmationOmit
+    loginAttempt?: LoginAttemptOmit
   }
 
   /* Types for Logging */
@@ -1082,11 +1579,13 @@ export namespace Prisma {
   export type UserCountOutputType = {
     announcement: number
     messages: number
+    updates: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     announcement?: boolean | UserCountOutputTypeCountAnnouncementArgs
     messages?: boolean | UserCountOutputTypeCountMessagesArgs
+    updates?: boolean | UserCountOutputTypeCountUpdatesArgs
   }
 
   // Custom InputTypes
@@ -1114,6 +1613,13 @@ export namespace Prisma {
     where?: MessageWhereInput
   }
 
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountUpdatesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UpdateWhereInput
+  }
+
 
   /**
    * Models
@@ -1134,12 +1640,17 @@ export namespace Prisma {
     name: string | null
     email: string | null
     phone: string | null
+    schoolType: $Enums.SchoolType | null
+    constituency: $Enums.LaikipiaConstituency | null
+    registrationNumber: string | null
+    year: $Enums.StudentYear | null
     school: string | null
     course: string | null
     password: string | null
     emailVerified: Date | null
     status: $Enums.AccountStatus | null
     role: $Enums.UserRole | null
+    isTwoFactorEnabled: boolean | null
     activatedBy: string | null
     deactivatedBy: string | null
     createdAt: Date | null
@@ -1151,12 +1662,17 @@ export namespace Prisma {
     name: string | null
     email: string | null
     phone: string | null
+    schoolType: $Enums.SchoolType | null
+    constituency: $Enums.LaikipiaConstituency | null
+    registrationNumber: string | null
+    year: $Enums.StudentYear | null
     school: string | null
     course: string | null
     password: string | null
     emailVerified: Date | null
     status: $Enums.AccountStatus | null
     role: $Enums.UserRole | null
+    isTwoFactorEnabled: boolean | null
     activatedBy: string | null
     deactivatedBy: string | null
     createdAt: Date | null
@@ -1168,12 +1684,17 @@ export namespace Prisma {
     name: number
     email: number
     phone: number
+    schoolType: number
+    constituency: number
+    registrationNumber: number
+    year: number
     school: number
     course: number
     password: number
     emailVerified: number
     status: number
     role: number
+    isTwoFactorEnabled: number
     activatedBy: number
     deactivatedBy: number
     createdAt: number
@@ -1187,12 +1708,17 @@ export namespace Prisma {
     name?: true
     email?: true
     phone?: true
+    schoolType?: true
+    constituency?: true
+    registrationNumber?: true
+    year?: true
     school?: true
     course?: true
     password?: true
     emailVerified?: true
     status?: true
     role?: true
+    isTwoFactorEnabled?: true
     activatedBy?: true
     deactivatedBy?: true
     createdAt?: true
@@ -1204,12 +1730,17 @@ export namespace Prisma {
     name?: true
     email?: true
     phone?: true
+    schoolType?: true
+    constituency?: true
+    registrationNumber?: true
+    year?: true
     school?: true
     course?: true
     password?: true
     emailVerified?: true
     status?: true
     role?: true
+    isTwoFactorEnabled?: true
     activatedBy?: true
     deactivatedBy?: true
     createdAt?: true
@@ -1221,12 +1752,17 @@ export namespace Prisma {
     name?: true
     email?: true
     phone?: true
+    schoolType?: true
+    constituency?: true
+    registrationNumber?: true
+    year?: true
     school?: true
     course?: true
     password?: true
     emailVerified?: true
     status?: true
     role?: true
+    isTwoFactorEnabled?: true
     activatedBy?: true
     deactivatedBy?: true
     createdAt?: true
@@ -1311,12 +1847,17 @@ export namespace Prisma {
     name: string
     email: string
     phone: string
+    schoolType: $Enums.SchoolType
+    constituency: $Enums.LaikipiaConstituency
+    registrationNumber: string
+    year: $Enums.StudentYear
     school: string
     course: string
     password: string
     emailVerified: Date | null
     status: $Enums.AccountStatus
     role: $Enums.UserRole
+    isTwoFactorEnabled: boolean
     activatedBy: string | null
     deactivatedBy: string | null
     createdAt: Date
@@ -1345,18 +1886,25 @@ export namespace Prisma {
     name?: boolean
     email?: boolean
     phone?: boolean
+    schoolType?: boolean
+    constituency?: boolean
+    registrationNumber?: boolean
+    year?: boolean
     school?: boolean
     course?: boolean
     password?: boolean
     emailVerified?: boolean
     status?: boolean
     role?: boolean
+    isTwoFactorEnabled?: boolean
     activatedBy?: boolean
     deactivatedBy?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     announcement?: boolean | User$announcementArgs<ExtArgs>
     messages?: boolean | User$messagesArgs<ExtArgs>
+    updates?: boolean | User$updatesArgs<ExtArgs>
+    twoFactorConfirmation?: boolean | User$twoFactorConfirmationArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -1365,12 +1913,17 @@ export namespace Prisma {
     name?: boolean
     email?: boolean
     phone?: boolean
+    schoolType?: boolean
+    constituency?: boolean
+    registrationNumber?: boolean
+    year?: boolean
     school?: boolean
     course?: boolean
     password?: boolean
     emailVerified?: boolean
     status?: boolean
     role?: boolean
+    isTwoFactorEnabled?: boolean
     activatedBy?: boolean
     deactivatedBy?: boolean
     createdAt?: boolean
@@ -1382,12 +1935,17 @@ export namespace Prisma {
     name?: boolean
     email?: boolean
     phone?: boolean
+    schoolType?: boolean
+    constituency?: boolean
+    registrationNumber?: boolean
+    year?: boolean
     school?: boolean
     course?: boolean
     password?: boolean
     emailVerified?: boolean
     status?: boolean
     role?: boolean
+    isTwoFactorEnabled?: boolean
     activatedBy?: boolean
     deactivatedBy?: boolean
     createdAt?: boolean
@@ -1399,22 +1957,29 @@ export namespace Prisma {
     name?: boolean
     email?: boolean
     phone?: boolean
+    schoolType?: boolean
+    constituency?: boolean
+    registrationNumber?: boolean
+    year?: boolean
     school?: boolean
     course?: boolean
     password?: boolean
     emailVerified?: boolean
     status?: boolean
     role?: boolean
+    isTwoFactorEnabled?: boolean
     activatedBy?: boolean
     deactivatedBy?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "phone" | "school" | "course" | "password" | "emailVerified" | "status" | "role" | "activatedBy" | "deactivatedBy" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "phone" | "schoolType" | "constituency" | "registrationNumber" | "year" | "school" | "course" | "password" | "emailVerified" | "status" | "role" | "isTwoFactorEnabled" | "activatedBy" | "deactivatedBy" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     announcement?: boolean | User$announcementArgs<ExtArgs>
     messages?: boolean | User$messagesArgs<ExtArgs>
+    updates?: boolean | User$updatesArgs<ExtArgs>
+    twoFactorConfirmation?: boolean | User$twoFactorConfirmationArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -1425,18 +1990,25 @@ export namespace Prisma {
     objects: {
       announcement: Prisma.$AnnouncementPayload<ExtArgs>[]
       messages: Prisma.$MessagePayload<ExtArgs>[]
+      updates: Prisma.$UpdatePayload<ExtArgs>[]
+      twoFactorConfirmation: Prisma.$TwoFactorConfirmationPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       name: string
       email: string
       phone: string
+      schoolType: $Enums.SchoolType
+      constituency: $Enums.LaikipiaConstituency
+      registrationNumber: string
+      year: $Enums.StudentYear
       school: string
       course: string
       password: string
       emailVerified: Date | null
       status: $Enums.AccountStatus
       role: $Enums.UserRole
+      isTwoFactorEnabled: boolean
       activatedBy: string | null
       deactivatedBy: string | null
       createdAt: Date
@@ -1837,6 +2409,8 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     announcement<T extends User$announcementArgs<ExtArgs> = {}>(args?: Subset<T, User$announcementArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AnnouncementPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     messages<T extends User$messagesArgs<ExtArgs> = {}>(args?: Subset<T, User$messagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    updates<T extends User$updatesArgs<ExtArgs> = {}>(args?: Subset<T, User$updatesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UpdatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    twoFactorConfirmation<T extends User$twoFactorConfirmationArgs<ExtArgs> = {}>(args?: Subset<T, User$twoFactorConfirmationArgs<ExtArgs>>): Prisma__TwoFactorConfirmationClient<$Result.GetResult<Prisma.$TwoFactorConfirmationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1864,18 +2438,23 @@ export namespace Prisma {
 
   /**
    * Fields of the User model
-   */ 
+   */
   interface UserFieldRefs {
     readonly id: FieldRef<"User", 'String'>
     readonly name: FieldRef<"User", 'String'>
     readonly email: FieldRef<"User", 'String'>
     readonly phone: FieldRef<"User", 'String'>
+    readonly schoolType: FieldRef<"User", 'SchoolType'>
+    readonly constituency: FieldRef<"User", 'LaikipiaConstituency'>
+    readonly registrationNumber: FieldRef<"User", 'String'>
+    readonly year: FieldRef<"User", 'StudentYear'>
     readonly school: FieldRef<"User", 'String'>
     readonly course: FieldRef<"User", 'String'>
     readonly password: FieldRef<"User", 'String'>
     readonly emailVerified: FieldRef<"User", 'DateTime'>
     readonly status: FieldRef<"User", 'AccountStatus'>
     readonly role: FieldRef<"User", 'UserRole'>
+    readonly isTwoFactorEnabled: FieldRef<"User", 'Boolean'>
     readonly activatedBy: FieldRef<"User", 'String'>
     readonly deactivatedBy: FieldRef<"User", 'String'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
@@ -2313,6 +2892,49 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: MessageScalarFieldEnum | MessageScalarFieldEnum[]
+  }
+
+  /**
+   * User.updates
+   */
+  export type User$updatesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Update
+     */
+    select?: UpdateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Update
+     */
+    omit?: UpdateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UpdateInclude<ExtArgs> | null
+    where?: UpdateWhereInput
+    orderBy?: UpdateOrderByWithRelationInput | UpdateOrderByWithRelationInput[]
+    cursor?: UpdateWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: UpdateScalarFieldEnum | UpdateScalarFieldEnum[]
+  }
+
+  /**
+   * User.twoFactorConfirmation
+   */
+  export type User$twoFactorConfirmationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TwoFactorConfirmation
+     */
+    select?: TwoFactorConfirmationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TwoFactorConfirmation
+     */
+    omit?: TwoFactorConfirmationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TwoFactorConfirmationInclude<ExtArgs> | null
+    where?: TwoFactorConfirmationWhereInput
   }
 
   /**
@@ -3031,7 +3653,7 @@ export namespace Prisma {
 
   /**
    * Fields of the Announcement model
-   */ 
+   */
   interface AnnouncementFieldRefs {
     readonly announcementId: FieldRef<"Announcement", 'String'>
     readonly title: FieldRef<"Announcement", 'String'>
@@ -4094,7 +4716,7 @@ export namespace Prisma {
 
   /**
    * Fields of the Message model
-   */ 
+   */
   interface MessageFieldRefs {
     readonly id: FieldRef<"Message", 'String'>
     readonly message: FieldRef<"Message", 'String'>
@@ -4535,6 +5157,5081 @@ export namespace Prisma {
 
 
   /**
+   * Model Update
+   */
+
+  export type AggregateUpdate = {
+    _count: UpdateCountAggregateOutputType | null
+    _min: UpdateMinAggregateOutputType | null
+    _max: UpdateMaxAggregateOutputType | null
+  }
+
+  export type UpdateMinAggregateOutputType = {
+    id: string | null
+    content: string | null
+    isImage: boolean | null
+    creatorName: string | null
+    creatorId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type UpdateMaxAggregateOutputType = {
+    id: string | null
+    content: string | null
+    isImage: boolean | null
+    creatorName: string | null
+    creatorId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type UpdateCountAggregateOutputType = {
+    id: number
+    content: number
+    isImage: number
+    creatorName: number
+    creatorId: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type UpdateMinAggregateInputType = {
+    id?: true
+    content?: true
+    isImage?: true
+    creatorName?: true
+    creatorId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type UpdateMaxAggregateInputType = {
+    id?: true
+    content?: true
+    isImage?: true
+    creatorName?: true
+    creatorId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type UpdateCountAggregateInputType = {
+    id?: true
+    content?: true
+    isImage?: true
+    creatorName?: true
+    creatorId?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type UpdateAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Update to aggregate.
+     */
+    where?: UpdateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Updates to fetch.
+     */
+    orderBy?: UpdateOrderByWithRelationInput | UpdateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: UpdateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Updates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Updates.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Updates
+    **/
+    _count?: true | UpdateCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: UpdateMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: UpdateMaxAggregateInputType
+  }
+
+  export type GetUpdateAggregateType<T extends UpdateAggregateArgs> = {
+        [P in keyof T & keyof AggregateUpdate]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateUpdate[P]>
+      : GetScalarType<T[P], AggregateUpdate[P]>
+  }
+
+
+
+
+  export type UpdateGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UpdateWhereInput
+    orderBy?: UpdateOrderByWithAggregationInput | UpdateOrderByWithAggregationInput[]
+    by: UpdateScalarFieldEnum[] | UpdateScalarFieldEnum
+    having?: UpdateScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: UpdateCountAggregateInputType | true
+    _min?: UpdateMinAggregateInputType
+    _max?: UpdateMaxAggregateInputType
+  }
+
+  export type UpdateGroupByOutputType = {
+    id: string
+    content: string
+    isImage: boolean
+    creatorName: string
+    creatorId: string
+    createdAt: Date
+    updatedAt: Date
+    _count: UpdateCountAggregateOutputType | null
+    _min: UpdateMinAggregateOutputType | null
+    _max: UpdateMaxAggregateOutputType | null
+  }
+
+  type GetUpdateGroupByPayload<T extends UpdateGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<UpdateGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof UpdateGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], UpdateGroupByOutputType[P]>
+            : GetScalarType<T[P], UpdateGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type UpdateSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    content?: boolean
+    isImage?: boolean
+    creatorName?: boolean
+    creatorId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    creator?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["update"]>
+
+  export type UpdateSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    content?: boolean
+    isImage?: boolean
+    creatorName?: boolean
+    creatorId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    creator?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["update"]>
+
+  export type UpdateSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    content?: boolean
+    isImage?: boolean
+    creatorName?: boolean
+    creatorId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    creator?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["update"]>
+
+  export type UpdateSelectScalar = {
+    id?: boolean
+    content?: boolean
+    isImage?: boolean
+    creatorName?: boolean
+    creatorId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type UpdateOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "content" | "isImage" | "creatorName" | "creatorId" | "createdAt" | "updatedAt", ExtArgs["result"]["update"]>
+  export type UpdateInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    creator?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type UpdateIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    creator?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type UpdateIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    creator?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $UpdatePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Update"
+    objects: {
+      creator: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      content: string
+      isImage: boolean
+      creatorName: string
+      creatorId: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["update"]>
+    composites: {}
+  }
+
+  type UpdateGetPayload<S extends boolean | null | undefined | UpdateDefaultArgs> = $Result.GetResult<Prisma.$UpdatePayload, S>
+
+  type UpdateCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<UpdateFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: UpdateCountAggregateInputType | true
+    }
+
+  export interface UpdateDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Update'], meta: { name: 'Update' } }
+    /**
+     * Find zero or one Update that matches the filter.
+     * @param {UpdateFindUniqueArgs} args - Arguments to find a Update
+     * @example
+     * // Get one Update
+     * const update = await prisma.update.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends UpdateFindUniqueArgs>(args: SelectSubset<T, UpdateFindUniqueArgs<ExtArgs>>): Prisma__UpdateClient<$Result.GetResult<Prisma.$UpdatePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Update that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {UpdateFindUniqueOrThrowArgs} args - Arguments to find a Update
+     * @example
+     * // Get one Update
+     * const update = await prisma.update.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends UpdateFindUniqueOrThrowArgs>(args: SelectSubset<T, UpdateFindUniqueOrThrowArgs<ExtArgs>>): Prisma__UpdateClient<$Result.GetResult<Prisma.$UpdatePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Update that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UpdateFindFirstArgs} args - Arguments to find a Update
+     * @example
+     * // Get one Update
+     * const update = await prisma.update.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends UpdateFindFirstArgs>(args?: SelectSubset<T, UpdateFindFirstArgs<ExtArgs>>): Prisma__UpdateClient<$Result.GetResult<Prisma.$UpdatePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Update that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UpdateFindFirstOrThrowArgs} args - Arguments to find a Update
+     * @example
+     * // Get one Update
+     * const update = await prisma.update.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends UpdateFindFirstOrThrowArgs>(args?: SelectSubset<T, UpdateFindFirstOrThrowArgs<ExtArgs>>): Prisma__UpdateClient<$Result.GetResult<Prisma.$UpdatePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Updates that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UpdateFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Updates
+     * const updates = await prisma.update.findMany()
+     * 
+     * // Get first 10 Updates
+     * const updates = await prisma.update.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const updateWithIdOnly = await prisma.update.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends UpdateFindManyArgs>(args?: SelectSubset<T, UpdateFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UpdatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Update.
+     * @param {UpdateCreateArgs} args - Arguments to create a Update.
+     * @example
+     * // Create one Update
+     * const Update = await prisma.update.create({
+     *   data: {
+     *     // ... data to create a Update
+     *   }
+     * })
+     * 
+     */
+    create<T extends UpdateCreateArgs>(args: SelectSubset<T, UpdateCreateArgs<ExtArgs>>): Prisma__UpdateClient<$Result.GetResult<Prisma.$UpdatePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Updates.
+     * @param {UpdateCreateManyArgs} args - Arguments to create many Updates.
+     * @example
+     * // Create many Updates
+     * const update = await prisma.update.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends UpdateCreateManyArgs>(args?: SelectSubset<T, UpdateCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Updates and returns the data saved in the database.
+     * @param {UpdateCreateManyAndReturnArgs} args - Arguments to create many Updates.
+     * @example
+     * // Create many Updates
+     * const update = await prisma.update.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Updates and only return the `id`
+     * const updateWithIdOnly = await prisma.update.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends UpdateCreateManyAndReturnArgs>(args?: SelectSubset<T, UpdateCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UpdatePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Update.
+     * @param {UpdateDeleteArgs} args - Arguments to delete one Update.
+     * @example
+     * // Delete one Update
+     * const Update = await prisma.update.delete({
+     *   where: {
+     *     // ... filter to delete one Update
+     *   }
+     * })
+     * 
+     */
+    delete<T extends UpdateDeleteArgs>(args: SelectSubset<T, UpdateDeleteArgs<ExtArgs>>): Prisma__UpdateClient<$Result.GetResult<Prisma.$UpdatePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Update.
+     * @param {UpdateUpdateArgs} args - Arguments to update one Update.
+     * @example
+     * // Update one Update
+     * const update = await prisma.update.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends UpdateUpdateArgs>(args: SelectSubset<T, UpdateUpdateArgs<ExtArgs>>): Prisma__UpdateClient<$Result.GetResult<Prisma.$UpdatePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Updates.
+     * @param {UpdateDeleteManyArgs} args - Arguments to filter Updates to delete.
+     * @example
+     * // Delete a few Updates
+     * const { count } = await prisma.update.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends UpdateDeleteManyArgs>(args?: SelectSubset<T, UpdateDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Updates.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UpdateUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Updates
+     * const update = await prisma.update.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends UpdateUpdateManyArgs>(args: SelectSubset<T, UpdateUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Updates and returns the data updated in the database.
+     * @param {UpdateUpdateManyAndReturnArgs} args - Arguments to update many Updates.
+     * @example
+     * // Update many Updates
+     * const update = await prisma.update.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Updates and only return the `id`
+     * const updateWithIdOnly = await prisma.update.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends UpdateUpdateManyAndReturnArgs>(args: SelectSubset<T, UpdateUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UpdatePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Update.
+     * @param {UpdateUpsertArgs} args - Arguments to update or create a Update.
+     * @example
+     * // Update or create a Update
+     * const update = await prisma.update.upsert({
+     *   create: {
+     *     // ... data to create a Update
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Update we want to update
+     *   }
+     * })
+     */
+    upsert<T extends UpdateUpsertArgs>(args: SelectSubset<T, UpdateUpsertArgs<ExtArgs>>): Prisma__UpdateClient<$Result.GetResult<Prisma.$UpdatePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Updates.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UpdateCountArgs} args - Arguments to filter Updates to count.
+     * @example
+     * // Count the number of Updates
+     * const count = await prisma.update.count({
+     *   where: {
+     *     // ... the filter for the Updates we want to count
+     *   }
+     * })
+    **/
+    count<T extends UpdateCountArgs>(
+      args?: Subset<T, UpdateCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], UpdateCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Update.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UpdateAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends UpdateAggregateArgs>(args: Subset<T, UpdateAggregateArgs>): Prisma.PrismaPromise<GetUpdateAggregateType<T>>
+
+    /**
+     * Group by Update.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UpdateGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends UpdateGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: UpdateGroupByArgs['orderBy'] }
+        : { orderBy?: UpdateGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, UpdateGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetUpdateGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Update model
+   */
+  readonly fields: UpdateFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Update.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__UpdateClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    creator<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Update model
+   */
+  interface UpdateFieldRefs {
+    readonly id: FieldRef<"Update", 'String'>
+    readonly content: FieldRef<"Update", 'String'>
+    readonly isImage: FieldRef<"Update", 'Boolean'>
+    readonly creatorName: FieldRef<"Update", 'String'>
+    readonly creatorId: FieldRef<"Update", 'String'>
+    readonly createdAt: FieldRef<"Update", 'DateTime'>
+    readonly updatedAt: FieldRef<"Update", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Update findUnique
+   */
+  export type UpdateFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Update
+     */
+    select?: UpdateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Update
+     */
+    omit?: UpdateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UpdateInclude<ExtArgs> | null
+    /**
+     * Filter, which Update to fetch.
+     */
+    where: UpdateWhereUniqueInput
+  }
+
+  /**
+   * Update findUniqueOrThrow
+   */
+  export type UpdateFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Update
+     */
+    select?: UpdateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Update
+     */
+    omit?: UpdateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UpdateInclude<ExtArgs> | null
+    /**
+     * Filter, which Update to fetch.
+     */
+    where: UpdateWhereUniqueInput
+  }
+
+  /**
+   * Update findFirst
+   */
+  export type UpdateFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Update
+     */
+    select?: UpdateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Update
+     */
+    omit?: UpdateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UpdateInclude<ExtArgs> | null
+    /**
+     * Filter, which Update to fetch.
+     */
+    where?: UpdateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Updates to fetch.
+     */
+    orderBy?: UpdateOrderByWithRelationInput | UpdateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Updates.
+     */
+    cursor?: UpdateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Updates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Updates.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Updates.
+     */
+    distinct?: UpdateScalarFieldEnum | UpdateScalarFieldEnum[]
+  }
+
+  /**
+   * Update findFirstOrThrow
+   */
+  export type UpdateFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Update
+     */
+    select?: UpdateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Update
+     */
+    omit?: UpdateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UpdateInclude<ExtArgs> | null
+    /**
+     * Filter, which Update to fetch.
+     */
+    where?: UpdateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Updates to fetch.
+     */
+    orderBy?: UpdateOrderByWithRelationInput | UpdateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Updates.
+     */
+    cursor?: UpdateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Updates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Updates.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Updates.
+     */
+    distinct?: UpdateScalarFieldEnum | UpdateScalarFieldEnum[]
+  }
+
+  /**
+   * Update findMany
+   */
+  export type UpdateFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Update
+     */
+    select?: UpdateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Update
+     */
+    omit?: UpdateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UpdateInclude<ExtArgs> | null
+    /**
+     * Filter, which Updates to fetch.
+     */
+    where?: UpdateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Updates to fetch.
+     */
+    orderBy?: UpdateOrderByWithRelationInput | UpdateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Updates.
+     */
+    cursor?: UpdateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Updates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Updates.
+     */
+    skip?: number
+    distinct?: UpdateScalarFieldEnum | UpdateScalarFieldEnum[]
+  }
+
+  /**
+   * Update create
+   */
+  export type UpdateCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Update
+     */
+    select?: UpdateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Update
+     */
+    omit?: UpdateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UpdateInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Update.
+     */
+    data: XOR<UpdateCreateInput, UpdateUncheckedCreateInput>
+  }
+
+  /**
+   * Update createMany
+   */
+  export type UpdateCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Updates.
+     */
+    data: UpdateCreateManyInput | UpdateCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Update createManyAndReturn
+   */
+  export type UpdateCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Update
+     */
+    select?: UpdateSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Update
+     */
+    omit?: UpdateOmit<ExtArgs> | null
+    /**
+     * The data used to create many Updates.
+     */
+    data: UpdateCreateManyInput | UpdateCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UpdateIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Update update
+   */
+  export type UpdateUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Update
+     */
+    select?: UpdateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Update
+     */
+    omit?: UpdateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UpdateInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Update.
+     */
+    data: XOR<UpdateUpdateInput, UpdateUncheckedUpdateInput>
+    /**
+     * Choose, which Update to update.
+     */
+    where: UpdateWhereUniqueInput
+  }
+
+  /**
+   * Update updateMany
+   */
+  export type UpdateUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Updates.
+     */
+    data: XOR<UpdateUpdateManyMutationInput, UpdateUncheckedUpdateManyInput>
+    /**
+     * Filter which Updates to update
+     */
+    where?: UpdateWhereInput
+    /**
+     * Limit how many Updates to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Update updateManyAndReturn
+   */
+  export type UpdateUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Update
+     */
+    select?: UpdateSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Update
+     */
+    omit?: UpdateOmit<ExtArgs> | null
+    /**
+     * The data used to update Updates.
+     */
+    data: XOR<UpdateUpdateManyMutationInput, UpdateUncheckedUpdateManyInput>
+    /**
+     * Filter which Updates to update
+     */
+    where?: UpdateWhereInput
+    /**
+     * Limit how many Updates to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UpdateIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Update upsert
+   */
+  export type UpdateUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Update
+     */
+    select?: UpdateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Update
+     */
+    omit?: UpdateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UpdateInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Update to update in case it exists.
+     */
+    where: UpdateWhereUniqueInput
+    /**
+     * In case the Update found by the `where` argument doesn't exist, create a new Update with this data.
+     */
+    create: XOR<UpdateCreateInput, UpdateUncheckedCreateInput>
+    /**
+     * In case the Update was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<UpdateUpdateInput, UpdateUncheckedUpdateInput>
+  }
+
+  /**
+   * Update delete
+   */
+  export type UpdateDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Update
+     */
+    select?: UpdateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Update
+     */
+    omit?: UpdateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UpdateInclude<ExtArgs> | null
+    /**
+     * Filter which Update to delete.
+     */
+    where: UpdateWhereUniqueInput
+  }
+
+  /**
+   * Update deleteMany
+   */
+  export type UpdateDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Updates to delete
+     */
+    where?: UpdateWhereInput
+    /**
+     * Limit how many Updates to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Update without action
+   */
+  export type UpdateDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Update
+     */
+    select?: UpdateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Update
+     */
+    omit?: UpdateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UpdateInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model VerificationToken
+   */
+
+  export type AggregateVerificationToken = {
+    _count: VerificationTokenCountAggregateOutputType | null
+    _min: VerificationTokenMinAggregateOutputType | null
+    _max: VerificationTokenMaxAggregateOutputType | null
+  }
+
+  export type VerificationTokenMinAggregateOutputType = {
+    id: string | null
+    email: string | null
+    token: string | null
+    expires: Date | null
+  }
+
+  export type VerificationTokenMaxAggregateOutputType = {
+    id: string | null
+    email: string | null
+    token: string | null
+    expires: Date | null
+  }
+
+  export type VerificationTokenCountAggregateOutputType = {
+    id: number
+    email: number
+    token: number
+    expires: number
+    _all: number
+  }
+
+
+  export type VerificationTokenMinAggregateInputType = {
+    id?: true
+    email?: true
+    token?: true
+    expires?: true
+  }
+
+  export type VerificationTokenMaxAggregateInputType = {
+    id?: true
+    email?: true
+    token?: true
+    expires?: true
+  }
+
+  export type VerificationTokenCountAggregateInputType = {
+    id?: true
+    email?: true
+    token?: true
+    expires?: true
+    _all?: true
+  }
+
+  export type VerificationTokenAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which VerificationToken to aggregate.
+     */
+    where?: VerificationTokenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of VerificationTokens to fetch.
+     */
+    orderBy?: VerificationTokenOrderByWithRelationInput | VerificationTokenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: VerificationTokenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` VerificationTokens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` VerificationTokens.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned VerificationTokens
+    **/
+    _count?: true | VerificationTokenCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: VerificationTokenMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: VerificationTokenMaxAggregateInputType
+  }
+
+  export type GetVerificationTokenAggregateType<T extends VerificationTokenAggregateArgs> = {
+        [P in keyof T & keyof AggregateVerificationToken]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateVerificationToken[P]>
+      : GetScalarType<T[P], AggregateVerificationToken[P]>
+  }
+
+
+
+
+  export type VerificationTokenGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: VerificationTokenWhereInput
+    orderBy?: VerificationTokenOrderByWithAggregationInput | VerificationTokenOrderByWithAggregationInput[]
+    by: VerificationTokenScalarFieldEnum[] | VerificationTokenScalarFieldEnum
+    having?: VerificationTokenScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: VerificationTokenCountAggregateInputType | true
+    _min?: VerificationTokenMinAggregateInputType
+    _max?: VerificationTokenMaxAggregateInputType
+  }
+
+  export type VerificationTokenGroupByOutputType = {
+    id: string
+    email: string
+    token: string
+    expires: Date
+    _count: VerificationTokenCountAggregateOutputType | null
+    _min: VerificationTokenMinAggregateOutputType | null
+    _max: VerificationTokenMaxAggregateOutputType | null
+  }
+
+  type GetVerificationTokenGroupByPayload<T extends VerificationTokenGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<VerificationTokenGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof VerificationTokenGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], VerificationTokenGroupByOutputType[P]>
+            : GetScalarType<T[P], VerificationTokenGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type VerificationTokenSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    email?: boolean
+    token?: boolean
+    expires?: boolean
+  }, ExtArgs["result"]["verificationToken"]>
+
+  export type VerificationTokenSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    email?: boolean
+    token?: boolean
+    expires?: boolean
+  }, ExtArgs["result"]["verificationToken"]>
+
+  export type VerificationTokenSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    email?: boolean
+    token?: boolean
+    expires?: boolean
+  }, ExtArgs["result"]["verificationToken"]>
+
+  export type VerificationTokenSelectScalar = {
+    id?: boolean
+    email?: boolean
+    token?: boolean
+    expires?: boolean
+  }
+
+  export type VerificationTokenOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "token" | "expires", ExtArgs["result"]["verificationToken"]>
+
+  export type $VerificationTokenPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "VerificationToken"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      email: string
+      token: string
+      expires: Date
+    }, ExtArgs["result"]["verificationToken"]>
+    composites: {}
+  }
+
+  type VerificationTokenGetPayload<S extends boolean | null | undefined | VerificationTokenDefaultArgs> = $Result.GetResult<Prisma.$VerificationTokenPayload, S>
+
+  type VerificationTokenCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<VerificationTokenFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: VerificationTokenCountAggregateInputType | true
+    }
+
+  export interface VerificationTokenDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['VerificationToken'], meta: { name: 'VerificationToken' } }
+    /**
+     * Find zero or one VerificationToken that matches the filter.
+     * @param {VerificationTokenFindUniqueArgs} args - Arguments to find a VerificationToken
+     * @example
+     * // Get one VerificationToken
+     * const verificationToken = await prisma.verificationToken.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends VerificationTokenFindUniqueArgs>(args: SelectSubset<T, VerificationTokenFindUniqueArgs<ExtArgs>>): Prisma__VerificationTokenClient<$Result.GetResult<Prisma.$VerificationTokenPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one VerificationToken that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {VerificationTokenFindUniqueOrThrowArgs} args - Arguments to find a VerificationToken
+     * @example
+     * // Get one VerificationToken
+     * const verificationToken = await prisma.verificationToken.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends VerificationTokenFindUniqueOrThrowArgs>(args: SelectSubset<T, VerificationTokenFindUniqueOrThrowArgs<ExtArgs>>): Prisma__VerificationTokenClient<$Result.GetResult<Prisma.$VerificationTokenPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first VerificationToken that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VerificationTokenFindFirstArgs} args - Arguments to find a VerificationToken
+     * @example
+     * // Get one VerificationToken
+     * const verificationToken = await prisma.verificationToken.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends VerificationTokenFindFirstArgs>(args?: SelectSubset<T, VerificationTokenFindFirstArgs<ExtArgs>>): Prisma__VerificationTokenClient<$Result.GetResult<Prisma.$VerificationTokenPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first VerificationToken that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VerificationTokenFindFirstOrThrowArgs} args - Arguments to find a VerificationToken
+     * @example
+     * // Get one VerificationToken
+     * const verificationToken = await prisma.verificationToken.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends VerificationTokenFindFirstOrThrowArgs>(args?: SelectSubset<T, VerificationTokenFindFirstOrThrowArgs<ExtArgs>>): Prisma__VerificationTokenClient<$Result.GetResult<Prisma.$VerificationTokenPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more VerificationTokens that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VerificationTokenFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all VerificationTokens
+     * const verificationTokens = await prisma.verificationToken.findMany()
+     * 
+     * // Get first 10 VerificationTokens
+     * const verificationTokens = await prisma.verificationToken.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const verificationTokenWithIdOnly = await prisma.verificationToken.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends VerificationTokenFindManyArgs>(args?: SelectSubset<T, VerificationTokenFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VerificationTokenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a VerificationToken.
+     * @param {VerificationTokenCreateArgs} args - Arguments to create a VerificationToken.
+     * @example
+     * // Create one VerificationToken
+     * const VerificationToken = await prisma.verificationToken.create({
+     *   data: {
+     *     // ... data to create a VerificationToken
+     *   }
+     * })
+     * 
+     */
+    create<T extends VerificationTokenCreateArgs>(args: SelectSubset<T, VerificationTokenCreateArgs<ExtArgs>>): Prisma__VerificationTokenClient<$Result.GetResult<Prisma.$VerificationTokenPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many VerificationTokens.
+     * @param {VerificationTokenCreateManyArgs} args - Arguments to create many VerificationTokens.
+     * @example
+     * // Create many VerificationTokens
+     * const verificationToken = await prisma.verificationToken.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends VerificationTokenCreateManyArgs>(args?: SelectSubset<T, VerificationTokenCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many VerificationTokens and returns the data saved in the database.
+     * @param {VerificationTokenCreateManyAndReturnArgs} args - Arguments to create many VerificationTokens.
+     * @example
+     * // Create many VerificationTokens
+     * const verificationToken = await prisma.verificationToken.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many VerificationTokens and only return the `id`
+     * const verificationTokenWithIdOnly = await prisma.verificationToken.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends VerificationTokenCreateManyAndReturnArgs>(args?: SelectSubset<T, VerificationTokenCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VerificationTokenPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a VerificationToken.
+     * @param {VerificationTokenDeleteArgs} args - Arguments to delete one VerificationToken.
+     * @example
+     * // Delete one VerificationToken
+     * const VerificationToken = await prisma.verificationToken.delete({
+     *   where: {
+     *     // ... filter to delete one VerificationToken
+     *   }
+     * })
+     * 
+     */
+    delete<T extends VerificationTokenDeleteArgs>(args: SelectSubset<T, VerificationTokenDeleteArgs<ExtArgs>>): Prisma__VerificationTokenClient<$Result.GetResult<Prisma.$VerificationTokenPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one VerificationToken.
+     * @param {VerificationTokenUpdateArgs} args - Arguments to update one VerificationToken.
+     * @example
+     * // Update one VerificationToken
+     * const verificationToken = await prisma.verificationToken.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends VerificationTokenUpdateArgs>(args: SelectSubset<T, VerificationTokenUpdateArgs<ExtArgs>>): Prisma__VerificationTokenClient<$Result.GetResult<Prisma.$VerificationTokenPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more VerificationTokens.
+     * @param {VerificationTokenDeleteManyArgs} args - Arguments to filter VerificationTokens to delete.
+     * @example
+     * // Delete a few VerificationTokens
+     * const { count } = await prisma.verificationToken.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends VerificationTokenDeleteManyArgs>(args?: SelectSubset<T, VerificationTokenDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more VerificationTokens.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VerificationTokenUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many VerificationTokens
+     * const verificationToken = await prisma.verificationToken.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends VerificationTokenUpdateManyArgs>(args: SelectSubset<T, VerificationTokenUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more VerificationTokens and returns the data updated in the database.
+     * @param {VerificationTokenUpdateManyAndReturnArgs} args - Arguments to update many VerificationTokens.
+     * @example
+     * // Update many VerificationTokens
+     * const verificationToken = await prisma.verificationToken.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more VerificationTokens and only return the `id`
+     * const verificationTokenWithIdOnly = await prisma.verificationToken.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends VerificationTokenUpdateManyAndReturnArgs>(args: SelectSubset<T, VerificationTokenUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VerificationTokenPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one VerificationToken.
+     * @param {VerificationTokenUpsertArgs} args - Arguments to update or create a VerificationToken.
+     * @example
+     * // Update or create a VerificationToken
+     * const verificationToken = await prisma.verificationToken.upsert({
+     *   create: {
+     *     // ... data to create a VerificationToken
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the VerificationToken we want to update
+     *   }
+     * })
+     */
+    upsert<T extends VerificationTokenUpsertArgs>(args: SelectSubset<T, VerificationTokenUpsertArgs<ExtArgs>>): Prisma__VerificationTokenClient<$Result.GetResult<Prisma.$VerificationTokenPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of VerificationTokens.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VerificationTokenCountArgs} args - Arguments to filter VerificationTokens to count.
+     * @example
+     * // Count the number of VerificationTokens
+     * const count = await prisma.verificationToken.count({
+     *   where: {
+     *     // ... the filter for the VerificationTokens we want to count
+     *   }
+     * })
+    **/
+    count<T extends VerificationTokenCountArgs>(
+      args?: Subset<T, VerificationTokenCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], VerificationTokenCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a VerificationToken.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VerificationTokenAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends VerificationTokenAggregateArgs>(args: Subset<T, VerificationTokenAggregateArgs>): Prisma.PrismaPromise<GetVerificationTokenAggregateType<T>>
+
+    /**
+     * Group by VerificationToken.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VerificationTokenGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends VerificationTokenGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: VerificationTokenGroupByArgs['orderBy'] }
+        : { orderBy?: VerificationTokenGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, VerificationTokenGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetVerificationTokenGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the VerificationToken model
+   */
+  readonly fields: VerificationTokenFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for VerificationToken.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__VerificationTokenClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the VerificationToken model
+   */
+  interface VerificationTokenFieldRefs {
+    readonly id: FieldRef<"VerificationToken", 'String'>
+    readonly email: FieldRef<"VerificationToken", 'String'>
+    readonly token: FieldRef<"VerificationToken", 'String'>
+    readonly expires: FieldRef<"VerificationToken", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * VerificationToken findUnique
+   */
+  export type VerificationTokenFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VerificationToken
+     */
+    select?: VerificationTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VerificationToken
+     */
+    omit?: VerificationTokenOmit<ExtArgs> | null
+    /**
+     * Filter, which VerificationToken to fetch.
+     */
+    where: VerificationTokenWhereUniqueInput
+  }
+
+  /**
+   * VerificationToken findUniqueOrThrow
+   */
+  export type VerificationTokenFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VerificationToken
+     */
+    select?: VerificationTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VerificationToken
+     */
+    omit?: VerificationTokenOmit<ExtArgs> | null
+    /**
+     * Filter, which VerificationToken to fetch.
+     */
+    where: VerificationTokenWhereUniqueInput
+  }
+
+  /**
+   * VerificationToken findFirst
+   */
+  export type VerificationTokenFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VerificationToken
+     */
+    select?: VerificationTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VerificationToken
+     */
+    omit?: VerificationTokenOmit<ExtArgs> | null
+    /**
+     * Filter, which VerificationToken to fetch.
+     */
+    where?: VerificationTokenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of VerificationTokens to fetch.
+     */
+    orderBy?: VerificationTokenOrderByWithRelationInput | VerificationTokenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for VerificationTokens.
+     */
+    cursor?: VerificationTokenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` VerificationTokens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` VerificationTokens.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of VerificationTokens.
+     */
+    distinct?: VerificationTokenScalarFieldEnum | VerificationTokenScalarFieldEnum[]
+  }
+
+  /**
+   * VerificationToken findFirstOrThrow
+   */
+  export type VerificationTokenFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VerificationToken
+     */
+    select?: VerificationTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VerificationToken
+     */
+    omit?: VerificationTokenOmit<ExtArgs> | null
+    /**
+     * Filter, which VerificationToken to fetch.
+     */
+    where?: VerificationTokenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of VerificationTokens to fetch.
+     */
+    orderBy?: VerificationTokenOrderByWithRelationInput | VerificationTokenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for VerificationTokens.
+     */
+    cursor?: VerificationTokenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` VerificationTokens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` VerificationTokens.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of VerificationTokens.
+     */
+    distinct?: VerificationTokenScalarFieldEnum | VerificationTokenScalarFieldEnum[]
+  }
+
+  /**
+   * VerificationToken findMany
+   */
+  export type VerificationTokenFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VerificationToken
+     */
+    select?: VerificationTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VerificationToken
+     */
+    omit?: VerificationTokenOmit<ExtArgs> | null
+    /**
+     * Filter, which VerificationTokens to fetch.
+     */
+    where?: VerificationTokenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of VerificationTokens to fetch.
+     */
+    orderBy?: VerificationTokenOrderByWithRelationInput | VerificationTokenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing VerificationTokens.
+     */
+    cursor?: VerificationTokenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` VerificationTokens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` VerificationTokens.
+     */
+    skip?: number
+    distinct?: VerificationTokenScalarFieldEnum | VerificationTokenScalarFieldEnum[]
+  }
+
+  /**
+   * VerificationToken create
+   */
+  export type VerificationTokenCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VerificationToken
+     */
+    select?: VerificationTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VerificationToken
+     */
+    omit?: VerificationTokenOmit<ExtArgs> | null
+    /**
+     * The data needed to create a VerificationToken.
+     */
+    data: XOR<VerificationTokenCreateInput, VerificationTokenUncheckedCreateInput>
+  }
+
+  /**
+   * VerificationToken createMany
+   */
+  export type VerificationTokenCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many VerificationTokens.
+     */
+    data: VerificationTokenCreateManyInput | VerificationTokenCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * VerificationToken createManyAndReturn
+   */
+  export type VerificationTokenCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VerificationToken
+     */
+    select?: VerificationTokenSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the VerificationToken
+     */
+    omit?: VerificationTokenOmit<ExtArgs> | null
+    /**
+     * The data used to create many VerificationTokens.
+     */
+    data: VerificationTokenCreateManyInput | VerificationTokenCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * VerificationToken update
+   */
+  export type VerificationTokenUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VerificationToken
+     */
+    select?: VerificationTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VerificationToken
+     */
+    omit?: VerificationTokenOmit<ExtArgs> | null
+    /**
+     * The data needed to update a VerificationToken.
+     */
+    data: XOR<VerificationTokenUpdateInput, VerificationTokenUncheckedUpdateInput>
+    /**
+     * Choose, which VerificationToken to update.
+     */
+    where: VerificationTokenWhereUniqueInput
+  }
+
+  /**
+   * VerificationToken updateMany
+   */
+  export type VerificationTokenUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update VerificationTokens.
+     */
+    data: XOR<VerificationTokenUpdateManyMutationInput, VerificationTokenUncheckedUpdateManyInput>
+    /**
+     * Filter which VerificationTokens to update
+     */
+    where?: VerificationTokenWhereInput
+    /**
+     * Limit how many VerificationTokens to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * VerificationToken updateManyAndReturn
+   */
+  export type VerificationTokenUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VerificationToken
+     */
+    select?: VerificationTokenSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the VerificationToken
+     */
+    omit?: VerificationTokenOmit<ExtArgs> | null
+    /**
+     * The data used to update VerificationTokens.
+     */
+    data: XOR<VerificationTokenUpdateManyMutationInput, VerificationTokenUncheckedUpdateManyInput>
+    /**
+     * Filter which VerificationTokens to update
+     */
+    where?: VerificationTokenWhereInput
+    /**
+     * Limit how many VerificationTokens to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * VerificationToken upsert
+   */
+  export type VerificationTokenUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VerificationToken
+     */
+    select?: VerificationTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VerificationToken
+     */
+    omit?: VerificationTokenOmit<ExtArgs> | null
+    /**
+     * The filter to search for the VerificationToken to update in case it exists.
+     */
+    where: VerificationTokenWhereUniqueInput
+    /**
+     * In case the VerificationToken found by the `where` argument doesn't exist, create a new VerificationToken with this data.
+     */
+    create: XOR<VerificationTokenCreateInput, VerificationTokenUncheckedCreateInput>
+    /**
+     * In case the VerificationToken was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<VerificationTokenUpdateInput, VerificationTokenUncheckedUpdateInput>
+  }
+
+  /**
+   * VerificationToken delete
+   */
+  export type VerificationTokenDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VerificationToken
+     */
+    select?: VerificationTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VerificationToken
+     */
+    omit?: VerificationTokenOmit<ExtArgs> | null
+    /**
+     * Filter which VerificationToken to delete.
+     */
+    where: VerificationTokenWhereUniqueInput
+  }
+
+  /**
+   * VerificationToken deleteMany
+   */
+  export type VerificationTokenDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which VerificationTokens to delete
+     */
+    where?: VerificationTokenWhereInput
+    /**
+     * Limit how many VerificationTokens to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * VerificationToken without action
+   */
+  export type VerificationTokenDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VerificationToken
+     */
+    select?: VerificationTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VerificationToken
+     */
+    omit?: VerificationTokenOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model TwoFactorToken
+   */
+
+  export type AggregateTwoFactorToken = {
+    _count: TwoFactorTokenCountAggregateOutputType | null
+    _min: TwoFactorTokenMinAggregateOutputType | null
+    _max: TwoFactorTokenMaxAggregateOutputType | null
+  }
+
+  export type TwoFactorTokenMinAggregateOutputType = {
+    id: string | null
+    email: string | null
+    token: string | null
+    expires: Date | null
+  }
+
+  export type TwoFactorTokenMaxAggregateOutputType = {
+    id: string | null
+    email: string | null
+    token: string | null
+    expires: Date | null
+  }
+
+  export type TwoFactorTokenCountAggregateOutputType = {
+    id: number
+    email: number
+    token: number
+    expires: number
+    _all: number
+  }
+
+
+  export type TwoFactorTokenMinAggregateInputType = {
+    id?: true
+    email?: true
+    token?: true
+    expires?: true
+  }
+
+  export type TwoFactorTokenMaxAggregateInputType = {
+    id?: true
+    email?: true
+    token?: true
+    expires?: true
+  }
+
+  export type TwoFactorTokenCountAggregateInputType = {
+    id?: true
+    email?: true
+    token?: true
+    expires?: true
+    _all?: true
+  }
+
+  export type TwoFactorTokenAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TwoFactorToken to aggregate.
+     */
+    where?: TwoFactorTokenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TwoFactorTokens to fetch.
+     */
+    orderBy?: TwoFactorTokenOrderByWithRelationInput | TwoFactorTokenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: TwoFactorTokenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TwoFactorTokens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TwoFactorTokens.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned TwoFactorTokens
+    **/
+    _count?: true | TwoFactorTokenCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: TwoFactorTokenMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: TwoFactorTokenMaxAggregateInputType
+  }
+
+  export type GetTwoFactorTokenAggregateType<T extends TwoFactorTokenAggregateArgs> = {
+        [P in keyof T & keyof AggregateTwoFactorToken]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateTwoFactorToken[P]>
+      : GetScalarType<T[P], AggregateTwoFactorToken[P]>
+  }
+
+
+
+
+  export type TwoFactorTokenGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TwoFactorTokenWhereInput
+    orderBy?: TwoFactorTokenOrderByWithAggregationInput | TwoFactorTokenOrderByWithAggregationInput[]
+    by: TwoFactorTokenScalarFieldEnum[] | TwoFactorTokenScalarFieldEnum
+    having?: TwoFactorTokenScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: TwoFactorTokenCountAggregateInputType | true
+    _min?: TwoFactorTokenMinAggregateInputType
+    _max?: TwoFactorTokenMaxAggregateInputType
+  }
+
+  export type TwoFactorTokenGroupByOutputType = {
+    id: string
+    email: string
+    token: string
+    expires: Date
+    _count: TwoFactorTokenCountAggregateOutputType | null
+    _min: TwoFactorTokenMinAggregateOutputType | null
+    _max: TwoFactorTokenMaxAggregateOutputType | null
+  }
+
+  type GetTwoFactorTokenGroupByPayload<T extends TwoFactorTokenGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<TwoFactorTokenGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof TwoFactorTokenGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], TwoFactorTokenGroupByOutputType[P]>
+            : GetScalarType<T[P], TwoFactorTokenGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type TwoFactorTokenSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    email?: boolean
+    token?: boolean
+    expires?: boolean
+  }, ExtArgs["result"]["twoFactorToken"]>
+
+  export type TwoFactorTokenSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    email?: boolean
+    token?: boolean
+    expires?: boolean
+  }, ExtArgs["result"]["twoFactorToken"]>
+
+  export type TwoFactorTokenSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    email?: boolean
+    token?: boolean
+    expires?: boolean
+  }, ExtArgs["result"]["twoFactorToken"]>
+
+  export type TwoFactorTokenSelectScalar = {
+    id?: boolean
+    email?: boolean
+    token?: boolean
+    expires?: boolean
+  }
+
+  export type TwoFactorTokenOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "token" | "expires", ExtArgs["result"]["twoFactorToken"]>
+
+  export type $TwoFactorTokenPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "TwoFactorToken"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      email: string
+      token: string
+      expires: Date
+    }, ExtArgs["result"]["twoFactorToken"]>
+    composites: {}
+  }
+
+  type TwoFactorTokenGetPayload<S extends boolean | null | undefined | TwoFactorTokenDefaultArgs> = $Result.GetResult<Prisma.$TwoFactorTokenPayload, S>
+
+  type TwoFactorTokenCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<TwoFactorTokenFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: TwoFactorTokenCountAggregateInputType | true
+    }
+
+  export interface TwoFactorTokenDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['TwoFactorToken'], meta: { name: 'TwoFactorToken' } }
+    /**
+     * Find zero or one TwoFactorToken that matches the filter.
+     * @param {TwoFactorTokenFindUniqueArgs} args - Arguments to find a TwoFactorToken
+     * @example
+     * // Get one TwoFactorToken
+     * const twoFactorToken = await prisma.twoFactorToken.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends TwoFactorTokenFindUniqueArgs>(args: SelectSubset<T, TwoFactorTokenFindUniqueArgs<ExtArgs>>): Prisma__TwoFactorTokenClient<$Result.GetResult<Prisma.$TwoFactorTokenPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one TwoFactorToken that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {TwoFactorTokenFindUniqueOrThrowArgs} args - Arguments to find a TwoFactorToken
+     * @example
+     * // Get one TwoFactorToken
+     * const twoFactorToken = await prisma.twoFactorToken.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends TwoFactorTokenFindUniqueOrThrowArgs>(args: SelectSubset<T, TwoFactorTokenFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TwoFactorTokenClient<$Result.GetResult<Prisma.$TwoFactorTokenPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TwoFactorToken that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TwoFactorTokenFindFirstArgs} args - Arguments to find a TwoFactorToken
+     * @example
+     * // Get one TwoFactorToken
+     * const twoFactorToken = await prisma.twoFactorToken.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends TwoFactorTokenFindFirstArgs>(args?: SelectSubset<T, TwoFactorTokenFindFirstArgs<ExtArgs>>): Prisma__TwoFactorTokenClient<$Result.GetResult<Prisma.$TwoFactorTokenPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TwoFactorToken that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TwoFactorTokenFindFirstOrThrowArgs} args - Arguments to find a TwoFactorToken
+     * @example
+     * // Get one TwoFactorToken
+     * const twoFactorToken = await prisma.twoFactorToken.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends TwoFactorTokenFindFirstOrThrowArgs>(args?: SelectSubset<T, TwoFactorTokenFindFirstOrThrowArgs<ExtArgs>>): Prisma__TwoFactorTokenClient<$Result.GetResult<Prisma.$TwoFactorTokenPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more TwoFactorTokens that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TwoFactorTokenFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all TwoFactorTokens
+     * const twoFactorTokens = await prisma.twoFactorToken.findMany()
+     * 
+     * // Get first 10 TwoFactorTokens
+     * const twoFactorTokens = await prisma.twoFactorToken.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const twoFactorTokenWithIdOnly = await prisma.twoFactorToken.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends TwoFactorTokenFindManyArgs>(args?: SelectSubset<T, TwoFactorTokenFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TwoFactorTokenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a TwoFactorToken.
+     * @param {TwoFactorTokenCreateArgs} args - Arguments to create a TwoFactorToken.
+     * @example
+     * // Create one TwoFactorToken
+     * const TwoFactorToken = await prisma.twoFactorToken.create({
+     *   data: {
+     *     // ... data to create a TwoFactorToken
+     *   }
+     * })
+     * 
+     */
+    create<T extends TwoFactorTokenCreateArgs>(args: SelectSubset<T, TwoFactorTokenCreateArgs<ExtArgs>>): Prisma__TwoFactorTokenClient<$Result.GetResult<Prisma.$TwoFactorTokenPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many TwoFactorTokens.
+     * @param {TwoFactorTokenCreateManyArgs} args - Arguments to create many TwoFactorTokens.
+     * @example
+     * // Create many TwoFactorTokens
+     * const twoFactorToken = await prisma.twoFactorToken.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends TwoFactorTokenCreateManyArgs>(args?: SelectSubset<T, TwoFactorTokenCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many TwoFactorTokens and returns the data saved in the database.
+     * @param {TwoFactorTokenCreateManyAndReturnArgs} args - Arguments to create many TwoFactorTokens.
+     * @example
+     * // Create many TwoFactorTokens
+     * const twoFactorToken = await prisma.twoFactorToken.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many TwoFactorTokens and only return the `id`
+     * const twoFactorTokenWithIdOnly = await prisma.twoFactorToken.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends TwoFactorTokenCreateManyAndReturnArgs>(args?: SelectSubset<T, TwoFactorTokenCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TwoFactorTokenPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a TwoFactorToken.
+     * @param {TwoFactorTokenDeleteArgs} args - Arguments to delete one TwoFactorToken.
+     * @example
+     * // Delete one TwoFactorToken
+     * const TwoFactorToken = await prisma.twoFactorToken.delete({
+     *   where: {
+     *     // ... filter to delete one TwoFactorToken
+     *   }
+     * })
+     * 
+     */
+    delete<T extends TwoFactorTokenDeleteArgs>(args: SelectSubset<T, TwoFactorTokenDeleteArgs<ExtArgs>>): Prisma__TwoFactorTokenClient<$Result.GetResult<Prisma.$TwoFactorTokenPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one TwoFactorToken.
+     * @param {TwoFactorTokenUpdateArgs} args - Arguments to update one TwoFactorToken.
+     * @example
+     * // Update one TwoFactorToken
+     * const twoFactorToken = await prisma.twoFactorToken.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends TwoFactorTokenUpdateArgs>(args: SelectSubset<T, TwoFactorTokenUpdateArgs<ExtArgs>>): Prisma__TwoFactorTokenClient<$Result.GetResult<Prisma.$TwoFactorTokenPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more TwoFactorTokens.
+     * @param {TwoFactorTokenDeleteManyArgs} args - Arguments to filter TwoFactorTokens to delete.
+     * @example
+     * // Delete a few TwoFactorTokens
+     * const { count } = await prisma.twoFactorToken.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends TwoFactorTokenDeleteManyArgs>(args?: SelectSubset<T, TwoFactorTokenDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TwoFactorTokens.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TwoFactorTokenUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many TwoFactorTokens
+     * const twoFactorToken = await prisma.twoFactorToken.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends TwoFactorTokenUpdateManyArgs>(args: SelectSubset<T, TwoFactorTokenUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TwoFactorTokens and returns the data updated in the database.
+     * @param {TwoFactorTokenUpdateManyAndReturnArgs} args - Arguments to update many TwoFactorTokens.
+     * @example
+     * // Update many TwoFactorTokens
+     * const twoFactorToken = await prisma.twoFactorToken.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more TwoFactorTokens and only return the `id`
+     * const twoFactorTokenWithIdOnly = await prisma.twoFactorToken.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends TwoFactorTokenUpdateManyAndReturnArgs>(args: SelectSubset<T, TwoFactorTokenUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TwoFactorTokenPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one TwoFactorToken.
+     * @param {TwoFactorTokenUpsertArgs} args - Arguments to update or create a TwoFactorToken.
+     * @example
+     * // Update or create a TwoFactorToken
+     * const twoFactorToken = await prisma.twoFactorToken.upsert({
+     *   create: {
+     *     // ... data to create a TwoFactorToken
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the TwoFactorToken we want to update
+     *   }
+     * })
+     */
+    upsert<T extends TwoFactorTokenUpsertArgs>(args: SelectSubset<T, TwoFactorTokenUpsertArgs<ExtArgs>>): Prisma__TwoFactorTokenClient<$Result.GetResult<Prisma.$TwoFactorTokenPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of TwoFactorTokens.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TwoFactorTokenCountArgs} args - Arguments to filter TwoFactorTokens to count.
+     * @example
+     * // Count the number of TwoFactorTokens
+     * const count = await prisma.twoFactorToken.count({
+     *   where: {
+     *     // ... the filter for the TwoFactorTokens we want to count
+     *   }
+     * })
+    **/
+    count<T extends TwoFactorTokenCountArgs>(
+      args?: Subset<T, TwoFactorTokenCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], TwoFactorTokenCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a TwoFactorToken.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TwoFactorTokenAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends TwoFactorTokenAggregateArgs>(args: Subset<T, TwoFactorTokenAggregateArgs>): Prisma.PrismaPromise<GetTwoFactorTokenAggregateType<T>>
+
+    /**
+     * Group by TwoFactorToken.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TwoFactorTokenGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends TwoFactorTokenGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: TwoFactorTokenGroupByArgs['orderBy'] }
+        : { orderBy?: TwoFactorTokenGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, TwoFactorTokenGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTwoFactorTokenGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the TwoFactorToken model
+   */
+  readonly fields: TwoFactorTokenFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for TwoFactorToken.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__TwoFactorTokenClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the TwoFactorToken model
+   */
+  interface TwoFactorTokenFieldRefs {
+    readonly id: FieldRef<"TwoFactorToken", 'String'>
+    readonly email: FieldRef<"TwoFactorToken", 'String'>
+    readonly token: FieldRef<"TwoFactorToken", 'String'>
+    readonly expires: FieldRef<"TwoFactorToken", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * TwoFactorToken findUnique
+   */
+  export type TwoFactorTokenFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TwoFactorToken
+     */
+    select?: TwoFactorTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TwoFactorToken
+     */
+    omit?: TwoFactorTokenOmit<ExtArgs> | null
+    /**
+     * Filter, which TwoFactorToken to fetch.
+     */
+    where: TwoFactorTokenWhereUniqueInput
+  }
+
+  /**
+   * TwoFactorToken findUniqueOrThrow
+   */
+  export type TwoFactorTokenFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TwoFactorToken
+     */
+    select?: TwoFactorTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TwoFactorToken
+     */
+    omit?: TwoFactorTokenOmit<ExtArgs> | null
+    /**
+     * Filter, which TwoFactorToken to fetch.
+     */
+    where: TwoFactorTokenWhereUniqueInput
+  }
+
+  /**
+   * TwoFactorToken findFirst
+   */
+  export type TwoFactorTokenFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TwoFactorToken
+     */
+    select?: TwoFactorTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TwoFactorToken
+     */
+    omit?: TwoFactorTokenOmit<ExtArgs> | null
+    /**
+     * Filter, which TwoFactorToken to fetch.
+     */
+    where?: TwoFactorTokenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TwoFactorTokens to fetch.
+     */
+    orderBy?: TwoFactorTokenOrderByWithRelationInput | TwoFactorTokenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TwoFactorTokens.
+     */
+    cursor?: TwoFactorTokenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TwoFactorTokens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TwoFactorTokens.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TwoFactorTokens.
+     */
+    distinct?: TwoFactorTokenScalarFieldEnum | TwoFactorTokenScalarFieldEnum[]
+  }
+
+  /**
+   * TwoFactorToken findFirstOrThrow
+   */
+  export type TwoFactorTokenFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TwoFactorToken
+     */
+    select?: TwoFactorTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TwoFactorToken
+     */
+    omit?: TwoFactorTokenOmit<ExtArgs> | null
+    /**
+     * Filter, which TwoFactorToken to fetch.
+     */
+    where?: TwoFactorTokenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TwoFactorTokens to fetch.
+     */
+    orderBy?: TwoFactorTokenOrderByWithRelationInput | TwoFactorTokenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TwoFactorTokens.
+     */
+    cursor?: TwoFactorTokenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TwoFactorTokens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TwoFactorTokens.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TwoFactorTokens.
+     */
+    distinct?: TwoFactorTokenScalarFieldEnum | TwoFactorTokenScalarFieldEnum[]
+  }
+
+  /**
+   * TwoFactorToken findMany
+   */
+  export type TwoFactorTokenFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TwoFactorToken
+     */
+    select?: TwoFactorTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TwoFactorToken
+     */
+    omit?: TwoFactorTokenOmit<ExtArgs> | null
+    /**
+     * Filter, which TwoFactorTokens to fetch.
+     */
+    where?: TwoFactorTokenWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TwoFactorTokens to fetch.
+     */
+    orderBy?: TwoFactorTokenOrderByWithRelationInput | TwoFactorTokenOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing TwoFactorTokens.
+     */
+    cursor?: TwoFactorTokenWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TwoFactorTokens from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TwoFactorTokens.
+     */
+    skip?: number
+    distinct?: TwoFactorTokenScalarFieldEnum | TwoFactorTokenScalarFieldEnum[]
+  }
+
+  /**
+   * TwoFactorToken create
+   */
+  export type TwoFactorTokenCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TwoFactorToken
+     */
+    select?: TwoFactorTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TwoFactorToken
+     */
+    omit?: TwoFactorTokenOmit<ExtArgs> | null
+    /**
+     * The data needed to create a TwoFactorToken.
+     */
+    data: XOR<TwoFactorTokenCreateInput, TwoFactorTokenUncheckedCreateInput>
+  }
+
+  /**
+   * TwoFactorToken createMany
+   */
+  export type TwoFactorTokenCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many TwoFactorTokens.
+     */
+    data: TwoFactorTokenCreateManyInput | TwoFactorTokenCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * TwoFactorToken createManyAndReturn
+   */
+  export type TwoFactorTokenCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TwoFactorToken
+     */
+    select?: TwoFactorTokenSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the TwoFactorToken
+     */
+    omit?: TwoFactorTokenOmit<ExtArgs> | null
+    /**
+     * The data used to create many TwoFactorTokens.
+     */
+    data: TwoFactorTokenCreateManyInput | TwoFactorTokenCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * TwoFactorToken update
+   */
+  export type TwoFactorTokenUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TwoFactorToken
+     */
+    select?: TwoFactorTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TwoFactorToken
+     */
+    omit?: TwoFactorTokenOmit<ExtArgs> | null
+    /**
+     * The data needed to update a TwoFactorToken.
+     */
+    data: XOR<TwoFactorTokenUpdateInput, TwoFactorTokenUncheckedUpdateInput>
+    /**
+     * Choose, which TwoFactorToken to update.
+     */
+    where: TwoFactorTokenWhereUniqueInput
+  }
+
+  /**
+   * TwoFactorToken updateMany
+   */
+  export type TwoFactorTokenUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update TwoFactorTokens.
+     */
+    data: XOR<TwoFactorTokenUpdateManyMutationInput, TwoFactorTokenUncheckedUpdateManyInput>
+    /**
+     * Filter which TwoFactorTokens to update
+     */
+    where?: TwoFactorTokenWhereInput
+    /**
+     * Limit how many TwoFactorTokens to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * TwoFactorToken updateManyAndReturn
+   */
+  export type TwoFactorTokenUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TwoFactorToken
+     */
+    select?: TwoFactorTokenSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the TwoFactorToken
+     */
+    omit?: TwoFactorTokenOmit<ExtArgs> | null
+    /**
+     * The data used to update TwoFactorTokens.
+     */
+    data: XOR<TwoFactorTokenUpdateManyMutationInput, TwoFactorTokenUncheckedUpdateManyInput>
+    /**
+     * Filter which TwoFactorTokens to update
+     */
+    where?: TwoFactorTokenWhereInput
+    /**
+     * Limit how many TwoFactorTokens to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * TwoFactorToken upsert
+   */
+  export type TwoFactorTokenUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TwoFactorToken
+     */
+    select?: TwoFactorTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TwoFactorToken
+     */
+    omit?: TwoFactorTokenOmit<ExtArgs> | null
+    /**
+     * The filter to search for the TwoFactorToken to update in case it exists.
+     */
+    where: TwoFactorTokenWhereUniqueInput
+    /**
+     * In case the TwoFactorToken found by the `where` argument doesn't exist, create a new TwoFactorToken with this data.
+     */
+    create: XOR<TwoFactorTokenCreateInput, TwoFactorTokenUncheckedCreateInput>
+    /**
+     * In case the TwoFactorToken was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<TwoFactorTokenUpdateInput, TwoFactorTokenUncheckedUpdateInput>
+  }
+
+  /**
+   * TwoFactorToken delete
+   */
+  export type TwoFactorTokenDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TwoFactorToken
+     */
+    select?: TwoFactorTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TwoFactorToken
+     */
+    omit?: TwoFactorTokenOmit<ExtArgs> | null
+    /**
+     * Filter which TwoFactorToken to delete.
+     */
+    where: TwoFactorTokenWhereUniqueInput
+  }
+
+  /**
+   * TwoFactorToken deleteMany
+   */
+  export type TwoFactorTokenDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TwoFactorTokens to delete
+     */
+    where?: TwoFactorTokenWhereInput
+    /**
+     * Limit how many TwoFactorTokens to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * TwoFactorToken without action
+   */
+  export type TwoFactorTokenDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TwoFactorToken
+     */
+    select?: TwoFactorTokenSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TwoFactorToken
+     */
+    omit?: TwoFactorTokenOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model TwoFactorConfirmation
+   */
+
+  export type AggregateTwoFactorConfirmation = {
+    _count: TwoFactorConfirmationCountAggregateOutputType | null
+    _min: TwoFactorConfirmationMinAggregateOutputType | null
+    _max: TwoFactorConfirmationMaxAggregateOutputType | null
+  }
+
+  export type TwoFactorConfirmationMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+  }
+
+  export type TwoFactorConfirmationMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+  }
+
+  export type TwoFactorConfirmationCountAggregateOutputType = {
+    id: number
+    userId: number
+    _all: number
+  }
+
+
+  export type TwoFactorConfirmationMinAggregateInputType = {
+    id?: true
+    userId?: true
+  }
+
+  export type TwoFactorConfirmationMaxAggregateInputType = {
+    id?: true
+    userId?: true
+  }
+
+  export type TwoFactorConfirmationCountAggregateInputType = {
+    id?: true
+    userId?: true
+    _all?: true
+  }
+
+  export type TwoFactorConfirmationAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TwoFactorConfirmation to aggregate.
+     */
+    where?: TwoFactorConfirmationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TwoFactorConfirmations to fetch.
+     */
+    orderBy?: TwoFactorConfirmationOrderByWithRelationInput | TwoFactorConfirmationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: TwoFactorConfirmationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TwoFactorConfirmations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TwoFactorConfirmations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned TwoFactorConfirmations
+    **/
+    _count?: true | TwoFactorConfirmationCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: TwoFactorConfirmationMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: TwoFactorConfirmationMaxAggregateInputType
+  }
+
+  export type GetTwoFactorConfirmationAggregateType<T extends TwoFactorConfirmationAggregateArgs> = {
+        [P in keyof T & keyof AggregateTwoFactorConfirmation]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateTwoFactorConfirmation[P]>
+      : GetScalarType<T[P], AggregateTwoFactorConfirmation[P]>
+  }
+
+
+
+
+  export type TwoFactorConfirmationGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TwoFactorConfirmationWhereInput
+    orderBy?: TwoFactorConfirmationOrderByWithAggregationInput | TwoFactorConfirmationOrderByWithAggregationInput[]
+    by: TwoFactorConfirmationScalarFieldEnum[] | TwoFactorConfirmationScalarFieldEnum
+    having?: TwoFactorConfirmationScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: TwoFactorConfirmationCountAggregateInputType | true
+    _min?: TwoFactorConfirmationMinAggregateInputType
+    _max?: TwoFactorConfirmationMaxAggregateInputType
+  }
+
+  export type TwoFactorConfirmationGroupByOutputType = {
+    id: string
+    userId: string
+    _count: TwoFactorConfirmationCountAggregateOutputType | null
+    _min: TwoFactorConfirmationMinAggregateOutputType | null
+    _max: TwoFactorConfirmationMaxAggregateOutputType | null
+  }
+
+  type GetTwoFactorConfirmationGroupByPayload<T extends TwoFactorConfirmationGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<TwoFactorConfirmationGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof TwoFactorConfirmationGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], TwoFactorConfirmationGroupByOutputType[P]>
+            : GetScalarType<T[P], TwoFactorConfirmationGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type TwoFactorConfirmationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["twoFactorConfirmation"]>
+
+  export type TwoFactorConfirmationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["twoFactorConfirmation"]>
+
+  export type TwoFactorConfirmationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["twoFactorConfirmation"]>
+
+  export type TwoFactorConfirmationSelectScalar = {
+    id?: boolean
+    userId?: boolean
+  }
+
+  export type TwoFactorConfirmationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId", ExtArgs["result"]["twoFactorConfirmation"]>
+  export type TwoFactorConfirmationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type TwoFactorConfirmationIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type TwoFactorConfirmationIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $TwoFactorConfirmationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "TwoFactorConfirmation"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+    }, ExtArgs["result"]["twoFactorConfirmation"]>
+    composites: {}
+  }
+
+  type TwoFactorConfirmationGetPayload<S extends boolean | null | undefined | TwoFactorConfirmationDefaultArgs> = $Result.GetResult<Prisma.$TwoFactorConfirmationPayload, S>
+
+  type TwoFactorConfirmationCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<TwoFactorConfirmationFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: TwoFactorConfirmationCountAggregateInputType | true
+    }
+
+  export interface TwoFactorConfirmationDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['TwoFactorConfirmation'], meta: { name: 'TwoFactorConfirmation' } }
+    /**
+     * Find zero or one TwoFactorConfirmation that matches the filter.
+     * @param {TwoFactorConfirmationFindUniqueArgs} args - Arguments to find a TwoFactorConfirmation
+     * @example
+     * // Get one TwoFactorConfirmation
+     * const twoFactorConfirmation = await prisma.twoFactorConfirmation.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends TwoFactorConfirmationFindUniqueArgs>(args: SelectSubset<T, TwoFactorConfirmationFindUniqueArgs<ExtArgs>>): Prisma__TwoFactorConfirmationClient<$Result.GetResult<Prisma.$TwoFactorConfirmationPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one TwoFactorConfirmation that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {TwoFactorConfirmationFindUniqueOrThrowArgs} args - Arguments to find a TwoFactorConfirmation
+     * @example
+     * // Get one TwoFactorConfirmation
+     * const twoFactorConfirmation = await prisma.twoFactorConfirmation.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends TwoFactorConfirmationFindUniqueOrThrowArgs>(args: SelectSubset<T, TwoFactorConfirmationFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TwoFactorConfirmationClient<$Result.GetResult<Prisma.$TwoFactorConfirmationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TwoFactorConfirmation that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TwoFactorConfirmationFindFirstArgs} args - Arguments to find a TwoFactorConfirmation
+     * @example
+     * // Get one TwoFactorConfirmation
+     * const twoFactorConfirmation = await prisma.twoFactorConfirmation.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends TwoFactorConfirmationFindFirstArgs>(args?: SelectSubset<T, TwoFactorConfirmationFindFirstArgs<ExtArgs>>): Prisma__TwoFactorConfirmationClient<$Result.GetResult<Prisma.$TwoFactorConfirmationPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TwoFactorConfirmation that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TwoFactorConfirmationFindFirstOrThrowArgs} args - Arguments to find a TwoFactorConfirmation
+     * @example
+     * // Get one TwoFactorConfirmation
+     * const twoFactorConfirmation = await prisma.twoFactorConfirmation.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends TwoFactorConfirmationFindFirstOrThrowArgs>(args?: SelectSubset<T, TwoFactorConfirmationFindFirstOrThrowArgs<ExtArgs>>): Prisma__TwoFactorConfirmationClient<$Result.GetResult<Prisma.$TwoFactorConfirmationPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more TwoFactorConfirmations that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TwoFactorConfirmationFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all TwoFactorConfirmations
+     * const twoFactorConfirmations = await prisma.twoFactorConfirmation.findMany()
+     * 
+     * // Get first 10 TwoFactorConfirmations
+     * const twoFactorConfirmations = await prisma.twoFactorConfirmation.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const twoFactorConfirmationWithIdOnly = await prisma.twoFactorConfirmation.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends TwoFactorConfirmationFindManyArgs>(args?: SelectSubset<T, TwoFactorConfirmationFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TwoFactorConfirmationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a TwoFactorConfirmation.
+     * @param {TwoFactorConfirmationCreateArgs} args - Arguments to create a TwoFactorConfirmation.
+     * @example
+     * // Create one TwoFactorConfirmation
+     * const TwoFactorConfirmation = await prisma.twoFactorConfirmation.create({
+     *   data: {
+     *     // ... data to create a TwoFactorConfirmation
+     *   }
+     * })
+     * 
+     */
+    create<T extends TwoFactorConfirmationCreateArgs>(args: SelectSubset<T, TwoFactorConfirmationCreateArgs<ExtArgs>>): Prisma__TwoFactorConfirmationClient<$Result.GetResult<Prisma.$TwoFactorConfirmationPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many TwoFactorConfirmations.
+     * @param {TwoFactorConfirmationCreateManyArgs} args - Arguments to create many TwoFactorConfirmations.
+     * @example
+     * // Create many TwoFactorConfirmations
+     * const twoFactorConfirmation = await prisma.twoFactorConfirmation.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends TwoFactorConfirmationCreateManyArgs>(args?: SelectSubset<T, TwoFactorConfirmationCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many TwoFactorConfirmations and returns the data saved in the database.
+     * @param {TwoFactorConfirmationCreateManyAndReturnArgs} args - Arguments to create many TwoFactorConfirmations.
+     * @example
+     * // Create many TwoFactorConfirmations
+     * const twoFactorConfirmation = await prisma.twoFactorConfirmation.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many TwoFactorConfirmations and only return the `id`
+     * const twoFactorConfirmationWithIdOnly = await prisma.twoFactorConfirmation.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends TwoFactorConfirmationCreateManyAndReturnArgs>(args?: SelectSubset<T, TwoFactorConfirmationCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TwoFactorConfirmationPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a TwoFactorConfirmation.
+     * @param {TwoFactorConfirmationDeleteArgs} args - Arguments to delete one TwoFactorConfirmation.
+     * @example
+     * // Delete one TwoFactorConfirmation
+     * const TwoFactorConfirmation = await prisma.twoFactorConfirmation.delete({
+     *   where: {
+     *     // ... filter to delete one TwoFactorConfirmation
+     *   }
+     * })
+     * 
+     */
+    delete<T extends TwoFactorConfirmationDeleteArgs>(args: SelectSubset<T, TwoFactorConfirmationDeleteArgs<ExtArgs>>): Prisma__TwoFactorConfirmationClient<$Result.GetResult<Prisma.$TwoFactorConfirmationPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one TwoFactorConfirmation.
+     * @param {TwoFactorConfirmationUpdateArgs} args - Arguments to update one TwoFactorConfirmation.
+     * @example
+     * // Update one TwoFactorConfirmation
+     * const twoFactorConfirmation = await prisma.twoFactorConfirmation.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends TwoFactorConfirmationUpdateArgs>(args: SelectSubset<T, TwoFactorConfirmationUpdateArgs<ExtArgs>>): Prisma__TwoFactorConfirmationClient<$Result.GetResult<Prisma.$TwoFactorConfirmationPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more TwoFactorConfirmations.
+     * @param {TwoFactorConfirmationDeleteManyArgs} args - Arguments to filter TwoFactorConfirmations to delete.
+     * @example
+     * // Delete a few TwoFactorConfirmations
+     * const { count } = await prisma.twoFactorConfirmation.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends TwoFactorConfirmationDeleteManyArgs>(args?: SelectSubset<T, TwoFactorConfirmationDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TwoFactorConfirmations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TwoFactorConfirmationUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many TwoFactorConfirmations
+     * const twoFactorConfirmation = await prisma.twoFactorConfirmation.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends TwoFactorConfirmationUpdateManyArgs>(args: SelectSubset<T, TwoFactorConfirmationUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TwoFactorConfirmations and returns the data updated in the database.
+     * @param {TwoFactorConfirmationUpdateManyAndReturnArgs} args - Arguments to update many TwoFactorConfirmations.
+     * @example
+     * // Update many TwoFactorConfirmations
+     * const twoFactorConfirmation = await prisma.twoFactorConfirmation.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more TwoFactorConfirmations and only return the `id`
+     * const twoFactorConfirmationWithIdOnly = await prisma.twoFactorConfirmation.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends TwoFactorConfirmationUpdateManyAndReturnArgs>(args: SelectSubset<T, TwoFactorConfirmationUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TwoFactorConfirmationPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one TwoFactorConfirmation.
+     * @param {TwoFactorConfirmationUpsertArgs} args - Arguments to update or create a TwoFactorConfirmation.
+     * @example
+     * // Update or create a TwoFactorConfirmation
+     * const twoFactorConfirmation = await prisma.twoFactorConfirmation.upsert({
+     *   create: {
+     *     // ... data to create a TwoFactorConfirmation
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the TwoFactorConfirmation we want to update
+     *   }
+     * })
+     */
+    upsert<T extends TwoFactorConfirmationUpsertArgs>(args: SelectSubset<T, TwoFactorConfirmationUpsertArgs<ExtArgs>>): Prisma__TwoFactorConfirmationClient<$Result.GetResult<Prisma.$TwoFactorConfirmationPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of TwoFactorConfirmations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TwoFactorConfirmationCountArgs} args - Arguments to filter TwoFactorConfirmations to count.
+     * @example
+     * // Count the number of TwoFactorConfirmations
+     * const count = await prisma.twoFactorConfirmation.count({
+     *   where: {
+     *     // ... the filter for the TwoFactorConfirmations we want to count
+     *   }
+     * })
+    **/
+    count<T extends TwoFactorConfirmationCountArgs>(
+      args?: Subset<T, TwoFactorConfirmationCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], TwoFactorConfirmationCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a TwoFactorConfirmation.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TwoFactorConfirmationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends TwoFactorConfirmationAggregateArgs>(args: Subset<T, TwoFactorConfirmationAggregateArgs>): Prisma.PrismaPromise<GetTwoFactorConfirmationAggregateType<T>>
+
+    /**
+     * Group by TwoFactorConfirmation.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TwoFactorConfirmationGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends TwoFactorConfirmationGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: TwoFactorConfirmationGroupByArgs['orderBy'] }
+        : { orderBy?: TwoFactorConfirmationGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, TwoFactorConfirmationGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTwoFactorConfirmationGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the TwoFactorConfirmation model
+   */
+  readonly fields: TwoFactorConfirmationFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for TwoFactorConfirmation.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__TwoFactorConfirmationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the TwoFactorConfirmation model
+   */
+  interface TwoFactorConfirmationFieldRefs {
+    readonly id: FieldRef<"TwoFactorConfirmation", 'String'>
+    readonly userId: FieldRef<"TwoFactorConfirmation", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * TwoFactorConfirmation findUnique
+   */
+  export type TwoFactorConfirmationFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TwoFactorConfirmation
+     */
+    select?: TwoFactorConfirmationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TwoFactorConfirmation
+     */
+    omit?: TwoFactorConfirmationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TwoFactorConfirmationInclude<ExtArgs> | null
+    /**
+     * Filter, which TwoFactorConfirmation to fetch.
+     */
+    where: TwoFactorConfirmationWhereUniqueInput
+  }
+
+  /**
+   * TwoFactorConfirmation findUniqueOrThrow
+   */
+  export type TwoFactorConfirmationFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TwoFactorConfirmation
+     */
+    select?: TwoFactorConfirmationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TwoFactorConfirmation
+     */
+    omit?: TwoFactorConfirmationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TwoFactorConfirmationInclude<ExtArgs> | null
+    /**
+     * Filter, which TwoFactorConfirmation to fetch.
+     */
+    where: TwoFactorConfirmationWhereUniqueInput
+  }
+
+  /**
+   * TwoFactorConfirmation findFirst
+   */
+  export type TwoFactorConfirmationFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TwoFactorConfirmation
+     */
+    select?: TwoFactorConfirmationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TwoFactorConfirmation
+     */
+    omit?: TwoFactorConfirmationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TwoFactorConfirmationInclude<ExtArgs> | null
+    /**
+     * Filter, which TwoFactorConfirmation to fetch.
+     */
+    where?: TwoFactorConfirmationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TwoFactorConfirmations to fetch.
+     */
+    orderBy?: TwoFactorConfirmationOrderByWithRelationInput | TwoFactorConfirmationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TwoFactorConfirmations.
+     */
+    cursor?: TwoFactorConfirmationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TwoFactorConfirmations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TwoFactorConfirmations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TwoFactorConfirmations.
+     */
+    distinct?: TwoFactorConfirmationScalarFieldEnum | TwoFactorConfirmationScalarFieldEnum[]
+  }
+
+  /**
+   * TwoFactorConfirmation findFirstOrThrow
+   */
+  export type TwoFactorConfirmationFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TwoFactorConfirmation
+     */
+    select?: TwoFactorConfirmationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TwoFactorConfirmation
+     */
+    omit?: TwoFactorConfirmationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TwoFactorConfirmationInclude<ExtArgs> | null
+    /**
+     * Filter, which TwoFactorConfirmation to fetch.
+     */
+    where?: TwoFactorConfirmationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TwoFactorConfirmations to fetch.
+     */
+    orderBy?: TwoFactorConfirmationOrderByWithRelationInput | TwoFactorConfirmationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TwoFactorConfirmations.
+     */
+    cursor?: TwoFactorConfirmationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TwoFactorConfirmations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TwoFactorConfirmations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TwoFactorConfirmations.
+     */
+    distinct?: TwoFactorConfirmationScalarFieldEnum | TwoFactorConfirmationScalarFieldEnum[]
+  }
+
+  /**
+   * TwoFactorConfirmation findMany
+   */
+  export type TwoFactorConfirmationFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TwoFactorConfirmation
+     */
+    select?: TwoFactorConfirmationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TwoFactorConfirmation
+     */
+    omit?: TwoFactorConfirmationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TwoFactorConfirmationInclude<ExtArgs> | null
+    /**
+     * Filter, which TwoFactorConfirmations to fetch.
+     */
+    where?: TwoFactorConfirmationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TwoFactorConfirmations to fetch.
+     */
+    orderBy?: TwoFactorConfirmationOrderByWithRelationInput | TwoFactorConfirmationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing TwoFactorConfirmations.
+     */
+    cursor?: TwoFactorConfirmationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TwoFactorConfirmations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TwoFactorConfirmations.
+     */
+    skip?: number
+    distinct?: TwoFactorConfirmationScalarFieldEnum | TwoFactorConfirmationScalarFieldEnum[]
+  }
+
+  /**
+   * TwoFactorConfirmation create
+   */
+  export type TwoFactorConfirmationCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TwoFactorConfirmation
+     */
+    select?: TwoFactorConfirmationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TwoFactorConfirmation
+     */
+    omit?: TwoFactorConfirmationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TwoFactorConfirmationInclude<ExtArgs> | null
+    /**
+     * The data needed to create a TwoFactorConfirmation.
+     */
+    data: XOR<TwoFactorConfirmationCreateInput, TwoFactorConfirmationUncheckedCreateInput>
+  }
+
+  /**
+   * TwoFactorConfirmation createMany
+   */
+  export type TwoFactorConfirmationCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many TwoFactorConfirmations.
+     */
+    data: TwoFactorConfirmationCreateManyInput | TwoFactorConfirmationCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * TwoFactorConfirmation createManyAndReturn
+   */
+  export type TwoFactorConfirmationCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TwoFactorConfirmation
+     */
+    select?: TwoFactorConfirmationSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the TwoFactorConfirmation
+     */
+    omit?: TwoFactorConfirmationOmit<ExtArgs> | null
+    /**
+     * The data used to create many TwoFactorConfirmations.
+     */
+    data: TwoFactorConfirmationCreateManyInput | TwoFactorConfirmationCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TwoFactorConfirmationIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * TwoFactorConfirmation update
+   */
+  export type TwoFactorConfirmationUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TwoFactorConfirmation
+     */
+    select?: TwoFactorConfirmationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TwoFactorConfirmation
+     */
+    omit?: TwoFactorConfirmationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TwoFactorConfirmationInclude<ExtArgs> | null
+    /**
+     * The data needed to update a TwoFactorConfirmation.
+     */
+    data: XOR<TwoFactorConfirmationUpdateInput, TwoFactorConfirmationUncheckedUpdateInput>
+    /**
+     * Choose, which TwoFactorConfirmation to update.
+     */
+    where: TwoFactorConfirmationWhereUniqueInput
+  }
+
+  /**
+   * TwoFactorConfirmation updateMany
+   */
+  export type TwoFactorConfirmationUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update TwoFactorConfirmations.
+     */
+    data: XOR<TwoFactorConfirmationUpdateManyMutationInput, TwoFactorConfirmationUncheckedUpdateManyInput>
+    /**
+     * Filter which TwoFactorConfirmations to update
+     */
+    where?: TwoFactorConfirmationWhereInput
+    /**
+     * Limit how many TwoFactorConfirmations to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * TwoFactorConfirmation updateManyAndReturn
+   */
+  export type TwoFactorConfirmationUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TwoFactorConfirmation
+     */
+    select?: TwoFactorConfirmationSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the TwoFactorConfirmation
+     */
+    omit?: TwoFactorConfirmationOmit<ExtArgs> | null
+    /**
+     * The data used to update TwoFactorConfirmations.
+     */
+    data: XOR<TwoFactorConfirmationUpdateManyMutationInput, TwoFactorConfirmationUncheckedUpdateManyInput>
+    /**
+     * Filter which TwoFactorConfirmations to update
+     */
+    where?: TwoFactorConfirmationWhereInput
+    /**
+     * Limit how many TwoFactorConfirmations to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TwoFactorConfirmationIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * TwoFactorConfirmation upsert
+   */
+  export type TwoFactorConfirmationUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TwoFactorConfirmation
+     */
+    select?: TwoFactorConfirmationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TwoFactorConfirmation
+     */
+    omit?: TwoFactorConfirmationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TwoFactorConfirmationInclude<ExtArgs> | null
+    /**
+     * The filter to search for the TwoFactorConfirmation to update in case it exists.
+     */
+    where: TwoFactorConfirmationWhereUniqueInput
+    /**
+     * In case the TwoFactorConfirmation found by the `where` argument doesn't exist, create a new TwoFactorConfirmation with this data.
+     */
+    create: XOR<TwoFactorConfirmationCreateInput, TwoFactorConfirmationUncheckedCreateInput>
+    /**
+     * In case the TwoFactorConfirmation was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<TwoFactorConfirmationUpdateInput, TwoFactorConfirmationUncheckedUpdateInput>
+  }
+
+  /**
+   * TwoFactorConfirmation delete
+   */
+  export type TwoFactorConfirmationDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TwoFactorConfirmation
+     */
+    select?: TwoFactorConfirmationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TwoFactorConfirmation
+     */
+    omit?: TwoFactorConfirmationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TwoFactorConfirmationInclude<ExtArgs> | null
+    /**
+     * Filter which TwoFactorConfirmation to delete.
+     */
+    where: TwoFactorConfirmationWhereUniqueInput
+  }
+
+  /**
+   * TwoFactorConfirmation deleteMany
+   */
+  export type TwoFactorConfirmationDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TwoFactorConfirmations to delete
+     */
+    where?: TwoFactorConfirmationWhereInput
+    /**
+     * Limit how many TwoFactorConfirmations to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * TwoFactorConfirmation without action
+   */
+  export type TwoFactorConfirmationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TwoFactorConfirmation
+     */
+    select?: TwoFactorConfirmationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TwoFactorConfirmation
+     */
+    omit?: TwoFactorConfirmationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TwoFactorConfirmationInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model LoginAttempt
+   */
+
+  export type AggregateLoginAttempt = {
+    _count: LoginAttemptCountAggregateOutputType | null
+    _min: LoginAttemptMinAggregateOutputType | null
+    _max: LoginAttemptMaxAggregateOutputType | null
+  }
+
+  export type LoginAttemptMinAggregateOutputType = {
+    id: string | null
+    ipAddress: string | null
+    email: string | null
+    success: boolean | null
+    createdAt: Date | null
+    blockedUntil: Date | null
+  }
+
+  export type LoginAttemptMaxAggregateOutputType = {
+    id: string | null
+    ipAddress: string | null
+    email: string | null
+    success: boolean | null
+    createdAt: Date | null
+    blockedUntil: Date | null
+  }
+
+  export type LoginAttemptCountAggregateOutputType = {
+    id: number
+    ipAddress: number
+    email: number
+    success: number
+    createdAt: number
+    blockedUntil: number
+    _all: number
+  }
+
+
+  export type LoginAttemptMinAggregateInputType = {
+    id?: true
+    ipAddress?: true
+    email?: true
+    success?: true
+    createdAt?: true
+    blockedUntil?: true
+  }
+
+  export type LoginAttemptMaxAggregateInputType = {
+    id?: true
+    ipAddress?: true
+    email?: true
+    success?: true
+    createdAt?: true
+    blockedUntil?: true
+  }
+
+  export type LoginAttemptCountAggregateInputType = {
+    id?: true
+    ipAddress?: true
+    email?: true
+    success?: true
+    createdAt?: true
+    blockedUntil?: true
+    _all?: true
+  }
+
+  export type LoginAttemptAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which LoginAttempt to aggregate.
+     */
+    where?: LoginAttemptWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LoginAttempts to fetch.
+     */
+    orderBy?: LoginAttemptOrderByWithRelationInput | LoginAttemptOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: LoginAttemptWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LoginAttempts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LoginAttempts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned LoginAttempts
+    **/
+    _count?: true | LoginAttemptCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: LoginAttemptMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: LoginAttemptMaxAggregateInputType
+  }
+
+  export type GetLoginAttemptAggregateType<T extends LoginAttemptAggregateArgs> = {
+        [P in keyof T & keyof AggregateLoginAttempt]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateLoginAttempt[P]>
+      : GetScalarType<T[P], AggregateLoginAttempt[P]>
+  }
+
+
+
+
+  export type LoginAttemptGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LoginAttemptWhereInput
+    orderBy?: LoginAttemptOrderByWithAggregationInput | LoginAttemptOrderByWithAggregationInput[]
+    by: LoginAttemptScalarFieldEnum[] | LoginAttemptScalarFieldEnum
+    having?: LoginAttemptScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: LoginAttemptCountAggregateInputType | true
+    _min?: LoginAttemptMinAggregateInputType
+    _max?: LoginAttemptMaxAggregateInputType
+  }
+
+  export type LoginAttemptGroupByOutputType = {
+    id: string
+    ipAddress: string
+    email: string
+    success: boolean
+    createdAt: Date
+    blockedUntil: Date | null
+    _count: LoginAttemptCountAggregateOutputType | null
+    _min: LoginAttemptMinAggregateOutputType | null
+    _max: LoginAttemptMaxAggregateOutputType | null
+  }
+
+  type GetLoginAttemptGroupByPayload<T extends LoginAttemptGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<LoginAttemptGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof LoginAttemptGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], LoginAttemptGroupByOutputType[P]>
+            : GetScalarType<T[P], LoginAttemptGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type LoginAttemptSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    ipAddress?: boolean
+    email?: boolean
+    success?: boolean
+    createdAt?: boolean
+    blockedUntil?: boolean
+  }, ExtArgs["result"]["loginAttempt"]>
+
+  export type LoginAttemptSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    ipAddress?: boolean
+    email?: boolean
+    success?: boolean
+    createdAt?: boolean
+    blockedUntil?: boolean
+  }, ExtArgs["result"]["loginAttempt"]>
+
+  export type LoginAttemptSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    ipAddress?: boolean
+    email?: boolean
+    success?: boolean
+    createdAt?: boolean
+    blockedUntil?: boolean
+  }, ExtArgs["result"]["loginAttempt"]>
+
+  export type LoginAttemptSelectScalar = {
+    id?: boolean
+    ipAddress?: boolean
+    email?: boolean
+    success?: boolean
+    createdAt?: boolean
+    blockedUntil?: boolean
+  }
+
+  export type LoginAttemptOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "ipAddress" | "email" | "success" | "createdAt" | "blockedUntil", ExtArgs["result"]["loginAttempt"]>
+
+  export type $LoginAttemptPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "LoginAttempt"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      ipAddress: string
+      email: string
+      success: boolean
+      createdAt: Date
+      blockedUntil: Date | null
+    }, ExtArgs["result"]["loginAttempt"]>
+    composites: {}
+  }
+
+  type LoginAttemptGetPayload<S extends boolean | null | undefined | LoginAttemptDefaultArgs> = $Result.GetResult<Prisma.$LoginAttemptPayload, S>
+
+  type LoginAttemptCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<LoginAttemptFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: LoginAttemptCountAggregateInputType | true
+    }
+
+  export interface LoginAttemptDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['LoginAttempt'], meta: { name: 'LoginAttempt' } }
+    /**
+     * Find zero or one LoginAttempt that matches the filter.
+     * @param {LoginAttemptFindUniqueArgs} args - Arguments to find a LoginAttempt
+     * @example
+     * // Get one LoginAttempt
+     * const loginAttempt = await prisma.loginAttempt.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends LoginAttemptFindUniqueArgs>(args: SelectSubset<T, LoginAttemptFindUniqueArgs<ExtArgs>>): Prisma__LoginAttemptClient<$Result.GetResult<Prisma.$LoginAttemptPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one LoginAttempt that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {LoginAttemptFindUniqueOrThrowArgs} args - Arguments to find a LoginAttempt
+     * @example
+     * // Get one LoginAttempt
+     * const loginAttempt = await prisma.loginAttempt.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends LoginAttemptFindUniqueOrThrowArgs>(args: SelectSubset<T, LoginAttemptFindUniqueOrThrowArgs<ExtArgs>>): Prisma__LoginAttemptClient<$Result.GetResult<Prisma.$LoginAttemptPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first LoginAttempt that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LoginAttemptFindFirstArgs} args - Arguments to find a LoginAttempt
+     * @example
+     * // Get one LoginAttempt
+     * const loginAttempt = await prisma.loginAttempt.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends LoginAttemptFindFirstArgs>(args?: SelectSubset<T, LoginAttemptFindFirstArgs<ExtArgs>>): Prisma__LoginAttemptClient<$Result.GetResult<Prisma.$LoginAttemptPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first LoginAttempt that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LoginAttemptFindFirstOrThrowArgs} args - Arguments to find a LoginAttempt
+     * @example
+     * // Get one LoginAttempt
+     * const loginAttempt = await prisma.loginAttempt.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends LoginAttemptFindFirstOrThrowArgs>(args?: SelectSubset<T, LoginAttemptFindFirstOrThrowArgs<ExtArgs>>): Prisma__LoginAttemptClient<$Result.GetResult<Prisma.$LoginAttemptPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more LoginAttempts that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LoginAttemptFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all LoginAttempts
+     * const loginAttempts = await prisma.loginAttempt.findMany()
+     * 
+     * // Get first 10 LoginAttempts
+     * const loginAttempts = await prisma.loginAttempt.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const loginAttemptWithIdOnly = await prisma.loginAttempt.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends LoginAttemptFindManyArgs>(args?: SelectSubset<T, LoginAttemptFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LoginAttemptPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a LoginAttempt.
+     * @param {LoginAttemptCreateArgs} args - Arguments to create a LoginAttempt.
+     * @example
+     * // Create one LoginAttempt
+     * const LoginAttempt = await prisma.loginAttempt.create({
+     *   data: {
+     *     // ... data to create a LoginAttempt
+     *   }
+     * })
+     * 
+     */
+    create<T extends LoginAttemptCreateArgs>(args: SelectSubset<T, LoginAttemptCreateArgs<ExtArgs>>): Prisma__LoginAttemptClient<$Result.GetResult<Prisma.$LoginAttemptPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many LoginAttempts.
+     * @param {LoginAttemptCreateManyArgs} args - Arguments to create many LoginAttempts.
+     * @example
+     * // Create many LoginAttempts
+     * const loginAttempt = await prisma.loginAttempt.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends LoginAttemptCreateManyArgs>(args?: SelectSubset<T, LoginAttemptCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many LoginAttempts and returns the data saved in the database.
+     * @param {LoginAttemptCreateManyAndReturnArgs} args - Arguments to create many LoginAttempts.
+     * @example
+     * // Create many LoginAttempts
+     * const loginAttempt = await prisma.loginAttempt.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many LoginAttempts and only return the `id`
+     * const loginAttemptWithIdOnly = await prisma.loginAttempt.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends LoginAttemptCreateManyAndReturnArgs>(args?: SelectSubset<T, LoginAttemptCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LoginAttemptPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a LoginAttempt.
+     * @param {LoginAttemptDeleteArgs} args - Arguments to delete one LoginAttempt.
+     * @example
+     * // Delete one LoginAttempt
+     * const LoginAttempt = await prisma.loginAttempt.delete({
+     *   where: {
+     *     // ... filter to delete one LoginAttempt
+     *   }
+     * })
+     * 
+     */
+    delete<T extends LoginAttemptDeleteArgs>(args: SelectSubset<T, LoginAttemptDeleteArgs<ExtArgs>>): Prisma__LoginAttemptClient<$Result.GetResult<Prisma.$LoginAttemptPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one LoginAttempt.
+     * @param {LoginAttemptUpdateArgs} args - Arguments to update one LoginAttempt.
+     * @example
+     * // Update one LoginAttempt
+     * const loginAttempt = await prisma.loginAttempt.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends LoginAttemptUpdateArgs>(args: SelectSubset<T, LoginAttemptUpdateArgs<ExtArgs>>): Prisma__LoginAttemptClient<$Result.GetResult<Prisma.$LoginAttemptPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more LoginAttempts.
+     * @param {LoginAttemptDeleteManyArgs} args - Arguments to filter LoginAttempts to delete.
+     * @example
+     * // Delete a few LoginAttempts
+     * const { count } = await prisma.loginAttempt.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends LoginAttemptDeleteManyArgs>(args?: SelectSubset<T, LoginAttemptDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more LoginAttempts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LoginAttemptUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many LoginAttempts
+     * const loginAttempt = await prisma.loginAttempt.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends LoginAttemptUpdateManyArgs>(args: SelectSubset<T, LoginAttemptUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more LoginAttempts and returns the data updated in the database.
+     * @param {LoginAttemptUpdateManyAndReturnArgs} args - Arguments to update many LoginAttempts.
+     * @example
+     * // Update many LoginAttempts
+     * const loginAttempt = await prisma.loginAttempt.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more LoginAttempts and only return the `id`
+     * const loginAttemptWithIdOnly = await prisma.loginAttempt.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends LoginAttemptUpdateManyAndReturnArgs>(args: SelectSubset<T, LoginAttemptUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LoginAttemptPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one LoginAttempt.
+     * @param {LoginAttemptUpsertArgs} args - Arguments to update or create a LoginAttempt.
+     * @example
+     * // Update or create a LoginAttempt
+     * const loginAttempt = await prisma.loginAttempt.upsert({
+     *   create: {
+     *     // ... data to create a LoginAttempt
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the LoginAttempt we want to update
+     *   }
+     * })
+     */
+    upsert<T extends LoginAttemptUpsertArgs>(args: SelectSubset<T, LoginAttemptUpsertArgs<ExtArgs>>): Prisma__LoginAttemptClient<$Result.GetResult<Prisma.$LoginAttemptPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of LoginAttempts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LoginAttemptCountArgs} args - Arguments to filter LoginAttempts to count.
+     * @example
+     * // Count the number of LoginAttempts
+     * const count = await prisma.loginAttempt.count({
+     *   where: {
+     *     // ... the filter for the LoginAttempts we want to count
+     *   }
+     * })
+    **/
+    count<T extends LoginAttemptCountArgs>(
+      args?: Subset<T, LoginAttemptCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], LoginAttemptCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a LoginAttempt.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LoginAttemptAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends LoginAttemptAggregateArgs>(args: Subset<T, LoginAttemptAggregateArgs>): Prisma.PrismaPromise<GetLoginAttemptAggregateType<T>>
+
+    /**
+     * Group by LoginAttempt.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LoginAttemptGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends LoginAttemptGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: LoginAttemptGroupByArgs['orderBy'] }
+        : { orderBy?: LoginAttemptGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, LoginAttemptGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetLoginAttemptGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the LoginAttempt model
+   */
+  readonly fields: LoginAttemptFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for LoginAttempt.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__LoginAttemptClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the LoginAttempt model
+   */
+  interface LoginAttemptFieldRefs {
+    readonly id: FieldRef<"LoginAttempt", 'String'>
+    readonly ipAddress: FieldRef<"LoginAttempt", 'String'>
+    readonly email: FieldRef<"LoginAttempt", 'String'>
+    readonly success: FieldRef<"LoginAttempt", 'Boolean'>
+    readonly createdAt: FieldRef<"LoginAttempt", 'DateTime'>
+    readonly blockedUntil: FieldRef<"LoginAttempt", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * LoginAttempt findUnique
+   */
+  export type LoginAttemptFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LoginAttempt
+     */
+    select?: LoginAttemptSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LoginAttempt
+     */
+    omit?: LoginAttemptOmit<ExtArgs> | null
+    /**
+     * Filter, which LoginAttempt to fetch.
+     */
+    where: LoginAttemptWhereUniqueInput
+  }
+
+  /**
+   * LoginAttempt findUniqueOrThrow
+   */
+  export type LoginAttemptFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LoginAttempt
+     */
+    select?: LoginAttemptSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LoginAttempt
+     */
+    omit?: LoginAttemptOmit<ExtArgs> | null
+    /**
+     * Filter, which LoginAttempt to fetch.
+     */
+    where: LoginAttemptWhereUniqueInput
+  }
+
+  /**
+   * LoginAttempt findFirst
+   */
+  export type LoginAttemptFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LoginAttempt
+     */
+    select?: LoginAttemptSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LoginAttempt
+     */
+    omit?: LoginAttemptOmit<ExtArgs> | null
+    /**
+     * Filter, which LoginAttempt to fetch.
+     */
+    where?: LoginAttemptWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LoginAttempts to fetch.
+     */
+    orderBy?: LoginAttemptOrderByWithRelationInput | LoginAttemptOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for LoginAttempts.
+     */
+    cursor?: LoginAttemptWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LoginAttempts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LoginAttempts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of LoginAttempts.
+     */
+    distinct?: LoginAttemptScalarFieldEnum | LoginAttemptScalarFieldEnum[]
+  }
+
+  /**
+   * LoginAttempt findFirstOrThrow
+   */
+  export type LoginAttemptFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LoginAttempt
+     */
+    select?: LoginAttemptSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LoginAttempt
+     */
+    omit?: LoginAttemptOmit<ExtArgs> | null
+    /**
+     * Filter, which LoginAttempt to fetch.
+     */
+    where?: LoginAttemptWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LoginAttempts to fetch.
+     */
+    orderBy?: LoginAttemptOrderByWithRelationInput | LoginAttemptOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for LoginAttempts.
+     */
+    cursor?: LoginAttemptWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LoginAttempts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LoginAttempts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of LoginAttempts.
+     */
+    distinct?: LoginAttemptScalarFieldEnum | LoginAttemptScalarFieldEnum[]
+  }
+
+  /**
+   * LoginAttempt findMany
+   */
+  export type LoginAttemptFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LoginAttempt
+     */
+    select?: LoginAttemptSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LoginAttempt
+     */
+    omit?: LoginAttemptOmit<ExtArgs> | null
+    /**
+     * Filter, which LoginAttempts to fetch.
+     */
+    where?: LoginAttemptWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LoginAttempts to fetch.
+     */
+    orderBy?: LoginAttemptOrderByWithRelationInput | LoginAttemptOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing LoginAttempts.
+     */
+    cursor?: LoginAttemptWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LoginAttempts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LoginAttempts.
+     */
+    skip?: number
+    distinct?: LoginAttemptScalarFieldEnum | LoginAttemptScalarFieldEnum[]
+  }
+
+  /**
+   * LoginAttempt create
+   */
+  export type LoginAttemptCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LoginAttempt
+     */
+    select?: LoginAttemptSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LoginAttempt
+     */
+    omit?: LoginAttemptOmit<ExtArgs> | null
+    /**
+     * The data needed to create a LoginAttempt.
+     */
+    data: XOR<LoginAttemptCreateInput, LoginAttemptUncheckedCreateInput>
+  }
+
+  /**
+   * LoginAttempt createMany
+   */
+  export type LoginAttemptCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many LoginAttempts.
+     */
+    data: LoginAttemptCreateManyInput | LoginAttemptCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * LoginAttempt createManyAndReturn
+   */
+  export type LoginAttemptCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LoginAttempt
+     */
+    select?: LoginAttemptSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the LoginAttempt
+     */
+    omit?: LoginAttemptOmit<ExtArgs> | null
+    /**
+     * The data used to create many LoginAttempts.
+     */
+    data: LoginAttemptCreateManyInput | LoginAttemptCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * LoginAttempt update
+   */
+  export type LoginAttemptUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LoginAttempt
+     */
+    select?: LoginAttemptSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LoginAttempt
+     */
+    omit?: LoginAttemptOmit<ExtArgs> | null
+    /**
+     * The data needed to update a LoginAttempt.
+     */
+    data: XOR<LoginAttemptUpdateInput, LoginAttemptUncheckedUpdateInput>
+    /**
+     * Choose, which LoginAttempt to update.
+     */
+    where: LoginAttemptWhereUniqueInput
+  }
+
+  /**
+   * LoginAttempt updateMany
+   */
+  export type LoginAttemptUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update LoginAttempts.
+     */
+    data: XOR<LoginAttemptUpdateManyMutationInput, LoginAttemptUncheckedUpdateManyInput>
+    /**
+     * Filter which LoginAttempts to update
+     */
+    where?: LoginAttemptWhereInput
+    /**
+     * Limit how many LoginAttempts to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * LoginAttempt updateManyAndReturn
+   */
+  export type LoginAttemptUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LoginAttempt
+     */
+    select?: LoginAttemptSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the LoginAttempt
+     */
+    omit?: LoginAttemptOmit<ExtArgs> | null
+    /**
+     * The data used to update LoginAttempts.
+     */
+    data: XOR<LoginAttemptUpdateManyMutationInput, LoginAttemptUncheckedUpdateManyInput>
+    /**
+     * Filter which LoginAttempts to update
+     */
+    where?: LoginAttemptWhereInput
+    /**
+     * Limit how many LoginAttempts to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * LoginAttempt upsert
+   */
+  export type LoginAttemptUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LoginAttempt
+     */
+    select?: LoginAttemptSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LoginAttempt
+     */
+    omit?: LoginAttemptOmit<ExtArgs> | null
+    /**
+     * The filter to search for the LoginAttempt to update in case it exists.
+     */
+    where: LoginAttemptWhereUniqueInput
+    /**
+     * In case the LoginAttempt found by the `where` argument doesn't exist, create a new LoginAttempt with this data.
+     */
+    create: XOR<LoginAttemptCreateInput, LoginAttemptUncheckedCreateInput>
+    /**
+     * In case the LoginAttempt was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<LoginAttemptUpdateInput, LoginAttemptUncheckedUpdateInput>
+  }
+
+  /**
+   * LoginAttempt delete
+   */
+  export type LoginAttemptDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LoginAttempt
+     */
+    select?: LoginAttemptSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LoginAttempt
+     */
+    omit?: LoginAttemptOmit<ExtArgs> | null
+    /**
+     * Filter which LoginAttempt to delete.
+     */
+    where: LoginAttemptWhereUniqueInput
+  }
+
+  /**
+   * LoginAttempt deleteMany
+   */
+  export type LoginAttemptDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which LoginAttempts to delete
+     */
+    where?: LoginAttemptWhereInput
+    /**
+     * Limit how many LoginAttempts to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * LoginAttempt without action
+   */
+  export type LoginAttemptDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LoginAttempt
+     */
+    select?: LoginAttemptSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LoginAttempt
+     */
+    omit?: LoginAttemptOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -4553,12 +10250,17 @@ export namespace Prisma {
     name: 'name',
     email: 'email',
     phone: 'phone',
+    schoolType: 'schoolType',
+    constituency: 'constituency',
+    registrationNumber: 'registrationNumber',
+    year: 'year',
     school: 'school',
     course: 'course',
     password: 'password',
     emailVerified: 'emailVerified',
     status: 'status',
     role: 'role',
+    isTwoFactorEnabled: 'isTwoFactorEnabled',
     activatedBy: 'activatedBy',
     deactivatedBy: 'deactivatedBy',
     createdAt: 'createdAt',
@@ -4595,6 +10297,59 @@ export namespace Prisma {
   export type MessageScalarFieldEnum = (typeof MessageScalarFieldEnum)[keyof typeof MessageScalarFieldEnum]
 
 
+  export const UpdateScalarFieldEnum: {
+    id: 'id',
+    content: 'content',
+    isImage: 'isImage',
+    creatorName: 'creatorName',
+    creatorId: 'creatorId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type UpdateScalarFieldEnum = (typeof UpdateScalarFieldEnum)[keyof typeof UpdateScalarFieldEnum]
+
+
+  export const VerificationTokenScalarFieldEnum: {
+    id: 'id',
+    email: 'email',
+    token: 'token',
+    expires: 'expires'
+  };
+
+  export type VerificationTokenScalarFieldEnum = (typeof VerificationTokenScalarFieldEnum)[keyof typeof VerificationTokenScalarFieldEnum]
+
+
+  export const TwoFactorTokenScalarFieldEnum: {
+    id: 'id',
+    email: 'email',
+    token: 'token',
+    expires: 'expires'
+  };
+
+  export type TwoFactorTokenScalarFieldEnum = (typeof TwoFactorTokenScalarFieldEnum)[keyof typeof TwoFactorTokenScalarFieldEnum]
+
+
+  export const TwoFactorConfirmationScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId'
+  };
+
+  export type TwoFactorConfirmationScalarFieldEnum = (typeof TwoFactorConfirmationScalarFieldEnum)[keyof typeof TwoFactorConfirmationScalarFieldEnum]
+
+
+  export const LoginAttemptScalarFieldEnum: {
+    id: 'id',
+    ipAddress: 'ipAddress',
+    email: 'email',
+    success: 'success',
+    createdAt: 'createdAt',
+    blockedUntil: 'blockedUntil'
+  };
+
+  export type LoginAttemptScalarFieldEnum = (typeof LoginAttemptScalarFieldEnum)[keyof typeof LoginAttemptScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -4620,7 +10375,7 @@ export namespace Prisma {
 
 
   /**
-   * Field references 
+   * Field references
    */
 
 
@@ -4635,6 +10390,48 @@ export namespace Prisma {
    * Reference to a field of type 'String[]'
    */
   export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'SchoolType'
+   */
+  export type EnumSchoolTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SchoolType'>
+    
+
+
+  /**
+   * Reference to a field of type 'SchoolType[]'
+   */
+  export type ListEnumSchoolTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SchoolType[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'LaikipiaConstituency'
+   */
+  export type EnumLaikipiaConstituencyFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'LaikipiaConstituency'>
+    
+
+
+  /**
+   * Reference to a field of type 'LaikipiaConstituency[]'
+   */
+  export type ListEnumLaikipiaConstituencyFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'LaikipiaConstituency[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'StudentYear'
+   */
+  export type EnumStudentYearFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'StudentYear'>
+    
+
+
+  /**
+   * Reference to a field of type 'StudentYear[]'
+   */
+  export type ListEnumStudentYearFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'StudentYear[]'>
     
 
 
@@ -4681,6 +10478,13 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+  /**
    * Reference to a field of type 'Int'
    */
   export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
@@ -4705,18 +10509,25 @@ export namespace Prisma {
     name?: StringFilter<"User"> | string
     email?: StringFilter<"User"> | string
     phone?: StringFilter<"User"> | string
+    schoolType?: EnumSchoolTypeFilter<"User"> | $Enums.SchoolType
+    constituency?: EnumLaikipiaConstituencyFilter<"User"> | $Enums.LaikipiaConstituency
+    registrationNumber?: StringFilter<"User"> | string
+    year?: EnumStudentYearFilter<"User"> | $Enums.StudentYear
     school?: StringFilter<"User"> | string
     course?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
     emailVerified?: DateTimeNullableFilter<"User"> | Date | string | null
     status?: EnumAccountStatusFilter<"User"> | $Enums.AccountStatus
     role?: EnumUserRoleFilter<"User"> | $Enums.UserRole
+    isTwoFactorEnabled?: BoolFilter<"User"> | boolean
     activatedBy?: StringNullableFilter<"User"> | string | null
     deactivatedBy?: StringNullableFilter<"User"> | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     announcement?: AnnouncementListRelationFilter
     messages?: MessageListRelationFilter
+    updates?: UpdateListRelationFilter
+    twoFactorConfirmation?: XOR<TwoFactorConfirmationNullableScalarRelationFilter, TwoFactorConfirmationWhereInput> | null
   }
 
   export type UserOrderByWithRelationInput = {
@@ -4724,18 +10535,25 @@ export namespace Prisma {
     name?: SortOrder
     email?: SortOrder
     phone?: SortOrder
+    schoolType?: SortOrder
+    constituency?: SortOrder
+    registrationNumber?: SortOrder
+    year?: SortOrder
     school?: SortOrder
     course?: SortOrder
     password?: SortOrder
     emailVerified?: SortOrderInput | SortOrder
     status?: SortOrder
     role?: SortOrder
+    isTwoFactorEnabled?: SortOrder
     activatedBy?: SortOrderInput | SortOrder
     deactivatedBy?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     announcement?: AnnouncementOrderByRelationAggregateInput
     messages?: MessageOrderByRelationAggregateInput
+    updates?: UpdateOrderByRelationAggregateInput
+    twoFactorConfirmation?: TwoFactorConfirmationOrderByWithRelationInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -4746,18 +10564,25 @@ export namespace Prisma {
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
     name?: StringFilter<"User"> | string
+    schoolType?: EnumSchoolTypeFilter<"User"> | $Enums.SchoolType
+    constituency?: EnumLaikipiaConstituencyFilter<"User"> | $Enums.LaikipiaConstituency
+    registrationNumber?: StringFilter<"User"> | string
+    year?: EnumStudentYearFilter<"User"> | $Enums.StudentYear
     school?: StringFilter<"User"> | string
     course?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
     emailVerified?: DateTimeNullableFilter<"User"> | Date | string | null
     status?: EnumAccountStatusFilter<"User"> | $Enums.AccountStatus
     role?: EnumUserRoleFilter<"User"> | $Enums.UserRole
+    isTwoFactorEnabled?: BoolFilter<"User"> | boolean
     activatedBy?: StringNullableFilter<"User"> | string | null
     deactivatedBy?: StringNullableFilter<"User"> | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     announcement?: AnnouncementListRelationFilter
     messages?: MessageListRelationFilter
+    updates?: UpdateListRelationFilter
+    twoFactorConfirmation?: XOR<TwoFactorConfirmationNullableScalarRelationFilter, TwoFactorConfirmationWhereInput> | null
   }, "id" | "email" | "phone">
 
   export type UserOrderByWithAggregationInput = {
@@ -4765,12 +10590,17 @@ export namespace Prisma {
     name?: SortOrder
     email?: SortOrder
     phone?: SortOrder
+    schoolType?: SortOrder
+    constituency?: SortOrder
+    registrationNumber?: SortOrder
+    year?: SortOrder
     school?: SortOrder
     course?: SortOrder
     password?: SortOrder
     emailVerified?: SortOrderInput | SortOrder
     status?: SortOrder
     role?: SortOrder
+    isTwoFactorEnabled?: SortOrder
     activatedBy?: SortOrderInput | SortOrder
     deactivatedBy?: SortOrderInput | SortOrder
     createdAt?: SortOrder
@@ -4788,12 +10618,17 @@ export namespace Prisma {
     name?: StringWithAggregatesFilter<"User"> | string
     email?: StringWithAggregatesFilter<"User"> | string
     phone?: StringWithAggregatesFilter<"User"> | string
+    schoolType?: EnumSchoolTypeWithAggregatesFilter<"User"> | $Enums.SchoolType
+    constituency?: EnumLaikipiaConstituencyWithAggregatesFilter<"User"> | $Enums.LaikipiaConstituency
+    registrationNumber?: StringWithAggregatesFilter<"User"> | string
+    year?: EnumStudentYearWithAggregatesFilter<"User"> | $Enums.StudentYear
     school?: StringWithAggregatesFilter<"User"> | string
     course?: StringWithAggregatesFilter<"User"> | string
     password?: StringWithAggregatesFilter<"User"> | string
     emailVerified?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
     status?: EnumAccountStatusWithAggregatesFilter<"User"> | $Enums.AccountStatus
     role?: EnumUserRoleWithAggregatesFilter<"User"> | $Enums.UserRole
+    isTwoFactorEnabled?: BoolWithAggregatesFilter<"User"> | boolean
     activatedBy?: StringNullableWithAggregatesFilter<"User"> | string | null
     deactivatedBy?: StringNullableWithAggregatesFilter<"User"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
@@ -4935,23 +10770,288 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"Message"> | Date | string
   }
 
+  export type UpdateWhereInput = {
+    AND?: UpdateWhereInput | UpdateWhereInput[]
+    OR?: UpdateWhereInput[]
+    NOT?: UpdateWhereInput | UpdateWhereInput[]
+    id?: StringFilter<"Update"> | string
+    content?: StringFilter<"Update"> | string
+    isImage?: BoolFilter<"Update"> | boolean
+    creatorName?: StringFilter<"Update"> | string
+    creatorId?: StringFilter<"Update"> | string
+    createdAt?: DateTimeFilter<"Update"> | Date | string
+    updatedAt?: DateTimeFilter<"Update"> | Date | string
+    creator?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type UpdateOrderByWithRelationInput = {
+    id?: SortOrder
+    content?: SortOrder
+    isImage?: SortOrder
+    creatorName?: SortOrder
+    creatorId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    creator?: UserOrderByWithRelationInput
+  }
+
+  export type UpdateWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: UpdateWhereInput | UpdateWhereInput[]
+    OR?: UpdateWhereInput[]
+    NOT?: UpdateWhereInput | UpdateWhereInput[]
+    content?: StringFilter<"Update"> | string
+    isImage?: BoolFilter<"Update"> | boolean
+    creatorName?: StringFilter<"Update"> | string
+    creatorId?: StringFilter<"Update"> | string
+    createdAt?: DateTimeFilter<"Update"> | Date | string
+    updatedAt?: DateTimeFilter<"Update"> | Date | string
+    creator?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id">
+
+  export type UpdateOrderByWithAggregationInput = {
+    id?: SortOrder
+    content?: SortOrder
+    isImage?: SortOrder
+    creatorName?: SortOrder
+    creatorId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: UpdateCountOrderByAggregateInput
+    _max?: UpdateMaxOrderByAggregateInput
+    _min?: UpdateMinOrderByAggregateInput
+  }
+
+  export type UpdateScalarWhereWithAggregatesInput = {
+    AND?: UpdateScalarWhereWithAggregatesInput | UpdateScalarWhereWithAggregatesInput[]
+    OR?: UpdateScalarWhereWithAggregatesInput[]
+    NOT?: UpdateScalarWhereWithAggregatesInput | UpdateScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Update"> | string
+    content?: StringWithAggregatesFilter<"Update"> | string
+    isImage?: BoolWithAggregatesFilter<"Update"> | boolean
+    creatorName?: StringWithAggregatesFilter<"Update"> | string
+    creatorId?: StringWithAggregatesFilter<"Update"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Update"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Update"> | Date | string
+  }
+
+  export type VerificationTokenWhereInput = {
+    AND?: VerificationTokenWhereInput | VerificationTokenWhereInput[]
+    OR?: VerificationTokenWhereInput[]
+    NOT?: VerificationTokenWhereInput | VerificationTokenWhereInput[]
+    id?: StringFilter<"VerificationToken"> | string
+    email?: StringFilter<"VerificationToken"> | string
+    token?: StringFilter<"VerificationToken"> | string
+    expires?: DateTimeFilter<"VerificationToken"> | Date | string
+  }
+
+  export type VerificationTokenOrderByWithRelationInput = {
+    id?: SortOrder
+    email?: SortOrder
+    token?: SortOrder
+    expires?: SortOrder
+  }
+
+  export type VerificationTokenWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    token?: string
+    email_token?: VerificationTokenEmailTokenCompoundUniqueInput
+    AND?: VerificationTokenWhereInput | VerificationTokenWhereInput[]
+    OR?: VerificationTokenWhereInput[]
+    NOT?: VerificationTokenWhereInput | VerificationTokenWhereInput[]
+    email?: StringFilter<"VerificationToken"> | string
+    expires?: DateTimeFilter<"VerificationToken"> | Date | string
+  }, "id" | "token" | "email_token">
+
+  export type VerificationTokenOrderByWithAggregationInput = {
+    id?: SortOrder
+    email?: SortOrder
+    token?: SortOrder
+    expires?: SortOrder
+    _count?: VerificationTokenCountOrderByAggregateInput
+    _max?: VerificationTokenMaxOrderByAggregateInput
+    _min?: VerificationTokenMinOrderByAggregateInput
+  }
+
+  export type VerificationTokenScalarWhereWithAggregatesInput = {
+    AND?: VerificationTokenScalarWhereWithAggregatesInput | VerificationTokenScalarWhereWithAggregatesInput[]
+    OR?: VerificationTokenScalarWhereWithAggregatesInput[]
+    NOT?: VerificationTokenScalarWhereWithAggregatesInput | VerificationTokenScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"VerificationToken"> | string
+    email?: StringWithAggregatesFilter<"VerificationToken"> | string
+    token?: StringWithAggregatesFilter<"VerificationToken"> | string
+    expires?: DateTimeWithAggregatesFilter<"VerificationToken"> | Date | string
+  }
+
+  export type TwoFactorTokenWhereInput = {
+    AND?: TwoFactorTokenWhereInput | TwoFactorTokenWhereInput[]
+    OR?: TwoFactorTokenWhereInput[]
+    NOT?: TwoFactorTokenWhereInput | TwoFactorTokenWhereInput[]
+    id?: StringFilter<"TwoFactorToken"> | string
+    email?: StringFilter<"TwoFactorToken"> | string
+    token?: StringFilter<"TwoFactorToken"> | string
+    expires?: DateTimeFilter<"TwoFactorToken"> | Date | string
+  }
+
+  export type TwoFactorTokenOrderByWithRelationInput = {
+    id?: SortOrder
+    email?: SortOrder
+    token?: SortOrder
+    expires?: SortOrder
+  }
+
+  export type TwoFactorTokenWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    token?: string
+    email_token?: TwoFactorTokenEmailTokenCompoundUniqueInput
+    AND?: TwoFactorTokenWhereInput | TwoFactorTokenWhereInput[]
+    OR?: TwoFactorTokenWhereInput[]
+    NOT?: TwoFactorTokenWhereInput | TwoFactorTokenWhereInput[]
+    email?: StringFilter<"TwoFactorToken"> | string
+    expires?: DateTimeFilter<"TwoFactorToken"> | Date | string
+  }, "id" | "token" | "email_token">
+
+  export type TwoFactorTokenOrderByWithAggregationInput = {
+    id?: SortOrder
+    email?: SortOrder
+    token?: SortOrder
+    expires?: SortOrder
+    _count?: TwoFactorTokenCountOrderByAggregateInput
+    _max?: TwoFactorTokenMaxOrderByAggregateInput
+    _min?: TwoFactorTokenMinOrderByAggregateInput
+  }
+
+  export type TwoFactorTokenScalarWhereWithAggregatesInput = {
+    AND?: TwoFactorTokenScalarWhereWithAggregatesInput | TwoFactorTokenScalarWhereWithAggregatesInput[]
+    OR?: TwoFactorTokenScalarWhereWithAggregatesInput[]
+    NOT?: TwoFactorTokenScalarWhereWithAggregatesInput | TwoFactorTokenScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"TwoFactorToken"> | string
+    email?: StringWithAggregatesFilter<"TwoFactorToken"> | string
+    token?: StringWithAggregatesFilter<"TwoFactorToken"> | string
+    expires?: DateTimeWithAggregatesFilter<"TwoFactorToken"> | Date | string
+  }
+
+  export type TwoFactorConfirmationWhereInput = {
+    AND?: TwoFactorConfirmationWhereInput | TwoFactorConfirmationWhereInput[]
+    OR?: TwoFactorConfirmationWhereInput[]
+    NOT?: TwoFactorConfirmationWhereInput | TwoFactorConfirmationWhereInput[]
+    id?: StringFilter<"TwoFactorConfirmation"> | string
+    userId?: StringFilter<"TwoFactorConfirmation"> | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type TwoFactorConfirmationOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type TwoFactorConfirmationWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    userId?: string
+    AND?: TwoFactorConfirmationWhereInput | TwoFactorConfirmationWhereInput[]
+    OR?: TwoFactorConfirmationWhereInput[]
+    NOT?: TwoFactorConfirmationWhereInput | TwoFactorConfirmationWhereInput[]
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id" | "userId">
+
+  export type TwoFactorConfirmationOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    _count?: TwoFactorConfirmationCountOrderByAggregateInput
+    _max?: TwoFactorConfirmationMaxOrderByAggregateInput
+    _min?: TwoFactorConfirmationMinOrderByAggregateInput
+  }
+
+  export type TwoFactorConfirmationScalarWhereWithAggregatesInput = {
+    AND?: TwoFactorConfirmationScalarWhereWithAggregatesInput | TwoFactorConfirmationScalarWhereWithAggregatesInput[]
+    OR?: TwoFactorConfirmationScalarWhereWithAggregatesInput[]
+    NOT?: TwoFactorConfirmationScalarWhereWithAggregatesInput | TwoFactorConfirmationScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"TwoFactorConfirmation"> | string
+    userId?: StringWithAggregatesFilter<"TwoFactorConfirmation"> | string
+  }
+
+  export type LoginAttemptWhereInput = {
+    AND?: LoginAttemptWhereInput | LoginAttemptWhereInput[]
+    OR?: LoginAttemptWhereInput[]
+    NOT?: LoginAttemptWhereInput | LoginAttemptWhereInput[]
+    id?: StringFilter<"LoginAttempt"> | string
+    ipAddress?: StringFilter<"LoginAttempt"> | string
+    email?: StringFilter<"LoginAttempt"> | string
+    success?: BoolFilter<"LoginAttempt"> | boolean
+    createdAt?: DateTimeFilter<"LoginAttempt"> | Date | string
+    blockedUntil?: DateTimeNullableFilter<"LoginAttempt"> | Date | string | null
+  }
+
+  export type LoginAttemptOrderByWithRelationInput = {
+    id?: SortOrder
+    ipAddress?: SortOrder
+    email?: SortOrder
+    success?: SortOrder
+    createdAt?: SortOrder
+    blockedUntil?: SortOrderInput | SortOrder
+  }
+
+  export type LoginAttemptWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: LoginAttemptWhereInput | LoginAttemptWhereInput[]
+    OR?: LoginAttemptWhereInput[]
+    NOT?: LoginAttemptWhereInput | LoginAttemptWhereInput[]
+    ipAddress?: StringFilter<"LoginAttempt"> | string
+    email?: StringFilter<"LoginAttempt"> | string
+    success?: BoolFilter<"LoginAttempt"> | boolean
+    createdAt?: DateTimeFilter<"LoginAttempt"> | Date | string
+    blockedUntil?: DateTimeNullableFilter<"LoginAttempt"> | Date | string | null
+  }, "id">
+
+  export type LoginAttemptOrderByWithAggregationInput = {
+    id?: SortOrder
+    ipAddress?: SortOrder
+    email?: SortOrder
+    success?: SortOrder
+    createdAt?: SortOrder
+    blockedUntil?: SortOrderInput | SortOrder
+    _count?: LoginAttemptCountOrderByAggregateInput
+    _max?: LoginAttemptMaxOrderByAggregateInput
+    _min?: LoginAttemptMinOrderByAggregateInput
+  }
+
+  export type LoginAttemptScalarWhereWithAggregatesInput = {
+    AND?: LoginAttemptScalarWhereWithAggregatesInput | LoginAttemptScalarWhereWithAggregatesInput[]
+    OR?: LoginAttemptScalarWhereWithAggregatesInput[]
+    NOT?: LoginAttemptScalarWhereWithAggregatesInput | LoginAttemptScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"LoginAttempt"> | string
+    ipAddress?: StringWithAggregatesFilter<"LoginAttempt"> | string
+    email?: StringWithAggregatesFilter<"LoginAttempt"> | string
+    success?: BoolWithAggregatesFilter<"LoginAttempt"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"LoginAttempt"> | Date | string
+    blockedUntil?: DateTimeNullableWithAggregatesFilter<"LoginAttempt"> | Date | string | null
+  }
+
   export type UserCreateInput = {
     id?: string
     name: string
     email: string
     phone: string
+    schoolType?: $Enums.SchoolType
+    constituency?: $Enums.LaikipiaConstituency
+    registrationNumber: string
+    year?: $Enums.StudentYear
     school: string
     course: string
     password: string
     emailVerified?: Date | string | null
     status?: $Enums.AccountStatus
     role?: $Enums.UserRole
+    isTwoFactorEnabled?: boolean
     activatedBy?: string | null
     deactivatedBy?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     announcement?: AnnouncementCreateNestedManyWithoutCreatedByInput
     messages?: MessageCreateNestedManyWithoutUserInput
+    updates?: UpdateCreateNestedManyWithoutCreatorInput
+    twoFactorConfirmation?: TwoFactorConfirmationCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -4959,18 +11059,25 @@ export namespace Prisma {
     name: string
     email: string
     phone: string
+    schoolType?: $Enums.SchoolType
+    constituency?: $Enums.LaikipiaConstituency
+    registrationNumber: string
+    year?: $Enums.StudentYear
     school: string
     course: string
     password: string
     emailVerified?: Date | string | null
     status?: $Enums.AccountStatus
     role?: $Enums.UserRole
+    isTwoFactorEnabled?: boolean
     activatedBy?: string | null
     deactivatedBy?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     announcement?: AnnouncementUncheckedCreateNestedManyWithoutCreatedByInput
     messages?: MessageUncheckedCreateNestedManyWithoutUserInput
+    updates?: UpdateUncheckedCreateNestedManyWithoutCreatorInput
+    twoFactorConfirmation?: TwoFactorConfirmationUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -4978,18 +11085,25 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    schoolType?: EnumSchoolTypeFieldUpdateOperationsInput | $Enums.SchoolType
+    constituency?: EnumLaikipiaConstituencyFieldUpdateOperationsInput | $Enums.LaikipiaConstituency
+    registrationNumber?: StringFieldUpdateOperationsInput | string
+    year?: EnumStudentYearFieldUpdateOperationsInput | $Enums.StudentYear
     school?: StringFieldUpdateOperationsInput | string
     course?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     status?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    isTwoFactorEnabled?: BoolFieldUpdateOperationsInput | boolean
     activatedBy?: NullableStringFieldUpdateOperationsInput | string | null
     deactivatedBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     announcement?: AnnouncementUpdateManyWithoutCreatedByNestedInput
     messages?: MessageUpdateManyWithoutUserNestedInput
+    updates?: UpdateUpdateManyWithoutCreatorNestedInput
+    twoFactorConfirmation?: TwoFactorConfirmationUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -4997,18 +11111,25 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    schoolType?: EnumSchoolTypeFieldUpdateOperationsInput | $Enums.SchoolType
+    constituency?: EnumLaikipiaConstituencyFieldUpdateOperationsInput | $Enums.LaikipiaConstituency
+    registrationNumber?: StringFieldUpdateOperationsInput | string
+    year?: EnumStudentYearFieldUpdateOperationsInput | $Enums.StudentYear
     school?: StringFieldUpdateOperationsInput | string
     course?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     status?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    isTwoFactorEnabled?: BoolFieldUpdateOperationsInput | boolean
     activatedBy?: NullableStringFieldUpdateOperationsInput | string | null
     deactivatedBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     announcement?: AnnouncementUncheckedUpdateManyWithoutCreatedByNestedInput
     messages?: MessageUncheckedUpdateManyWithoutUserNestedInput
+    updates?: UpdateUncheckedUpdateManyWithoutCreatorNestedInput
+    twoFactorConfirmation?: TwoFactorConfirmationUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -5016,12 +11137,17 @@ export namespace Prisma {
     name: string
     email: string
     phone: string
+    schoolType?: $Enums.SchoolType
+    constituency?: $Enums.LaikipiaConstituency
+    registrationNumber: string
+    year?: $Enums.StudentYear
     school: string
     course: string
     password: string
     emailVerified?: Date | string | null
     status?: $Enums.AccountStatus
     role?: $Enums.UserRole
+    isTwoFactorEnabled?: boolean
     activatedBy?: string | null
     deactivatedBy?: string | null
     createdAt?: Date | string
@@ -5033,12 +11159,17 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    schoolType?: EnumSchoolTypeFieldUpdateOperationsInput | $Enums.SchoolType
+    constituency?: EnumLaikipiaConstituencyFieldUpdateOperationsInput | $Enums.LaikipiaConstituency
+    registrationNumber?: StringFieldUpdateOperationsInput | string
+    year?: EnumStudentYearFieldUpdateOperationsInput | $Enums.StudentYear
     school?: StringFieldUpdateOperationsInput | string
     course?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     status?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    isTwoFactorEnabled?: BoolFieldUpdateOperationsInput | boolean
     activatedBy?: NullableStringFieldUpdateOperationsInput | string | null
     deactivatedBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -5050,12 +11181,17 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    schoolType?: EnumSchoolTypeFieldUpdateOperationsInput | $Enums.SchoolType
+    constituency?: EnumLaikipiaConstituencyFieldUpdateOperationsInput | $Enums.LaikipiaConstituency
+    registrationNumber?: StringFieldUpdateOperationsInput | string
+    year?: EnumStudentYearFieldUpdateOperationsInput | $Enums.StudentYear
     school?: StringFieldUpdateOperationsInput | string
     course?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     status?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    isTwoFactorEnabled?: BoolFieldUpdateOperationsInput | boolean
     activatedBy?: NullableStringFieldUpdateOperationsInput | string | null
     deactivatedBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -5207,6 +11343,270 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type UpdateCreateInput = {
+    id?: string
+    content: string
+    isImage?: boolean
+    creatorName: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    creator: UserCreateNestedOneWithoutUpdatesInput
+  }
+
+  export type UpdateUncheckedCreateInput = {
+    id?: string
+    content: string
+    isImage?: boolean
+    creatorName: string
+    creatorId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UpdateUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    isImage?: BoolFieldUpdateOperationsInput | boolean
+    creatorName?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    creator?: UserUpdateOneRequiredWithoutUpdatesNestedInput
+  }
+
+  export type UpdateUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    isImage?: BoolFieldUpdateOperationsInput | boolean
+    creatorName?: StringFieldUpdateOperationsInput | string
+    creatorId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UpdateCreateManyInput = {
+    id?: string
+    content: string
+    isImage?: boolean
+    creatorName: string
+    creatorId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UpdateUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    isImage?: BoolFieldUpdateOperationsInput | boolean
+    creatorName?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UpdateUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    isImage?: BoolFieldUpdateOperationsInput | boolean
+    creatorName?: StringFieldUpdateOperationsInput | string
+    creatorId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type VerificationTokenCreateInput = {
+    id?: string
+    email: string
+    token: string
+    expires: Date | string
+  }
+
+  export type VerificationTokenUncheckedCreateInput = {
+    id?: string
+    email: string
+    token: string
+    expires: Date | string
+  }
+
+  export type VerificationTokenUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    token?: StringFieldUpdateOperationsInput | string
+    expires?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type VerificationTokenUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    token?: StringFieldUpdateOperationsInput | string
+    expires?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type VerificationTokenCreateManyInput = {
+    id?: string
+    email: string
+    token: string
+    expires: Date | string
+  }
+
+  export type VerificationTokenUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    token?: StringFieldUpdateOperationsInput | string
+    expires?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type VerificationTokenUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    token?: StringFieldUpdateOperationsInput | string
+    expires?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TwoFactorTokenCreateInput = {
+    id?: string
+    email: string
+    token: string
+    expires: Date | string
+  }
+
+  export type TwoFactorTokenUncheckedCreateInput = {
+    id?: string
+    email: string
+    token: string
+    expires: Date | string
+  }
+
+  export type TwoFactorTokenUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    token?: StringFieldUpdateOperationsInput | string
+    expires?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TwoFactorTokenUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    token?: StringFieldUpdateOperationsInput | string
+    expires?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TwoFactorTokenCreateManyInput = {
+    id?: string
+    email: string
+    token: string
+    expires: Date | string
+  }
+
+  export type TwoFactorTokenUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    token?: StringFieldUpdateOperationsInput | string
+    expires?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TwoFactorTokenUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    token?: StringFieldUpdateOperationsInput | string
+    expires?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TwoFactorConfirmationCreateInput = {
+    id?: string
+    user: UserCreateNestedOneWithoutTwoFactorConfirmationInput
+  }
+
+  export type TwoFactorConfirmationUncheckedCreateInput = {
+    id?: string
+    userId: string
+  }
+
+  export type TwoFactorConfirmationUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    user?: UserUpdateOneRequiredWithoutTwoFactorConfirmationNestedInput
+  }
+
+  export type TwoFactorConfirmationUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type TwoFactorConfirmationCreateManyInput = {
+    id?: string
+    userId: string
+  }
+
+  export type TwoFactorConfirmationUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type TwoFactorConfirmationUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type LoginAttemptCreateInput = {
+    id?: string
+    ipAddress: string
+    email: string
+    success: boolean
+    createdAt?: Date | string
+    blockedUntil?: Date | string | null
+  }
+
+  export type LoginAttemptUncheckedCreateInput = {
+    id?: string
+    ipAddress: string
+    email: string
+    success: boolean
+    createdAt?: Date | string
+    blockedUntil?: Date | string | null
+  }
+
+  export type LoginAttemptUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    ipAddress?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    success?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    blockedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type LoginAttemptUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    ipAddress?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    success?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    blockedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type LoginAttemptCreateManyInput = {
+    id?: string
+    ipAddress: string
+    email: string
+    success: boolean
+    createdAt?: Date | string
+    blockedUntil?: Date | string | null
+  }
+
+  export type LoginAttemptUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    ipAddress?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    success?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    blockedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type LoginAttemptUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    ipAddress?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    success?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    blockedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -5220,6 +11620,27 @@ export namespace Prisma {
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     mode?: QueryMode
     not?: NestedStringFilter<$PrismaModel> | string
+  }
+
+  export type EnumSchoolTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.SchoolType | EnumSchoolTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.SchoolType[] | ListEnumSchoolTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.SchoolType[] | ListEnumSchoolTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumSchoolTypeFilter<$PrismaModel> | $Enums.SchoolType
+  }
+
+  export type EnumLaikipiaConstituencyFilter<$PrismaModel = never> = {
+    equals?: $Enums.LaikipiaConstituency | EnumLaikipiaConstituencyFieldRefInput<$PrismaModel>
+    in?: $Enums.LaikipiaConstituency[] | ListEnumLaikipiaConstituencyFieldRefInput<$PrismaModel>
+    notIn?: $Enums.LaikipiaConstituency[] | ListEnumLaikipiaConstituencyFieldRefInput<$PrismaModel>
+    not?: NestedEnumLaikipiaConstituencyFilter<$PrismaModel> | $Enums.LaikipiaConstituency
+  }
+
+  export type EnumStudentYearFilter<$PrismaModel = never> = {
+    equals?: $Enums.StudentYear | EnumStudentYearFieldRefInput<$PrismaModel>
+    in?: $Enums.StudentYear[] | ListEnumStudentYearFieldRefInput<$PrismaModel>
+    notIn?: $Enums.StudentYear[] | ListEnumStudentYearFieldRefInput<$PrismaModel>
+    not?: NestedEnumStudentYearFilter<$PrismaModel> | $Enums.StudentYear
   }
 
   export type DateTimeNullableFilter<$PrismaModel = never> = {
@@ -5245,6 +11666,11 @@ export namespace Prisma {
     in?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
     notIn?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
     not?: NestedEnumUserRoleFilter<$PrismaModel> | $Enums.UserRole
+  }
+
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
   export type StringNullableFilter<$PrismaModel = never> = {
@@ -5285,6 +11711,17 @@ export namespace Prisma {
     none?: MessageWhereInput
   }
 
+  export type UpdateListRelationFilter = {
+    every?: UpdateWhereInput
+    some?: UpdateWhereInput
+    none?: UpdateWhereInput
+  }
+
+  export type TwoFactorConfirmationNullableScalarRelationFilter = {
+    is?: TwoFactorConfirmationWhereInput | null
+    isNot?: TwoFactorConfirmationWhereInput | null
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -5298,17 +11735,26 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
+  export type UpdateOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type UserCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
     email?: SortOrder
     phone?: SortOrder
+    schoolType?: SortOrder
+    constituency?: SortOrder
+    registrationNumber?: SortOrder
+    year?: SortOrder
     school?: SortOrder
     course?: SortOrder
     password?: SortOrder
     emailVerified?: SortOrder
     status?: SortOrder
     role?: SortOrder
+    isTwoFactorEnabled?: SortOrder
     activatedBy?: SortOrder
     deactivatedBy?: SortOrder
     createdAt?: SortOrder
@@ -5320,12 +11766,17 @@ export namespace Prisma {
     name?: SortOrder
     email?: SortOrder
     phone?: SortOrder
+    schoolType?: SortOrder
+    constituency?: SortOrder
+    registrationNumber?: SortOrder
+    year?: SortOrder
     school?: SortOrder
     course?: SortOrder
     password?: SortOrder
     emailVerified?: SortOrder
     status?: SortOrder
     role?: SortOrder
+    isTwoFactorEnabled?: SortOrder
     activatedBy?: SortOrder
     deactivatedBy?: SortOrder
     createdAt?: SortOrder
@@ -5337,12 +11788,17 @@ export namespace Prisma {
     name?: SortOrder
     email?: SortOrder
     phone?: SortOrder
+    schoolType?: SortOrder
+    constituency?: SortOrder
+    registrationNumber?: SortOrder
+    year?: SortOrder
     school?: SortOrder
     course?: SortOrder
     password?: SortOrder
     emailVerified?: SortOrder
     status?: SortOrder
     role?: SortOrder
+    isTwoFactorEnabled?: SortOrder
     activatedBy?: SortOrder
     deactivatedBy?: SortOrder
     createdAt?: SortOrder
@@ -5365,6 +11821,36 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type EnumSchoolTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.SchoolType | EnumSchoolTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.SchoolType[] | ListEnumSchoolTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.SchoolType[] | ListEnumSchoolTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumSchoolTypeWithAggregatesFilter<$PrismaModel> | $Enums.SchoolType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumSchoolTypeFilter<$PrismaModel>
+    _max?: NestedEnumSchoolTypeFilter<$PrismaModel>
+  }
+
+  export type EnumLaikipiaConstituencyWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.LaikipiaConstituency | EnumLaikipiaConstituencyFieldRefInput<$PrismaModel>
+    in?: $Enums.LaikipiaConstituency[] | ListEnumLaikipiaConstituencyFieldRefInput<$PrismaModel>
+    notIn?: $Enums.LaikipiaConstituency[] | ListEnumLaikipiaConstituencyFieldRefInput<$PrismaModel>
+    not?: NestedEnumLaikipiaConstituencyWithAggregatesFilter<$PrismaModel> | $Enums.LaikipiaConstituency
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumLaikipiaConstituencyFilter<$PrismaModel>
+    _max?: NestedEnumLaikipiaConstituencyFilter<$PrismaModel>
+  }
+
+  export type EnumStudentYearWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.StudentYear | EnumStudentYearFieldRefInput<$PrismaModel>
+    in?: $Enums.StudentYear[] | ListEnumStudentYearFieldRefInput<$PrismaModel>
+    notIn?: $Enums.StudentYear[] | ListEnumStudentYearFieldRefInput<$PrismaModel>
+    not?: NestedEnumStudentYearWithAggregatesFilter<$PrismaModel> | $Enums.StudentYear
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumStudentYearFilter<$PrismaModel>
+    _max?: NestedEnumStudentYearFilter<$PrismaModel>
   }
 
   export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -5399,6 +11885,14 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumUserRoleFilter<$PrismaModel>
     _max?: NestedEnumUserRoleFilter<$PrismaModel>
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -5506,6 +12000,130 @@ export namespace Prisma {
     createdAt?: SortOrder
   }
 
+  export type UpdateCountOrderByAggregateInput = {
+    id?: SortOrder
+    content?: SortOrder
+    isImage?: SortOrder
+    creatorName?: SortOrder
+    creatorId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type UpdateMaxOrderByAggregateInput = {
+    id?: SortOrder
+    content?: SortOrder
+    isImage?: SortOrder
+    creatorName?: SortOrder
+    creatorId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type UpdateMinOrderByAggregateInput = {
+    id?: SortOrder
+    content?: SortOrder
+    isImage?: SortOrder
+    creatorName?: SortOrder
+    creatorId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type VerificationTokenEmailTokenCompoundUniqueInput = {
+    email: string
+    token: string
+  }
+
+  export type VerificationTokenCountOrderByAggregateInput = {
+    id?: SortOrder
+    email?: SortOrder
+    token?: SortOrder
+    expires?: SortOrder
+  }
+
+  export type VerificationTokenMaxOrderByAggregateInput = {
+    id?: SortOrder
+    email?: SortOrder
+    token?: SortOrder
+    expires?: SortOrder
+  }
+
+  export type VerificationTokenMinOrderByAggregateInput = {
+    id?: SortOrder
+    email?: SortOrder
+    token?: SortOrder
+    expires?: SortOrder
+  }
+
+  export type TwoFactorTokenEmailTokenCompoundUniqueInput = {
+    email: string
+    token: string
+  }
+
+  export type TwoFactorTokenCountOrderByAggregateInput = {
+    id?: SortOrder
+    email?: SortOrder
+    token?: SortOrder
+    expires?: SortOrder
+  }
+
+  export type TwoFactorTokenMaxOrderByAggregateInput = {
+    id?: SortOrder
+    email?: SortOrder
+    token?: SortOrder
+    expires?: SortOrder
+  }
+
+  export type TwoFactorTokenMinOrderByAggregateInput = {
+    id?: SortOrder
+    email?: SortOrder
+    token?: SortOrder
+    expires?: SortOrder
+  }
+
+  export type TwoFactorConfirmationCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type TwoFactorConfirmationMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type TwoFactorConfirmationMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type LoginAttemptCountOrderByAggregateInput = {
+    id?: SortOrder
+    ipAddress?: SortOrder
+    email?: SortOrder
+    success?: SortOrder
+    createdAt?: SortOrder
+    blockedUntil?: SortOrder
+  }
+
+  export type LoginAttemptMaxOrderByAggregateInput = {
+    id?: SortOrder
+    ipAddress?: SortOrder
+    email?: SortOrder
+    success?: SortOrder
+    createdAt?: SortOrder
+    blockedUntil?: SortOrder
+  }
+
+  export type LoginAttemptMinOrderByAggregateInput = {
+    id?: SortOrder
+    ipAddress?: SortOrder
+    email?: SortOrder
+    success?: SortOrder
+    createdAt?: SortOrder
+    blockedUntil?: SortOrder
+  }
+
   export type AnnouncementCreateNestedManyWithoutCreatedByInput = {
     create?: XOR<AnnouncementCreateWithoutCreatedByInput, AnnouncementUncheckedCreateWithoutCreatedByInput> | AnnouncementCreateWithoutCreatedByInput[] | AnnouncementUncheckedCreateWithoutCreatedByInput[]
     connectOrCreate?: AnnouncementCreateOrConnectWithoutCreatedByInput | AnnouncementCreateOrConnectWithoutCreatedByInput[]
@@ -5518,6 +12136,19 @@ export namespace Prisma {
     connectOrCreate?: MessageCreateOrConnectWithoutUserInput | MessageCreateOrConnectWithoutUserInput[]
     createMany?: MessageCreateManyUserInputEnvelope
     connect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
+  }
+
+  export type UpdateCreateNestedManyWithoutCreatorInput = {
+    create?: XOR<UpdateCreateWithoutCreatorInput, UpdateUncheckedCreateWithoutCreatorInput> | UpdateCreateWithoutCreatorInput[] | UpdateUncheckedCreateWithoutCreatorInput[]
+    connectOrCreate?: UpdateCreateOrConnectWithoutCreatorInput | UpdateCreateOrConnectWithoutCreatorInput[]
+    createMany?: UpdateCreateManyCreatorInputEnvelope
+    connect?: UpdateWhereUniqueInput | UpdateWhereUniqueInput[]
+  }
+
+  export type TwoFactorConfirmationCreateNestedOneWithoutUserInput = {
+    create?: XOR<TwoFactorConfirmationCreateWithoutUserInput, TwoFactorConfirmationUncheckedCreateWithoutUserInput>
+    connectOrCreate?: TwoFactorConfirmationCreateOrConnectWithoutUserInput
+    connect?: TwoFactorConfirmationWhereUniqueInput
   }
 
   export type AnnouncementUncheckedCreateNestedManyWithoutCreatedByInput = {
@@ -5534,8 +12165,33 @@ export namespace Prisma {
     connect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
   }
 
+  export type UpdateUncheckedCreateNestedManyWithoutCreatorInput = {
+    create?: XOR<UpdateCreateWithoutCreatorInput, UpdateUncheckedCreateWithoutCreatorInput> | UpdateCreateWithoutCreatorInput[] | UpdateUncheckedCreateWithoutCreatorInput[]
+    connectOrCreate?: UpdateCreateOrConnectWithoutCreatorInput | UpdateCreateOrConnectWithoutCreatorInput[]
+    createMany?: UpdateCreateManyCreatorInputEnvelope
+    connect?: UpdateWhereUniqueInput | UpdateWhereUniqueInput[]
+  }
+
+  export type TwoFactorConfirmationUncheckedCreateNestedOneWithoutUserInput = {
+    create?: XOR<TwoFactorConfirmationCreateWithoutUserInput, TwoFactorConfirmationUncheckedCreateWithoutUserInput>
+    connectOrCreate?: TwoFactorConfirmationCreateOrConnectWithoutUserInput
+    connect?: TwoFactorConfirmationWhereUniqueInput
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
+  }
+
+  export type EnumSchoolTypeFieldUpdateOperationsInput = {
+    set?: $Enums.SchoolType
+  }
+
+  export type EnumLaikipiaConstituencyFieldUpdateOperationsInput = {
+    set?: $Enums.LaikipiaConstituency
+  }
+
+  export type EnumStudentYearFieldUpdateOperationsInput = {
+    set?: $Enums.StudentYear
   }
 
   export type NullableDateTimeFieldUpdateOperationsInput = {
@@ -5548,6 +12204,10 @@ export namespace Prisma {
 
   export type EnumUserRoleFieldUpdateOperationsInput = {
     set?: $Enums.UserRole
+  }
+
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
   }
 
   export type NullableStringFieldUpdateOperationsInput = {
@@ -5586,6 +12246,30 @@ export namespace Prisma {
     deleteMany?: MessageScalarWhereInput | MessageScalarWhereInput[]
   }
 
+  export type UpdateUpdateManyWithoutCreatorNestedInput = {
+    create?: XOR<UpdateCreateWithoutCreatorInput, UpdateUncheckedCreateWithoutCreatorInput> | UpdateCreateWithoutCreatorInput[] | UpdateUncheckedCreateWithoutCreatorInput[]
+    connectOrCreate?: UpdateCreateOrConnectWithoutCreatorInput | UpdateCreateOrConnectWithoutCreatorInput[]
+    upsert?: UpdateUpsertWithWhereUniqueWithoutCreatorInput | UpdateUpsertWithWhereUniqueWithoutCreatorInput[]
+    createMany?: UpdateCreateManyCreatorInputEnvelope
+    set?: UpdateWhereUniqueInput | UpdateWhereUniqueInput[]
+    disconnect?: UpdateWhereUniqueInput | UpdateWhereUniqueInput[]
+    delete?: UpdateWhereUniqueInput | UpdateWhereUniqueInput[]
+    connect?: UpdateWhereUniqueInput | UpdateWhereUniqueInput[]
+    update?: UpdateUpdateWithWhereUniqueWithoutCreatorInput | UpdateUpdateWithWhereUniqueWithoutCreatorInput[]
+    updateMany?: UpdateUpdateManyWithWhereWithoutCreatorInput | UpdateUpdateManyWithWhereWithoutCreatorInput[]
+    deleteMany?: UpdateScalarWhereInput | UpdateScalarWhereInput[]
+  }
+
+  export type TwoFactorConfirmationUpdateOneWithoutUserNestedInput = {
+    create?: XOR<TwoFactorConfirmationCreateWithoutUserInput, TwoFactorConfirmationUncheckedCreateWithoutUserInput>
+    connectOrCreate?: TwoFactorConfirmationCreateOrConnectWithoutUserInput
+    upsert?: TwoFactorConfirmationUpsertWithoutUserInput
+    disconnect?: TwoFactorConfirmationWhereInput | boolean
+    delete?: TwoFactorConfirmationWhereInput | boolean
+    connect?: TwoFactorConfirmationWhereUniqueInput
+    update?: XOR<XOR<TwoFactorConfirmationUpdateToOneWithWhereWithoutUserInput, TwoFactorConfirmationUpdateWithoutUserInput>, TwoFactorConfirmationUncheckedUpdateWithoutUserInput>
+  }
+
   export type AnnouncementUncheckedUpdateManyWithoutCreatedByNestedInput = {
     create?: XOR<AnnouncementCreateWithoutCreatedByInput, AnnouncementUncheckedCreateWithoutCreatedByInput> | AnnouncementCreateWithoutCreatedByInput[] | AnnouncementUncheckedCreateWithoutCreatedByInput[]
     connectOrCreate?: AnnouncementCreateOrConnectWithoutCreatedByInput | AnnouncementCreateOrConnectWithoutCreatedByInput[]
@@ -5612,6 +12296,30 @@ export namespace Prisma {
     update?: MessageUpdateWithWhereUniqueWithoutUserInput | MessageUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: MessageUpdateManyWithWhereWithoutUserInput | MessageUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: MessageScalarWhereInput | MessageScalarWhereInput[]
+  }
+
+  export type UpdateUncheckedUpdateManyWithoutCreatorNestedInput = {
+    create?: XOR<UpdateCreateWithoutCreatorInput, UpdateUncheckedCreateWithoutCreatorInput> | UpdateCreateWithoutCreatorInput[] | UpdateUncheckedCreateWithoutCreatorInput[]
+    connectOrCreate?: UpdateCreateOrConnectWithoutCreatorInput | UpdateCreateOrConnectWithoutCreatorInput[]
+    upsert?: UpdateUpsertWithWhereUniqueWithoutCreatorInput | UpdateUpsertWithWhereUniqueWithoutCreatorInput[]
+    createMany?: UpdateCreateManyCreatorInputEnvelope
+    set?: UpdateWhereUniqueInput | UpdateWhereUniqueInput[]
+    disconnect?: UpdateWhereUniqueInput | UpdateWhereUniqueInput[]
+    delete?: UpdateWhereUniqueInput | UpdateWhereUniqueInput[]
+    connect?: UpdateWhereUniqueInput | UpdateWhereUniqueInput[]
+    update?: UpdateUpdateWithWhereUniqueWithoutCreatorInput | UpdateUpdateWithWhereUniqueWithoutCreatorInput[]
+    updateMany?: UpdateUpdateManyWithWhereWithoutCreatorInput | UpdateUpdateManyWithWhereWithoutCreatorInput[]
+    deleteMany?: UpdateScalarWhereInput | UpdateScalarWhereInput[]
+  }
+
+  export type TwoFactorConfirmationUncheckedUpdateOneWithoutUserNestedInput = {
+    create?: XOR<TwoFactorConfirmationCreateWithoutUserInput, TwoFactorConfirmationUncheckedCreateWithoutUserInput>
+    connectOrCreate?: TwoFactorConfirmationCreateOrConnectWithoutUserInput
+    upsert?: TwoFactorConfirmationUpsertWithoutUserInput
+    disconnect?: TwoFactorConfirmationWhereInput | boolean
+    delete?: TwoFactorConfirmationWhereInput | boolean
+    connect?: TwoFactorConfirmationWhereUniqueInput
+    update?: XOR<XOR<TwoFactorConfirmationUpdateToOneWithWhereWithoutUserInput, TwoFactorConfirmationUpdateWithoutUserInput>, TwoFactorConfirmationUncheckedUpdateWithoutUserInput>
   }
 
   export type UserCreateNestedOneWithoutAnnouncementInput = {
@@ -5644,6 +12352,34 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutMessagesInput, UserUpdateWithoutMessagesInput>, UserUncheckedUpdateWithoutMessagesInput>
   }
 
+  export type UserCreateNestedOneWithoutUpdatesInput = {
+    create?: XOR<UserCreateWithoutUpdatesInput, UserUncheckedCreateWithoutUpdatesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutUpdatesInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutUpdatesNestedInput = {
+    create?: XOR<UserCreateWithoutUpdatesInput, UserUncheckedCreateWithoutUpdatesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutUpdatesInput
+    upsert?: UserUpsertWithoutUpdatesInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutUpdatesInput, UserUpdateWithoutUpdatesInput>, UserUncheckedUpdateWithoutUpdatesInput>
+  }
+
+  export type UserCreateNestedOneWithoutTwoFactorConfirmationInput = {
+    create?: XOR<UserCreateWithoutTwoFactorConfirmationInput, UserUncheckedCreateWithoutTwoFactorConfirmationInput>
+    connectOrCreate?: UserCreateOrConnectWithoutTwoFactorConfirmationInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutTwoFactorConfirmationNestedInput = {
+    create?: XOR<UserCreateWithoutTwoFactorConfirmationInput, UserUncheckedCreateWithoutTwoFactorConfirmationInput>
+    connectOrCreate?: UserCreateOrConnectWithoutTwoFactorConfirmationInput
+    upsert?: UserUpsertWithoutTwoFactorConfirmationInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutTwoFactorConfirmationInput, UserUpdateWithoutTwoFactorConfirmationInput>, UserUncheckedUpdateWithoutTwoFactorConfirmationInput>
+  }
+
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -5656,6 +12392,27 @@ export namespace Prisma {
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     not?: NestedStringFilter<$PrismaModel> | string
+  }
+
+  export type NestedEnumSchoolTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.SchoolType | EnumSchoolTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.SchoolType[] | ListEnumSchoolTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.SchoolType[] | ListEnumSchoolTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumSchoolTypeFilter<$PrismaModel> | $Enums.SchoolType
+  }
+
+  export type NestedEnumLaikipiaConstituencyFilter<$PrismaModel = never> = {
+    equals?: $Enums.LaikipiaConstituency | EnumLaikipiaConstituencyFieldRefInput<$PrismaModel>
+    in?: $Enums.LaikipiaConstituency[] | ListEnumLaikipiaConstituencyFieldRefInput<$PrismaModel>
+    notIn?: $Enums.LaikipiaConstituency[] | ListEnumLaikipiaConstituencyFieldRefInput<$PrismaModel>
+    not?: NestedEnumLaikipiaConstituencyFilter<$PrismaModel> | $Enums.LaikipiaConstituency
+  }
+
+  export type NestedEnumStudentYearFilter<$PrismaModel = never> = {
+    equals?: $Enums.StudentYear | EnumStudentYearFieldRefInput<$PrismaModel>
+    in?: $Enums.StudentYear[] | ListEnumStudentYearFieldRefInput<$PrismaModel>
+    notIn?: $Enums.StudentYear[] | ListEnumStudentYearFieldRefInput<$PrismaModel>
+    not?: NestedEnumStudentYearFilter<$PrismaModel> | $Enums.StudentYear
   }
 
   export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
@@ -5681,6 +12438,11 @@ export namespace Prisma {
     in?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
     notIn?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
     not?: NestedEnumUserRoleFilter<$PrismaModel> | $Enums.UserRole
+  }
+
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
   export type NestedStringNullableFilter<$PrismaModel = never> = {
@@ -5736,6 +12498,36 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
+  export type NestedEnumSchoolTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.SchoolType | EnumSchoolTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.SchoolType[] | ListEnumSchoolTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.SchoolType[] | ListEnumSchoolTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumSchoolTypeWithAggregatesFilter<$PrismaModel> | $Enums.SchoolType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumSchoolTypeFilter<$PrismaModel>
+    _max?: NestedEnumSchoolTypeFilter<$PrismaModel>
+  }
+
+  export type NestedEnumLaikipiaConstituencyWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.LaikipiaConstituency | EnumLaikipiaConstituencyFieldRefInput<$PrismaModel>
+    in?: $Enums.LaikipiaConstituency[] | ListEnumLaikipiaConstituencyFieldRefInput<$PrismaModel>
+    notIn?: $Enums.LaikipiaConstituency[] | ListEnumLaikipiaConstituencyFieldRefInput<$PrismaModel>
+    not?: NestedEnumLaikipiaConstituencyWithAggregatesFilter<$PrismaModel> | $Enums.LaikipiaConstituency
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumLaikipiaConstituencyFilter<$PrismaModel>
+    _max?: NestedEnumLaikipiaConstituencyFilter<$PrismaModel>
+  }
+
+  export type NestedEnumStudentYearWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.StudentYear | EnumStudentYearFieldRefInput<$PrismaModel>
+    in?: $Enums.StudentYear[] | ListEnumStudentYearFieldRefInput<$PrismaModel>
+    notIn?: $Enums.StudentYear[] | ListEnumStudentYearFieldRefInput<$PrismaModel>
+    not?: NestedEnumStudentYearWithAggregatesFilter<$PrismaModel> | $Enums.StudentYear
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumStudentYearFilter<$PrismaModel>
+    _max?: NestedEnumStudentYearFilter<$PrismaModel>
+  }
+
   export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
@@ -5779,6 +12571,14 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumUserRoleFilter<$PrismaModel>
     _max?: NestedEnumUserRoleFilter<$PrismaModel>
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -5870,6 +12670,47 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type UpdateCreateWithoutCreatorInput = {
+    id?: string
+    content: string
+    isImage?: boolean
+    creatorName: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UpdateUncheckedCreateWithoutCreatorInput = {
+    id?: string
+    content: string
+    isImage?: boolean
+    creatorName: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UpdateCreateOrConnectWithoutCreatorInput = {
+    where: UpdateWhereUniqueInput
+    create: XOR<UpdateCreateWithoutCreatorInput, UpdateUncheckedCreateWithoutCreatorInput>
+  }
+
+  export type UpdateCreateManyCreatorInputEnvelope = {
+    data: UpdateCreateManyCreatorInput | UpdateCreateManyCreatorInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type TwoFactorConfirmationCreateWithoutUserInput = {
+    id?: string
+  }
+
+  export type TwoFactorConfirmationUncheckedCreateWithoutUserInput = {
+    id?: string
+  }
+
+  export type TwoFactorConfirmationCreateOrConnectWithoutUserInput = {
+    where: TwoFactorConfirmationWhereUniqueInput
+    create: XOR<TwoFactorConfirmationCreateWithoutUserInput, TwoFactorConfirmationUncheckedCreateWithoutUserInput>
+  }
+
   export type AnnouncementUpsertWithWhereUniqueWithoutCreatedByInput = {
     where: AnnouncementWhereUniqueInput
     update: XOR<AnnouncementUpdateWithoutCreatedByInput, AnnouncementUncheckedUpdateWithoutCreatedByInput>
@@ -5929,22 +12770,77 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Message"> | Date | string
   }
 
+  export type UpdateUpsertWithWhereUniqueWithoutCreatorInput = {
+    where: UpdateWhereUniqueInput
+    update: XOR<UpdateUpdateWithoutCreatorInput, UpdateUncheckedUpdateWithoutCreatorInput>
+    create: XOR<UpdateCreateWithoutCreatorInput, UpdateUncheckedCreateWithoutCreatorInput>
+  }
+
+  export type UpdateUpdateWithWhereUniqueWithoutCreatorInput = {
+    where: UpdateWhereUniqueInput
+    data: XOR<UpdateUpdateWithoutCreatorInput, UpdateUncheckedUpdateWithoutCreatorInput>
+  }
+
+  export type UpdateUpdateManyWithWhereWithoutCreatorInput = {
+    where: UpdateScalarWhereInput
+    data: XOR<UpdateUpdateManyMutationInput, UpdateUncheckedUpdateManyWithoutCreatorInput>
+  }
+
+  export type UpdateScalarWhereInput = {
+    AND?: UpdateScalarWhereInput | UpdateScalarWhereInput[]
+    OR?: UpdateScalarWhereInput[]
+    NOT?: UpdateScalarWhereInput | UpdateScalarWhereInput[]
+    id?: StringFilter<"Update"> | string
+    content?: StringFilter<"Update"> | string
+    isImage?: BoolFilter<"Update"> | boolean
+    creatorName?: StringFilter<"Update"> | string
+    creatorId?: StringFilter<"Update"> | string
+    createdAt?: DateTimeFilter<"Update"> | Date | string
+    updatedAt?: DateTimeFilter<"Update"> | Date | string
+  }
+
+  export type TwoFactorConfirmationUpsertWithoutUserInput = {
+    update: XOR<TwoFactorConfirmationUpdateWithoutUserInput, TwoFactorConfirmationUncheckedUpdateWithoutUserInput>
+    create: XOR<TwoFactorConfirmationCreateWithoutUserInput, TwoFactorConfirmationUncheckedCreateWithoutUserInput>
+    where?: TwoFactorConfirmationWhereInput
+  }
+
+  export type TwoFactorConfirmationUpdateToOneWithWhereWithoutUserInput = {
+    where?: TwoFactorConfirmationWhereInput
+    data: XOR<TwoFactorConfirmationUpdateWithoutUserInput, TwoFactorConfirmationUncheckedUpdateWithoutUserInput>
+  }
+
+  export type TwoFactorConfirmationUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type TwoFactorConfirmationUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+  }
+
   export type UserCreateWithoutAnnouncementInput = {
     id?: string
     name: string
     email: string
     phone: string
+    schoolType?: $Enums.SchoolType
+    constituency?: $Enums.LaikipiaConstituency
+    registrationNumber: string
+    year?: $Enums.StudentYear
     school: string
     course: string
     password: string
     emailVerified?: Date | string | null
     status?: $Enums.AccountStatus
     role?: $Enums.UserRole
+    isTwoFactorEnabled?: boolean
     activatedBy?: string | null
     deactivatedBy?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     messages?: MessageCreateNestedManyWithoutUserInput
+    updates?: UpdateCreateNestedManyWithoutCreatorInput
+    twoFactorConfirmation?: TwoFactorConfirmationCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAnnouncementInput = {
@@ -5952,17 +12848,24 @@ export namespace Prisma {
     name: string
     email: string
     phone: string
+    schoolType?: $Enums.SchoolType
+    constituency?: $Enums.LaikipiaConstituency
+    registrationNumber: string
+    year?: $Enums.StudentYear
     school: string
     course: string
     password: string
     emailVerified?: Date | string | null
     status?: $Enums.AccountStatus
     role?: $Enums.UserRole
+    isTwoFactorEnabled?: boolean
     activatedBy?: string | null
     deactivatedBy?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     messages?: MessageUncheckedCreateNestedManyWithoutUserInput
+    updates?: UpdateUncheckedCreateNestedManyWithoutCreatorInput
+    twoFactorConfirmation?: TwoFactorConfirmationUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutAnnouncementInput = {
@@ -5986,17 +12889,24 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    schoolType?: EnumSchoolTypeFieldUpdateOperationsInput | $Enums.SchoolType
+    constituency?: EnumLaikipiaConstituencyFieldUpdateOperationsInput | $Enums.LaikipiaConstituency
+    registrationNumber?: StringFieldUpdateOperationsInput | string
+    year?: EnumStudentYearFieldUpdateOperationsInput | $Enums.StudentYear
     school?: StringFieldUpdateOperationsInput | string
     course?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     status?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    isTwoFactorEnabled?: BoolFieldUpdateOperationsInput | boolean
     activatedBy?: NullableStringFieldUpdateOperationsInput | string | null
     deactivatedBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     messages?: MessageUpdateManyWithoutUserNestedInput
+    updates?: UpdateUpdateManyWithoutCreatorNestedInput
+    twoFactorConfirmation?: TwoFactorConfirmationUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAnnouncementInput = {
@@ -6004,17 +12914,24 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    schoolType?: EnumSchoolTypeFieldUpdateOperationsInput | $Enums.SchoolType
+    constituency?: EnumLaikipiaConstituencyFieldUpdateOperationsInput | $Enums.LaikipiaConstituency
+    registrationNumber?: StringFieldUpdateOperationsInput | string
+    year?: EnumStudentYearFieldUpdateOperationsInput | $Enums.StudentYear
     school?: StringFieldUpdateOperationsInput | string
     course?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     status?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    isTwoFactorEnabled?: BoolFieldUpdateOperationsInput | boolean
     activatedBy?: NullableStringFieldUpdateOperationsInput | string | null
     deactivatedBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     messages?: MessageUncheckedUpdateManyWithoutUserNestedInput
+    updates?: UpdateUncheckedUpdateManyWithoutCreatorNestedInput
+    twoFactorConfirmation?: TwoFactorConfirmationUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type UserCreateWithoutMessagesInput = {
@@ -6022,17 +12939,24 @@ export namespace Prisma {
     name: string
     email: string
     phone: string
+    schoolType?: $Enums.SchoolType
+    constituency?: $Enums.LaikipiaConstituency
+    registrationNumber: string
+    year?: $Enums.StudentYear
     school: string
     course: string
     password: string
     emailVerified?: Date | string | null
     status?: $Enums.AccountStatus
     role?: $Enums.UserRole
+    isTwoFactorEnabled?: boolean
     activatedBy?: string | null
     deactivatedBy?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     announcement?: AnnouncementCreateNestedManyWithoutCreatedByInput
+    updates?: UpdateCreateNestedManyWithoutCreatorInput
+    twoFactorConfirmation?: TwoFactorConfirmationCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutMessagesInput = {
@@ -6040,17 +12964,24 @@ export namespace Prisma {
     name: string
     email: string
     phone: string
+    schoolType?: $Enums.SchoolType
+    constituency?: $Enums.LaikipiaConstituency
+    registrationNumber: string
+    year?: $Enums.StudentYear
     school: string
     course: string
     password: string
     emailVerified?: Date | string | null
     status?: $Enums.AccountStatus
     role?: $Enums.UserRole
+    isTwoFactorEnabled?: boolean
     activatedBy?: string | null
     deactivatedBy?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     announcement?: AnnouncementUncheckedCreateNestedManyWithoutCreatedByInput
+    updates?: UpdateUncheckedCreateNestedManyWithoutCreatorInput
+    twoFactorConfirmation?: TwoFactorConfirmationUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutMessagesInput = {
@@ -6074,17 +13005,24 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    schoolType?: EnumSchoolTypeFieldUpdateOperationsInput | $Enums.SchoolType
+    constituency?: EnumLaikipiaConstituencyFieldUpdateOperationsInput | $Enums.LaikipiaConstituency
+    registrationNumber?: StringFieldUpdateOperationsInput | string
+    year?: EnumStudentYearFieldUpdateOperationsInput | $Enums.StudentYear
     school?: StringFieldUpdateOperationsInput | string
     course?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     status?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    isTwoFactorEnabled?: BoolFieldUpdateOperationsInput | boolean
     activatedBy?: NullableStringFieldUpdateOperationsInput | string | null
     deactivatedBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     announcement?: AnnouncementUpdateManyWithoutCreatedByNestedInput
+    updates?: UpdateUpdateManyWithoutCreatorNestedInput
+    twoFactorConfirmation?: TwoFactorConfirmationUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutMessagesInput = {
@@ -6092,17 +13030,256 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     phone?: StringFieldUpdateOperationsInput | string
+    schoolType?: EnumSchoolTypeFieldUpdateOperationsInput | $Enums.SchoolType
+    constituency?: EnumLaikipiaConstituencyFieldUpdateOperationsInput | $Enums.LaikipiaConstituency
+    registrationNumber?: StringFieldUpdateOperationsInput | string
+    year?: EnumStudentYearFieldUpdateOperationsInput | $Enums.StudentYear
     school?: StringFieldUpdateOperationsInput | string
     course?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     status?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    isTwoFactorEnabled?: BoolFieldUpdateOperationsInput | boolean
     activatedBy?: NullableStringFieldUpdateOperationsInput | string | null
     deactivatedBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     announcement?: AnnouncementUncheckedUpdateManyWithoutCreatedByNestedInput
+    updates?: UpdateUncheckedUpdateManyWithoutCreatorNestedInput
+    twoFactorConfirmation?: TwoFactorConfirmationUncheckedUpdateOneWithoutUserNestedInput
+  }
+
+  export type UserCreateWithoutUpdatesInput = {
+    id?: string
+    name: string
+    email: string
+    phone: string
+    schoolType?: $Enums.SchoolType
+    constituency?: $Enums.LaikipiaConstituency
+    registrationNumber: string
+    year?: $Enums.StudentYear
+    school: string
+    course: string
+    password: string
+    emailVerified?: Date | string | null
+    status?: $Enums.AccountStatus
+    role?: $Enums.UserRole
+    isTwoFactorEnabled?: boolean
+    activatedBy?: string | null
+    deactivatedBy?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    announcement?: AnnouncementCreateNestedManyWithoutCreatedByInput
+    messages?: MessageCreateNestedManyWithoutUserInput
+    twoFactorConfirmation?: TwoFactorConfirmationCreateNestedOneWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutUpdatesInput = {
+    id?: string
+    name: string
+    email: string
+    phone: string
+    schoolType?: $Enums.SchoolType
+    constituency?: $Enums.LaikipiaConstituency
+    registrationNumber: string
+    year?: $Enums.StudentYear
+    school: string
+    course: string
+    password: string
+    emailVerified?: Date | string | null
+    status?: $Enums.AccountStatus
+    role?: $Enums.UserRole
+    isTwoFactorEnabled?: boolean
+    activatedBy?: string | null
+    deactivatedBy?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    announcement?: AnnouncementUncheckedCreateNestedManyWithoutCreatedByInput
+    messages?: MessageUncheckedCreateNestedManyWithoutUserInput
+    twoFactorConfirmation?: TwoFactorConfirmationUncheckedCreateNestedOneWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutUpdatesInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutUpdatesInput, UserUncheckedCreateWithoutUpdatesInput>
+  }
+
+  export type UserUpsertWithoutUpdatesInput = {
+    update: XOR<UserUpdateWithoutUpdatesInput, UserUncheckedUpdateWithoutUpdatesInput>
+    create: XOR<UserCreateWithoutUpdatesInput, UserUncheckedCreateWithoutUpdatesInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutUpdatesInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutUpdatesInput, UserUncheckedUpdateWithoutUpdatesInput>
+  }
+
+  export type UserUpdateWithoutUpdatesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    schoolType?: EnumSchoolTypeFieldUpdateOperationsInput | $Enums.SchoolType
+    constituency?: EnumLaikipiaConstituencyFieldUpdateOperationsInput | $Enums.LaikipiaConstituency
+    registrationNumber?: StringFieldUpdateOperationsInput | string
+    year?: EnumStudentYearFieldUpdateOperationsInput | $Enums.StudentYear
+    school?: StringFieldUpdateOperationsInput | string
+    course?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    isTwoFactorEnabled?: BoolFieldUpdateOperationsInput | boolean
+    activatedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    deactivatedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    announcement?: AnnouncementUpdateManyWithoutCreatedByNestedInput
+    messages?: MessageUpdateManyWithoutUserNestedInput
+    twoFactorConfirmation?: TwoFactorConfirmationUpdateOneWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutUpdatesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    schoolType?: EnumSchoolTypeFieldUpdateOperationsInput | $Enums.SchoolType
+    constituency?: EnumLaikipiaConstituencyFieldUpdateOperationsInput | $Enums.LaikipiaConstituency
+    registrationNumber?: StringFieldUpdateOperationsInput | string
+    year?: EnumStudentYearFieldUpdateOperationsInput | $Enums.StudentYear
+    school?: StringFieldUpdateOperationsInput | string
+    course?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    isTwoFactorEnabled?: BoolFieldUpdateOperationsInput | boolean
+    activatedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    deactivatedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    announcement?: AnnouncementUncheckedUpdateManyWithoutCreatedByNestedInput
+    messages?: MessageUncheckedUpdateManyWithoutUserNestedInput
+    twoFactorConfirmation?: TwoFactorConfirmationUncheckedUpdateOneWithoutUserNestedInput
+  }
+
+  export type UserCreateWithoutTwoFactorConfirmationInput = {
+    id?: string
+    name: string
+    email: string
+    phone: string
+    schoolType?: $Enums.SchoolType
+    constituency?: $Enums.LaikipiaConstituency
+    registrationNumber: string
+    year?: $Enums.StudentYear
+    school: string
+    course: string
+    password: string
+    emailVerified?: Date | string | null
+    status?: $Enums.AccountStatus
+    role?: $Enums.UserRole
+    isTwoFactorEnabled?: boolean
+    activatedBy?: string | null
+    deactivatedBy?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    announcement?: AnnouncementCreateNestedManyWithoutCreatedByInput
+    messages?: MessageCreateNestedManyWithoutUserInput
+    updates?: UpdateCreateNestedManyWithoutCreatorInput
+  }
+
+  export type UserUncheckedCreateWithoutTwoFactorConfirmationInput = {
+    id?: string
+    name: string
+    email: string
+    phone: string
+    schoolType?: $Enums.SchoolType
+    constituency?: $Enums.LaikipiaConstituency
+    registrationNumber: string
+    year?: $Enums.StudentYear
+    school: string
+    course: string
+    password: string
+    emailVerified?: Date | string | null
+    status?: $Enums.AccountStatus
+    role?: $Enums.UserRole
+    isTwoFactorEnabled?: boolean
+    activatedBy?: string | null
+    deactivatedBy?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    announcement?: AnnouncementUncheckedCreateNestedManyWithoutCreatedByInput
+    messages?: MessageUncheckedCreateNestedManyWithoutUserInput
+    updates?: UpdateUncheckedCreateNestedManyWithoutCreatorInput
+  }
+
+  export type UserCreateOrConnectWithoutTwoFactorConfirmationInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutTwoFactorConfirmationInput, UserUncheckedCreateWithoutTwoFactorConfirmationInput>
+  }
+
+  export type UserUpsertWithoutTwoFactorConfirmationInput = {
+    update: XOR<UserUpdateWithoutTwoFactorConfirmationInput, UserUncheckedUpdateWithoutTwoFactorConfirmationInput>
+    create: XOR<UserCreateWithoutTwoFactorConfirmationInput, UserUncheckedCreateWithoutTwoFactorConfirmationInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutTwoFactorConfirmationInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutTwoFactorConfirmationInput, UserUncheckedUpdateWithoutTwoFactorConfirmationInput>
+  }
+
+  export type UserUpdateWithoutTwoFactorConfirmationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    schoolType?: EnumSchoolTypeFieldUpdateOperationsInput | $Enums.SchoolType
+    constituency?: EnumLaikipiaConstituencyFieldUpdateOperationsInput | $Enums.LaikipiaConstituency
+    registrationNumber?: StringFieldUpdateOperationsInput | string
+    year?: EnumStudentYearFieldUpdateOperationsInput | $Enums.StudentYear
+    school?: StringFieldUpdateOperationsInput | string
+    course?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    isTwoFactorEnabled?: BoolFieldUpdateOperationsInput | boolean
+    activatedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    deactivatedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    announcement?: AnnouncementUpdateManyWithoutCreatedByNestedInput
+    messages?: MessageUpdateManyWithoutUserNestedInput
+    updates?: UpdateUpdateManyWithoutCreatorNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutTwoFactorConfirmationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    phone?: StringFieldUpdateOperationsInput | string
+    schoolType?: EnumSchoolTypeFieldUpdateOperationsInput | $Enums.SchoolType
+    constituency?: EnumLaikipiaConstituencyFieldUpdateOperationsInput | $Enums.LaikipiaConstituency
+    registrationNumber?: StringFieldUpdateOperationsInput | string
+    year?: EnumStudentYearFieldUpdateOperationsInput | $Enums.StudentYear
+    school?: StringFieldUpdateOperationsInput | string
+    course?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumAccountStatusFieldUpdateOperationsInput | $Enums.AccountStatus
+    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    isTwoFactorEnabled?: BoolFieldUpdateOperationsInput | boolean
+    activatedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    deactivatedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    announcement?: AnnouncementUncheckedUpdateManyWithoutCreatedByNestedInput
+    messages?: MessageUncheckedUpdateManyWithoutUserNestedInput
+    updates?: UpdateUncheckedUpdateManyWithoutCreatorNestedInput
   }
 
   export type AnnouncementCreateManyCreatedByInput = {
@@ -6122,6 +13299,15 @@ export namespace Prisma {
     message: string
     sender: string
     createdAt?: Date | string
+  }
+
+  export type UpdateCreateManyCreatorInput = {
+    id?: string
+    content: string
+    isImage?: boolean
+    creatorName: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type AnnouncementUpdateWithoutCreatedByInput = {
@@ -6179,6 +13365,33 @@ export namespace Prisma {
     message?: StringFieldUpdateOperationsInput | string
     sender?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UpdateUpdateWithoutCreatorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    isImage?: BoolFieldUpdateOperationsInput | boolean
+    creatorName?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UpdateUncheckedUpdateWithoutCreatorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    isImage?: BoolFieldUpdateOperationsInput | boolean
+    creatorName?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UpdateUncheckedUpdateManyWithoutCreatorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    isImage?: BoolFieldUpdateOperationsInput | boolean
+    creatorName?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 
