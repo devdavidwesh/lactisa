@@ -3,8 +3,10 @@
 import { getAdminUpdates } from "@/actions/admindashboard";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 type UpdateType = {
+    id: string;
     content: string;
     isImage: boolean;
     creatorId: string;
@@ -33,6 +35,13 @@ const UpdatesTable = () => {
   useEffect(() => {
     fetchUpdates(currentPage);
   }, [currentPage]);
+
+  const handlePageChange = (newPage: number) => {
+    if (newPage >= 1 && newPage <= totalPages) {
+      setCurrentPage(newPage);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
 
   return (
     <div className="overflow-x-auto max-w-[400px] sm:max-w-[580px] lg:max-w-full">
@@ -70,10 +79,23 @@ const UpdatesTable = () => {
                   </tr>
                 ))
               ) : updates.length > 0 ? (
-                updates.map((update, i) => (
-                  <tr key={update.creatorId + i} className={i % 2 === 0 ? "bg-white" : "bg-gray-50"}>
+                updates.map((update) => (
+                  <tr key={update.id} className={updates.indexOf(update) % 2 === 0 ? "bg-white" : "bg-gray-50"}>
                     <td className="p-3 align-top">{update.creatorName || "Admin"}</td>
-                    <td className="p-3 align-top max-w-[300px] truncate">{update.content}</td>
+                    <td className="p-3 align-top max-w-[300px] truncate">
+                      {update.isImage ? (
+                        <a 
+                          href={update.content} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="text-blue-600 hover:underline"
+                        >
+                          View Image
+                        </a>
+                      ) : (
+                        update.content
+                      )}
+                    </td>
                     <td className="p-3 align-top">
                         <span className={`px-2 py-1 rounded-full text-xs font-medium ${
                             update.isImage 
@@ -109,30 +131,56 @@ const UpdatesTable = () => {
         </div>
 
         {totalPages > 1 && (
-          <div className="flex justify-center items-center space-x-4 mt-4">
-            <button
-              onClick={() => {
-                setCurrentPage(prev => Math.max(prev - 1, 1));
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }}
-              disabled={currentPage === 1}
-              className="px-4 py-2 bg-gray-200 rounded-md disabled:opacity-50"
-            >
-              Previous
-            </button>
-            <span>
-              Page {currentPage} of {totalPages}
-            </span>
-            <button
-              onClick={() => {
-                setCurrentPage(prev => Math.min(prev + 1, totalPages));
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }}
-              disabled={currentPage === totalPages}
-              className="px-4 py-2 bg-gray-200 rounded-md disabled:opacity-50"
-            >
-              Next
-            </button>
+          <div className="flex justify-between items-center mt-4">
+            <div className="text-sm text-gray-600">
+              Showing page {currentPage} of {totalPages}
+            </div>
+            <div className="flex space-x-2">
+              <button
+                onClick={() => handlePageChange(currentPage - 1)}
+                disabled={currentPage === 1}
+                className="flex items-center px-3 py-1 border rounded-md disabled:opacity-50 hover:bg-gray-50"
+              >
+                <ChevronLeft className="h-4 w-4 mr-1" />
+                Previous
+              </button>
+              <div className="flex space-x-1">
+                {Array.from({ length: Math.min(5, totalPages) }).map((_, index) => {
+                  let pageNum;
+                  if (totalPages <= 5) {
+                    pageNum = index + 1;
+                  } else if (currentPage <= 3) {
+                    pageNum = index + 1;
+                  } else if (currentPage >= totalPages - 2) {
+                    pageNum = totalPages - 4 + index;
+                  } else {
+                    pageNum = currentPage - 2 + index;
+                  }
+
+                  return (
+                    <button
+                      key={pageNum}
+                      onClick={() => handlePageChange(pageNum)}
+                      className={`w-8 h-8 rounded-md ${
+                        currentPage === pageNum
+                          ? 'bg-primary text-white'
+                          : 'border hover:bg-gray-50'
+                      }`}
+                    >
+                      {pageNum}
+                    </button>
+                  );
+                })}
+              </div>
+              <button
+                onClick={() => handlePageChange(currentPage + 1)}
+                disabled={currentPage === totalPages}
+                className="flex items-center px-3 py-1 border rounded-md disabled:opacity-50 hover:bg-gray-50"
+              >
+                Next
+                <ChevronRight className="h-4 w-4 ml-1" />
+              </button>
+            </div>
           </div>
         )}
       </div>

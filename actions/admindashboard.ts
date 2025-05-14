@@ -218,41 +218,44 @@ export async function getUserStats() {
     }
 
 
-    const ITEMS_PER_PAGE = 10;
-    export const getAdminUpdates = async (page: number = 1) => {
-      const user = await currentUser();
-      
-      // Verify admin role
-      if (user?.role !== "ADMIN") {
-        return null;
-      }
-    
-        const skip = (page - 1) * ITEMS_PER_PAGE;
-        
-        const [updates, totalCount] = await Promise.all([
-          db.update.findMany({
-            skip,
-            take: ITEMS_PER_PAGE,
-            select: {
-              content: true,
-              isImage: true,
-              creatorId: true,
-              creatorName: true,
-              createdAt: true,
-              updatedAt: true,
-            },
-            orderBy: {
-              createdAt: "desc",
-            },
-          }),
-          db.update.count(),
-        ]);
-    
-        return {
-          updates,
-          totalPages: Math.ceil(totalCount / ITEMS_PER_PAGE),
-        };
-    };
+  const ITEMS_PER_PAGE = 10;
+
+export const getAdminUpdates = async (page: number = 1) => {
+  const user = await currentUser();
+  
+  // Verify admin role
+  if (user?.role !== "ADMIN") {
+    return null;
+  }
+
+  const skip = (page - 1) * ITEMS_PER_PAGE;
+  
+  const [updates, totalCount] = await Promise.all([
+    db.update.findMany({
+      skip,
+      take: ITEMS_PER_PAGE,
+      select: {
+        id: true,
+        content: true,
+        isImage: true,
+        creatorId: true,
+        creatorName: true,
+        createdAt: true,
+        updatedAt: true,
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
+    }),
+    db.update.count(),
+  ]);
+
+  return {
+    updates,
+    totalPages: Math.ceil(totalCount / ITEMS_PER_PAGE),
+    currentPage: page,
+  };
+};
 
     
 

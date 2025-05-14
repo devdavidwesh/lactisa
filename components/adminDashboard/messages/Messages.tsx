@@ -42,7 +42,7 @@ const MessagesTable = () => {
             </thead>
             <tbody>
               {loading ? (
-                Array.from({ length: 13 }).map((_, i) => (
+                Array.from({ length: 9 }).map((_, i) => (
                   <tr key={i} className={i % 2 === 0 ? "bg-white" : "bg-gray-50"}>
                     {Array.from({ length: 4 }).map((_, j) => (
                       <td key={j} className="p-3">
@@ -64,7 +64,7 @@ const MessagesTable = () => {
                 ))
               ) : (
                 <tr>
-                  <td colSpan={3} className="p-4 text-center text-gray-500">No announcements found</td> {/* Changed colSpan to 3 */}
+                  <td colSpan={3} className="p-4 text-center text-gray-500">No Messages found</td> {/* Changed colSpan to 3 */}
                 </tr>
               )}
             </tbody>
