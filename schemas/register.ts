@@ -13,12 +13,13 @@ export const registerSchema = z.object({
     required_error: "Constituency is required"
   }),
   registrationNumber: z.string().min(2, "Registration number is required"),
-  year: z.string().min(1, "Year is required"),
+  year: z.enum(["FIRST", "SECOND", "THIRD", "FOURTH", "FIFTH", "SIXTH"]),
     email: z.string().email("Please provide a valid email address"),
     school: z.string().min(2, "School name is required"),
     course: z.string().min(2, "Course name is required"),
     password: z.string().min(6, "Password must be at least 6 characters"),
-    confirmPassword: z
+code: z.string().length(6, "Verification code must be 6 digits").regex(/^[0-9]+$/, "Must contain only numbers").optional()  ,
+confirmPassword: z
       .string()
       .min(6, "Confirm Password must be at least 6 characters"),
   }).refine((data) => data.password === data.confirmPassword, {
