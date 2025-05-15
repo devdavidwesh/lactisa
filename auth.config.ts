@@ -4,8 +4,7 @@ import Credentials from "next-auth/providers/credentials";
 import { LoginSchema } from "./schemas/login";
 import { getUserByEmail } from "./libs/users";
 import bcrypt from "bcryptjs";
-import { generateVerificationCode } from "./libs/tokens";
-
+import { getTwoFactorTokenByEmail } from "./data/two-factor-token";
 
 export default { 
     providers: [
@@ -16,7 +15,7 @@ export default {
                 if (!validatedData.success) {
                     throw new CredentialsSignin("Invalid Credentials");
                 }
-                    const { email, password } = validatedData.data;
+                    const { email, password, code } = validatedData.data;
                     const normalizedEmail = email.toLowerCase()
 
                     const user = await getUserByEmail(normalizedEmail);
@@ -24,15 +23,13 @@ export default {
                         throw new CredentialsSignin("Invalid Credentials");
                     }
 
-                    if (user.role === "ADMIN") {
-                        const verificationCode = await generateVerificationCode(user.email);
-                        if (verificationCode) {
-                            // await sendVeri
-                        }
-                    }
-
                     const passwordMatch = await bcrypt.compare(password, user.password);
                     if (!passwordMatch) {
+                        throw new CredentialsSignin("Invalid Credentials");
+                    }
+
+                    const twoFactorToken = await getTwoFactorTokenByEmail(normalizedEmail);
+                    if (twoFactorToken?.token !== code) {
                         throw new CredentialsSignin("Invalid Credentials");
                     }
                     

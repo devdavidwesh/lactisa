@@ -3,7 +3,7 @@ import { Resend } from "resend";
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 
-export const sendVerificationCode = async (email: string, token: string, firstName: string) => {
+export const sendVerificationCode = async (email: string, token: string, firstName?: string) => {
   await resend.emails.send({
     from: "onboarding@resend.dev",
     to: email,
@@ -18,7 +18,7 @@ export const sendVerificationCode = async (email: string, token: string, firstNa
           <h2 style="color: #111827; margin-top: 0;">Your Verification Code</h2>
           
           <p style="font-size: 16px; line-height: 1.5;">
-            Hello ${firstName}, We're sending you this code to verify your email so as to keep your account secure.
+            Hello ${firstName ? firstName : ""}, We're sending you this code to verify your email so as to keep your account secure.
           </p>
           
           <div style="background-color: #ffffff; border: 1px dashed #77bb07; padding: 20px; text-align: center; margin: 25px 0; border-radius: 8px;">

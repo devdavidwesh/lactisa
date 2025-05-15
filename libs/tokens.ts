@@ -54,3 +54,12 @@ export const generateVerificationToken = async ( email: string ) => {
 
     return verificationToken;
 }
+
+
+export const deleteTwoFactorTokenByEmail = async (id: string) => {
+        await db.twoFactorToken.delete({
+        where: {
+            id: id,
+        }
+    });
+}
