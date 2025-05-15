@@ -4,6 +4,7 @@ import Credentials from "next-auth/providers/credentials";
 import { LoginSchema } from "./schemas/login";
 import { getUserByEmail } from "./libs/users";
 import bcrypt from "bcryptjs";
+import { generateVerificationCode } from "./libs/tokens";
 
 
 export default { 
@@ -21,6 +22,13 @@ export default {
                     const user = await getUserByEmail(normalizedEmail);
                     if (!user) {
                         throw new CredentialsSignin("Invalid Credentials");
+                    }
+
+                    if (user.role === "ADMIN") {
+                        const verificationCode = await generateVerificationCode(user.email);
+                        if (verificationCode) {
+                            // await sendVeri
+                        }
                     }
 
                     const passwordMatch = await bcrypt.compare(password, user.password);
